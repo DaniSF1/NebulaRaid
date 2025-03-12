@@ -1,0 +1,5 @@
+{
+  "enemyCount": 10,
+  "spawnRateMs": 2000,
+  "bulletPool": 500
+}
