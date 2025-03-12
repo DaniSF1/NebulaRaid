@@ -28,7 +28,7 @@ void Player::tick()
 	if (IsKeyDown(KEY_D)) worldPos.x += speed;
 	if (IsKeyPressed(KEY_SPACE) || IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) shoot();
 
-	for (Shot& shot : shots)
+	for (PlayerBullet& shot : shots)
 	{
 		shot.tick();
 	}
@@ -41,13 +41,13 @@ void Player::tick()
 		getCollisionRec().width,
 		getCollisionRec().height,
 		RED);
-	DrawCircle(worldPos.x + width, worldPos.y + height, 5, RED);
+	DrawCircle(worldPos.x + (width * scale) / 2, worldPos.y + (height * scale) / 2, 5, RED);
 }
 
 void Player::shoot()
 {
-	Vector2 shotPos{worldPos.x, worldPos.y};
-	Shot newShot(shotTexture, shotPos, 20.f, 0.0f, -1.0f, 0);
+	Vector2 bullerPos{worldPos.x + (width * scale) / 2, worldPos.y + (height * scale) / 2 };
+	PlayerBullet newShot(shotTexture, bullerPos, 20.f, 0.0f, -1.0f, 0);
 	shots.push_back(newShot);
 }
 

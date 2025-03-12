@@ -1,28 +1,28 @@
 #pragma once
 #include "raylib.h"
 
-class Shot
+class Bullet
 {
 public:
-	Shot(Texture2D texture, Vector2 pos, float speed, float xDirection, float yDirection, int type);
-	void tick();
+	virtual void tick();
+	virtual void checkCollision() = 0;
 	bool getActive() { return isActive; }
 	void setActive(bool active) { isActive = active; }
 
-private:
-	Texture2D shotTexture{};
+protected:
+	Texture2D bulletTexture{};
 	Rectangle hitBox{};
-	Vector2 shotPos{};
-	float shotSpeed;
+	Vector2 bulletPos{};
+	float bulletSpeed;
 	float damage;
-	int typeOfShot;
+	int bulletType;
 
 	//1.f positive X / -1.f negative X
-	float shotXDirection;
+	float bulletXDirection;
 	//1.f positive Y / -1.f negative Y
-	float shotYDirection;
+	float bulletYDirection;
 
-	bool isActive = false;
+	bool isActive;
 	float width;
 	float height;
 
@@ -33,3 +33,4 @@ private:
 	float updateTime{};
 	float scale{};
 };
+
