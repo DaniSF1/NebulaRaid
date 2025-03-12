@@ -1,6 +1,6 @@
 #pragma once
 #include "BaseCharacter.h"
-#include "Shot.h"
+#include "PlayerBullet.h"
 #include <vector>
 
 
@@ -14,6 +14,6 @@ public:
 
 private:
     //Temporary vector
-    std::vector<Shot> shots;
+    std::vector<PlayerBullet> shots;
 };
 
