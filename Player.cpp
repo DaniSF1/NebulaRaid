@@ -1,6 +1,7 @@
 #include "Player.h"
+#include <string>
 
-Player::Player()
+Player::Player() : bulletPool(10)
 {
 	worldPos.x = 720 / 2;
 	worldPos.y = 1280 / 2;
@@ -28,12 +29,25 @@ void Player::tick()
 	if (IsKeyDown(KEY_D)) worldPos.x += speed;
 	if (IsKeyPressed(KEY_SPACE) || IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) shoot();
 
-	for (PlayerBullet& shot : shots)
+	for (PlayerBullet* bullet : bulletPool.getAllActiveObjects())
 	{
-		shot.tick();
+ 		if (bullet)
+		{
+			bullet->tick();
+
+			if(bullet->isOutOfBounds())
+			{
+				bullet->setActive(false);
+				bulletPool.releaseObject(bullet);
+			}
+		}
 	}
 
 	BaseCharacter::tick();
+
+	//Debug
+	std::string remainingBulletsText = "Remaining Bullets: " + std::to_string(bulletPool.getAvailableObjects().size());
+	DrawText(remainingBulletsText.c_str(), 10, 10, 20, WHITE);
 
 	DrawRectangleLines(
 		getCollisionRec().x,
@@ -46,9 +60,12 @@ void Player::tick()
 
 void Player::shoot()
 {
-	Vector2 bullerPos{worldPos.x + (width * scale) / 2, worldPos.y + (height * scale) / 2 };
-	PlayerBullet newShot(shotTexture, bullerPos, 20.f, 0.0f, -1.0f, 0);
-	shots.push_back(newShot);
+	PlayerBullet* bullet = bulletPool.getObject();
+	if (bullet)
+	{
+		Vector2 bulletPos{ worldPos.x + (width * scale) / 2, worldPos.y + (height * scale) / 2 };
+		bullet->initialize(shotTexture, bulletPos, 5.f, 0.0f, -1.0f, 0, 4);
+	}
 }
 
 void Player::unloadTextures()

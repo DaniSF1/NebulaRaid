@@ -8,6 +8,8 @@ public:
 	virtual void checkCollision() = 0;
 	bool getActive() { return isActive; }
 	void setActive(bool active) { isActive = active; }
+	bool isOutOfBounds();
+	void initialize(Texture2D texture, Vector2 position, float speed, float xDir, float yDir, int type, int maxFr);
 
 protected:
 	Texture2D bulletTexture{};

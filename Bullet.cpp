@@ -24,12 +24,41 @@ void Bullet::tick()
 	Rectangle dest{ bulletPos.x, bulletPos.y, scale * width, scale * height };
 	Vector2 origin{ (scale * width) / 2, (scale * height) / 2 };
 	DrawTexturePro(bulletTexture, source, dest, origin, 0.f, WHITE);
+}
 
-	if (bulletPos.x < 0 ||
-		bulletPos.y < 0 ||
-		bulletPos.x + width / 2 > 720 ||
-		bulletPos.y + height / 2 > 1280)
-	{
-		setActive(false);
-	}
+bool Bullet::isOutOfBounds()
+{
+	return 
+		bulletPos.x < 0 || 
+		bulletPos.y < 0 || 
+		bulletPos.x + width / 2 > 720 || 
+		bulletPos.y + height / 2 > 1280;
+}
+
+void Bullet::initialize(Texture2D texture, Vector2 position, float speed, float xDir, float yDir, int type, int maxFr)
+{
+	isActive = true;
+
+	bulletTexture = texture;
+	bulletPos = position;
+	bulletSpeed = speed;
+	bulletXDirection = xDir;
+	bulletYDirection = yDir;
+	bulletType = type;
+	maxFrames = maxFr;
+
+	width = bulletTexture.width / maxFrames;
+	height = bulletTexture.height / 3;
+
+	hitBox = Rectangle{
+		bulletPos.x - width / 2,
+		bulletPos.y - height / 2,
+		width,
+		height
+	};
+
+	damage = 40 + 20 * bulletType;
+
+	runningTime = 0;
+	frame = 0;
 }
