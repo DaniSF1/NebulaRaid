@@ -142,6 +142,7 @@
     <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="PlayerBullet.cpp" />
+    <ClCompile Include="Pool.cpp" />
     <ClCompile Include="StateManager.cpp" />
     <ClCompile Include="TestState.cpp" />
   </ItemGroup>
@@ -166,11 +167,13 @@
     <ClInclude Include="external\json.hpp" />
     <ClInclude Include="IGameState.h" />
     <ClInclude Include="IManager.h" />
+    <ClInclude Include="IPool.h" />
     <ClInclude Include="Level1State.h" />
     <ClInclude Include="LevelLoader.h" />
     <ClInclude Include="MenuState.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="PlayerBullet.h" />
+    <ClInclude Include="Pool.h" />
     <ClInclude Include="StateManager.h" />
     <ClInclude Include="TestState.h" />
   </ItemGroup>

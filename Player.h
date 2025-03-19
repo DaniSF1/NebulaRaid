@@ -1,8 +1,7 @@
 #pragma once
 #include "BaseCharacter.h"
 #include "PlayerBullet.h"
-#include <vector>
-
+#include "Pool.h"
 
 class Player : public BaseCharacter
 {
@@ -13,7 +12,6 @@ public:
     void unloadTextures();
 
 private:
-    //Temporary vector
-    std::vector<PlayerBullet> shots;
+    Pool<PlayerBullet> bulletPool;
 };
 
