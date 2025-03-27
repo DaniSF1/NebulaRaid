@@ -9,7 +9,6 @@ public:
     Player();
     virtual void tick() override;
     virtual void shoot() override;
-    void unloadTextures();
 
 private:
     Pool<PlayerBullet> bulletPool;

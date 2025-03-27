@@ -12,13 +12,6 @@ void BaseCharacter::tick()
             frame = 0;
     }
 
-    if (worldPos.x < 0 ||
-        worldPos.y < 0 ||
-        worldPos.x + 2 * width >= 720 ||
-        worldPos.y + 2 * height >= 1280)
-    {
-        undoMovement();
-    }
     lastFrameWorldPos = worldPos;
 
     // Draw the character
@@ -32,7 +25,13 @@ void BaseCharacter::undoMovement()
 	worldPos = lastFrameWorldPos;
 }
 
-Rectangle BaseCharacter::getCollisionRec()
+void BaseCharacter::unloadTextures()
+{
+    UnloadTexture(texture);
+    UnloadTexture(bulletTexture);
+}
+
+Rectangle BaseCharacter::getHitbox()
 {
 	return Rectangle{
 		worldPos.x,

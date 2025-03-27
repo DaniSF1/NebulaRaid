@@ -9,6 +9,6 @@ public:
 	virtual void checkCollision() override;
 
 private:
-
+	float rotation;
 };
 
