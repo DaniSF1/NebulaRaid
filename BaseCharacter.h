@@ -7,13 +7,14 @@ public:
     virtual void tick();
     void undoMovement();
     virtual void shoot() = 0;
-    Rectangle getCollisionRec();
+    void unloadTextures();
+    Rectangle getHitbox();
     bool getAlive() { return isAlive; }
     void setAlive(bool alive) { isAlive = alive; }
 
 protected:
 	Texture2D texture{};
-    Texture2D shotTexture{};
+    Texture2D bulletTexture{};
 	Vector2 worldPos{};
 	Vector2 lastFrameWorldPos{};
 

@@ -9,7 +9,7 @@ public:
 	bool getActive() { return isActive; }
 	void setActive(bool active) { isActive = active; }
 	bool isOutOfBounds();
-	void initialize(Texture2D texture, Vector2 position, float speed, float xDir, float yDir, int type, int maxFr);
+	void initialize(Texture2D texture, Vector2 position, float speed, float yDir, int type, int xRow, int yRow);
 
 protected:
 	Texture2D bulletTexture{};
@@ -19,8 +19,6 @@ protected:
 	float damage;
 	int bulletType;
 
-	//1.f positive X / -1.f negative X
-	float bulletXDirection;
 	//1.f positive Y / -1.f negative Y
 	float bulletYDirection;
 
@@ -31,8 +29,8 @@ protected:
 	// animation variables;
 	float runningTime{};
 	int frame{};
-	int maxFrames{};
 	float updateTime{};
 	float scale{};
+	int xRows;
+	int yRows;
 };
-

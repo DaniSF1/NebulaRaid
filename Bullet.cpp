@@ -10,12 +10,10 @@ void Bullet::tick()
 	{
 		frame++;
 		runningTime = 0.f;
-		if (frame > maxFrames)
+		if (frame > xRows)
 			frame = 0;
 	}
 
-	bulletPos.x += bulletSpeed * bulletXDirection;
-	bulletPos.y += bulletSpeed * bulletYDirection;
 	hitBox.x = bulletPos.x - width / 2;
 	hitBox.y = bulletPos.y - height / 2;
 
@@ -35,20 +33,20 @@ bool Bullet::isOutOfBounds()
 		bulletPos.y + height / 2 > 1280;
 }
 
-void Bullet::initialize(Texture2D texture, Vector2 position, float speed, float xDir, float yDir, int type, int maxFr)
+void Bullet::initialize(Texture2D texture, Vector2 position, float speed, float yDir, int type, int xRow, int yRow)
 {
 	isActive = true;
 
 	bulletTexture = texture;
 	bulletPos = position;
-	bulletSpeed = speed;
-	bulletXDirection = xDir;
+	bulletSpeed = speed + 50.f * type;
 	bulletYDirection = yDir;
 	bulletType = type;
-	maxFrames = maxFr;
+	xRows = xRow;
+	yRows = yRow;
 
-	width = bulletTexture.width / maxFrames;
-	height = bulletTexture.height / 3;
+	width = bulletTexture.width / xRows;
+	height = bulletTexture.height / yRows;
 
 	hitBox = Rectangle{
 		bulletPos.x - width / 2,

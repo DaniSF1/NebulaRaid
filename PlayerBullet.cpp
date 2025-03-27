@@ -10,6 +10,9 @@ PlayerBullet::PlayerBullet()
 void PlayerBullet::tick()
 {
 	if (!isActive) return;
+
+	bulletPos.y += bulletSpeed * bulletYDirection * GetFrameTime();
+
 	Bullet::tick();
 
 	DrawRectangleLines(
