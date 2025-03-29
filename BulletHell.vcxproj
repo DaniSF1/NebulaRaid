@@ -137,12 +137,11 @@
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="BulletHell.cpp" />
     <ClCompile Include="Enemy.cpp" />
-    <ClCompile Include="EnemyBullet.cpp" />
+    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Level1State.cpp" />
     <ClCompile Include="LevelLoader.cpp" />
     <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="PlayerBullet.cpp" />
     <ClCompile Include="Pool.cpp" />
     <ClCompile Include="StateManager.cpp" />
     <ClCompile Include="TestState.cpp" />
@@ -165,8 +164,8 @@
     <ClInclude Include="BaseCharacter.h" />
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Enemy.h" />
-    <ClInclude Include="EnemyBullet.h" />
     <ClInclude Include="external\json.hpp" />
+    <ClInclude Include="GameObject.h" />
     <ClInclude Include="IGameState.h" />
     <ClInclude Include="IManager.h" />
     <ClInclude Include="IPool.h" />
@@ -174,7 +173,6 @@
     <ClInclude Include="LevelLoader.h" />
     <ClInclude Include="MenuState.h" />
     <ClInclude Include="Player.h" />
-    <ClInclude Include="PlayerBullet.h" />
     <ClInclude Include="Pool.h" />
     <ClInclude Include="StateManager.h" />
     <ClInclude Include="TestState.h" />
