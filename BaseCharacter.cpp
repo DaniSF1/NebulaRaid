@@ -1,42 +1,30 @@
 #include "BaseCharacter.h"
 
+BaseCharacter::BaseCharacter() : bulletPool(10)
+{
+}
+
 void BaseCharacter::tick()
 {
-    // update animation frame
-    runningTime += GetFrameTime();
-    if (runningTime >= updateTime)
-    {
-        frame++;
-        runningTime = 0.f;
-        if (frame > maxFrames)
-            frame = 0;
-    }
+	for (Bullet* bullet : bulletPool.getAllActiveObjects())
+	{
+		if (bullet)
+		{
+			bullet->tick();
 
-    lastFrameWorldPos = worldPos;
+			if (bullet->isOutOfBounds())
+			{
+				bullet->setActive(false);
+				bulletPool.releaseObject(bullet);
+			}
+		}
+	}
 
-    // Draw the character
-    Rectangle source{ frame * width, 0.f, width, height };
-    Rectangle dest{ worldPos.x, worldPos.y, scale * width, scale * height };
-    DrawTexturePro(texture, source, dest, Vector2{}, 0.f, WHITE);
+	GameObject::tick();
 }
 
-void BaseCharacter::undoMovement()
+void BaseCharacter::unloadTexture()
 {
-	worldPos = lastFrameWorldPos;
-}
-
-void BaseCharacter::unloadTextures()
-{
-    UnloadTexture(texture);
-    UnloadTexture(bulletTexture);
-}
-
-Rectangle BaseCharacter::getHitbox()
-{
-	return Rectangle{
-		worldPos.x,
-		worldPos.y,
-		width * scale,
-		height * scale
-	};
+	UnloadTexture(bulletTexture);
+	GameObject::unloadTexture();
 }

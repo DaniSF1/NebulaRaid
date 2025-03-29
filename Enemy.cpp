@@ -1,16 +1,19 @@
 #include "Enemy.h"
 
-Enemy::Enemy() : bulletPool(10)
+Enemy::Enemy()
 {
+	setActive(true);
 	worldPos.x = 720 / 2;
 	worldPos.y = 1280 / 4;
 	speed = 300.f;
 
 	texture = LoadTexture("assets/ships/Enemies/Enemies_T1.png");
 	bulletTexture = LoadTexture("assets/ships/Enemies/Enemies_T1_bullet.png");
-	maxFrames = 4;
-	width = texture.width / maxFrames;
-	height = texture.height;
+	xRows = 4;
+	yRows = 1;
+	width = texture.width / xRows;
+	height = texture.height / yRows;
+	hitbox = Rectangle{ worldPos.x, worldPos.y, width, height };
 
 	runningTime = 0;
 	frame = 0;
@@ -25,37 +28,25 @@ Enemy::Enemy() : bulletPool(10)
 
 void Enemy::tick()
 {
-	BaseCharacter::tick();
+	if (!getActive()) return;
 
-	/*if (readyToShoot)
+	if (readyToShoot)
 	{
 		shoot();
 		readyToShoot = false;
-	}*/
-
-	for (EnemyBullet* bullet : bulletPool.getAllActiveObjects())
-	{
-		if (bullet)
-		{
-			bullet->tick();
-
-			if (bullet->isOutOfBounds())
-			{
-				bullet->setActive(false);
-				bulletPool.releaseObject(bullet);
-			}
-		}
 	}
 
-	//bulletDelay += GetFrameTime();
-	//if (bulletDelay >= 0.5f)
-	//{
-	//	readyToShoot = true;
-	//	bulletDelay = 0;
-	//}
+	bulletDelay += GetFrameTime();
+	if (bulletDelay >= 0.5f)
+	{
+		readyToShoot = true;
+		bulletDelay = 0;
+	}
 
-	/*worldPos = Vector2Add(worldPos, Vector2Scale(direction, speed * GetFrameTime()));
-	if (Vector2DistanceSqr(worldPos, targetPos) < 10.f) newPos();*/
+	worldPos = Vector2Add(worldPos, Vector2Scale(direction, speed * GetFrameTime()));
+	if (Vector2DistanceSqr(worldPos, targetPos) < 10.f || isOutOfBounds()) undoMovement();
+
+	BaseCharacter::tick();
 
 	DrawRectangleLines(
 		getHitbox().x,
@@ -67,22 +58,23 @@ void Enemy::tick()
 	DrawCircle(targetPos.x, targetPos.y, 5, YELLOW);
 }
 
+void Enemy::undoMovement()
+{
+	newPos();
+}
+
 void Enemy::shoot()
 {
-	EnemyBullet* bullet = bulletPool.getObject();
+	Bullet* bullet = bulletPool.getObject();
 	if (bullet)
 	{
-		Vector2 bulletPos{ worldPos.x + (width * scale) / 2, worldPos.y + (height * scale) / 2 };
-		bullet->initialize(bulletTexture, bulletPos, 600.f, 1.0f, 0, 4, 1);
+		Vector2 bulletPos{ worldPos.x + width / 2, worldPos.y + height / 2 };
+		bullet->initialize(bulletTexture, bulletPos, 600.f, 4, 1);
 	}
 }
 
 void Enemy::newPos()
 {
-	targetPos = { 
-		movBounds.x + GetRandomValue(0, movBounds.width - width),
-		movBounds.y + GetRandomValue(0, movBounds.height)
-	};
-
+	targetPos = { movBounds.x + GetRandomValue(0, movBounds.width), movBounds.y + GetRandomValue(0, movBounds.height)};
 	direction = Vector2Normalize(Vector2Subtract(targetPos, worldPos));
 }

@@ -17,7 +17,11 @@ void Level1State::enterState()
 
 void Level1State::exitState()
 {
-	player.unloadTextures();
+	player.unloadTexture();
+	for (auto enemy : enemies)
+	{
+		enemy->unloadTexture();
+	}
 	UnloadTexture(map);
 }
 

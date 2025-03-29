@@ -1,6 +1,6 @@
 #pragma once
 #include "BaseCharacter.h"
-#include "EnemyBullet.h"
+#include "Bullet.h"
 #include "Pool.h"
 #include "raymath.h"
 
@@ -9,10 +9,10 @@ class Enemy : public BaseCharacter
 public:
 	Enemy();
 	virtual void tick() override;
+	virtual void undoMovement() override;
 	virtual void shoot() override;
 
 private:
-	Pool<EnemyBullet> bulletPool;
 	bool readyToShoot;
 	float bulletDelay; //seconds
 	Vector2 targetPos;

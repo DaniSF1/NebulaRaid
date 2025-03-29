@@ -1,40 +1,23 @@
 #pragma once
 #include "raylib.h"
+#include "GameObject.h"
+#include "Bullet.h"
+#include "Pool.h"
 
-class BaseCharacter
+class BaseCharacter : public GameObject
 {
 public:
-    virtual void tick();
-    void undoMovement();
-    virtual void shoot() = 0;
-    void unloadTextures();
-    Rectangle getHitbox();
-    bool getAlive() { return isAlive; }
-    void setAlive(bool alive) { isAlive = alive; }
+    BaseCharacter();
+    virtual void tick();        
+    virtual void undoMovement() = 0;
+    virtual void shoot() = 0; 
+    virtual void unloadTexture();
 
 protected:
-	Texture2D texture{};
+    Pool<Bullet> bulletPool;
     Texture2D bulletTexture{};
-	Vector2 worldPos{};
-	Vector2 lastFrameWorldPos{};
-
-    // 1 right / -1 left
-    float rightLeft = 1.f;
-
-    // animation variables;
-    float runningTime{};
-    int frame{};
-    int maxFrames{};
-    float updateTime{};
-
-    float speed{};
-    float width{};
-    float height{};
-    float scale{};
-    Vector2 velocity{};
-    float health{};
 
 private:
-    bool isAlive;
+    float health{};
 };
 
