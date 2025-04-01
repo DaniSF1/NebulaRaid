@@ -1,3 +1,0 @@
-- Crear GameObject para gestionar: Posición, velocidad, animación, movimiento -> comunes en balas, enemigos, jugador...
-
-- Eliminar PlayerBullet y EnemyBullet -> Usar bullet directamente
