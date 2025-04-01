@@ -48,6 +48,7 @@ void Enemy::tick()
 
 	BaseCharacter::tick();
 
+#ifdef DEBUG_MODE
 	DrawRectangleLines(
 		getHitbox().x,
 		getHitbox().y,
@@ -56,6 +57,7 @@ void Enemy::tick()
 		RED);
 	DrawCircle(worldPos.x + (width * scale) / 2, worldPos.y + (height * scale) / 2, 5, RED);
 	DrawCircle(targetPos.x, targetPos.y, 5, YELLOW);
+#endif
 }
 
 void Enemy::undoMovement()

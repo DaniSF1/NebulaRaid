@@ -7,7 +7,7 @@ int main()
 {
     int width = 720;
     int height = 1280;
-    InitWindow(width, height, "Test");
+    InitWindow(width, height, "");
 
     StateManager stateManager;
     IManager* managerPtr = &stateManager;

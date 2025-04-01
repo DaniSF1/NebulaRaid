@@ -41,7 +41,7 @@ void Player::tick()
 
 	BaseCharacter::tick();
 
-	//Debug
+#ifdef DEBUG_MODE
 	std::string remainingBulletsText = "Remaining Bullets: " + std::to_string(bulletPool.getAvailableObjects().size());
 	DrawText(remainingBulletsText.c_str(), 10, 10, 20, WHITE);
 
@@ -52,6 +52,7 @@ void Player::tick()
 		getHitbox().height,
 		RED);
 	DrawCircle(worldPos.x + width, worldPos.y + height, 5, RED);
+#endif
 }
 
 void Player::undoMovement()
@@ -65,6 +66,6 @@ void Player::shoot()
 	if (bullet)
 	{
 		Vector2 bulletPos{ worldPos.x + width / 2, worldPos.y + height / 2};
-		bullet->initialize(bulletTexture, bulletPos, -800.f, 4, 3);
+		bullet->initialize(bulletTexture, bulletPos, -800.f, 4, 1);
 	}
 }
