@@ -143,6 +143,7 @@
     <ClCompile Include="MenuState.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Pool.cpp" />
+    <ClCompile Include="SpatialGrid.cpp" />
     <ClCompile Include="StateManager.cpp" />
     <ClCompile Include="TestState.cpp" />
   </ItemGroup>
@@ -174,6 +175,7 @@
     <ClInclude Include="MenuState.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Pool.h" />
+    <ClInclude Include="SpatialGrid.h" />
     <ClInclude Include="StateManager.h" />
     <ClInclude Include="TestState.h" />
   </ItemGroup>
