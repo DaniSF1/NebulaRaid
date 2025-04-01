@@ -7,12 +7,14 @@ void Bullet::tick()
 	worldPos.y += speed * GetFrameTime();
 	GameObject::tick();
 
+#ifdef DEBUG_MODE
 	DrawRectangleLines(
 		getHitbox().x,
 		getHitbox().y,
 		getHitbox().width,
 		getHitbox().height,
 		RED);
+#endif
 }
 
 void Bullet::checkCollision()
