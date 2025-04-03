@@ -3,8 +3,8 @@
 SpatialGrid::SpatialGrid(int width, int height, int size)
 {
 	cellSize = size;
-	cols = width / cellSize;
-	rows = height / cellSize;
+	cols = (width + cellSize - 1) / cellSize;
+	rows = (height + cellSize - 1) / cellSize;
 	numCells = cols * rows;
 	cells = std::vector<std::unordered_set<GameObject*>>(numCells);
 }
@@ -52,6 +52,26 @@ std::vector<GameObject*> SpatialGrid::getNearby(GameObject* object)
 int SpatialGrid::getCellIndex(int col, int rows) const
 {
 	return col + cols * rows;
+}
+
+void SpatialGrid::drawDebugGrid()
+{
+	Color gridColor = RED;
+
+	int gridWidth = cols * cellSize;
+	int gridHeight = rows * cellSize;
+
+	for (int i = 0; i <= cols; i++)
+	{
+		int x = i * cellSize;
+		DrawLine(x, 0, x, gridHeight, gridColor);
+	}
+
+	for (int j = 0; j <= rows; j++)
+	{
+		int y = j * cellSize;
+		DrawLine(0, y, gridWidth, y, gridColor);
+	}
 }
 
 void SpatialGrid::obtainColRow(GameObject* object)

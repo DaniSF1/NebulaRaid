@@ -13,19 +13,21 @@ public:
 	void insert(GameObject* object);
 	std::vector<GameObject*> getNearby(GameObject* object);
 
+#ifdef DEBUG_MODE
+	void drawDebugGrid();
+#endif // DEBUG_MODE
+
 private:
 	int cols;
 	int rows;
 	int numCells;
 	int cellSize;
 	std::vector<std::unordered_set<GameObject*>> cells;
-
-	int getCellIndex(int col, int rows) const;
-
 	int minCol;
 	int maxCol;
 	int minRow;
 	int maxRow;
 
+	int getCellIndex(int col, int rows) const;
 	void obtainColRow(GameObject* object);
 };

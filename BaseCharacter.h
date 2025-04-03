@@ -12,6 +12,8 @@ public:
     virtual void undoMovement() = 0;
     virtual void shoot() = 0; 
     virtual void unloadTexture();
+    void takeDamage();
+    Pool<Bullet>& getBulletPool() { return bulletPool; }
 
 protected:
     Pool<Bullet> bulletPool;

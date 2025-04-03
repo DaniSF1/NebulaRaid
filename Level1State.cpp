@@ -32,6 +32,55 @@ void Level1State::update()
 
 	DrawTextureEx(map, mapPos, 0.0, mapScale, WHITE);
 
+	grid.clearGrid();
+	grid.insert(&player);
+	for (Enemy* enemy : enemies)
+	{
+		grid.insert(enemy);
+	}
+
+	for (Bullet* bullet : player.getBulletPool().getAllActiveObjects())
+	{
+		grid.insert(bullet);
+	}
+
+	for (Enemy* enemy : enemies)
+	{
+		for (Bullet* bullet : player.getBulletPool().getAllActiveObjects())
+		{
+			grid.insert(bullet);
+		}
+	}
+
+	for (Enemy* enemy : enemies)
+	{
+		for (Bullet* bullet : enemy->getBulletPool().getAllActiveObjects())
+		{
+			for (GameObject* obj : grid.getNearby(bullet))
+			{
+				Player* p = dynamic_cast<Player*>(obj);
+				if (p && bullet->checkCollision(p)) 
+				{
+					bullet->handleCollision();
+					p->takeDamage();
+				}
+			}
+		}
+	}
+
+	for (Bullet* bullet : player.getBulletPool().getAllActiveObjects())
+	{
+		for (GameObject* obj : grid.getNearby(bullet))
+		{
+			Enemy* e = dynamic_cast<Enemy*>(obj);
+			if (e && bullet->checkCollision(e)) 
+			{
+				bullet->handleCollision();
+				e->takeDamage();
+			}
+		}
+	}
+
 	player.tick();
 
 	for (auto enemy : enemies)
@@ -43,6 +92,11 @@ void Level1State::update()
 	{
 		stateManager->setState(new MenuState(stateManager));
 	}
+
+#ifdef DEBUG_MODE
+	grid.drawDebugGrid();
+#endif // DEBUG_MODE
+
 
 	EndDrawing();
 }

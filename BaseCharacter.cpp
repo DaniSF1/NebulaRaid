@@ -28,3 +28,8 @@ void BaseCharacter::unloadTexture()
 	UnloadTexture(bulletTexture);
 	GameObject::unloadTexture();
 }
+
+void BaseCharacter::takeDamage()
+{
+	setActive(false);
+}
