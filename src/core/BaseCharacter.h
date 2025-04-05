@@ -1,7 +1,7 @@
 #pragma once
 #include "raylib.h"
 #include "GameObject.h"
-#include "Bullet.h"
+#include "../entities/Bullet.h"
 #include "Pool.h"
 
 class BaseCharacter : public GameObject

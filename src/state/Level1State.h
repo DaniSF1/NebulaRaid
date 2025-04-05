@@ -1,8 +1,8 @@
 #pragma once
 #include "AViewState.h"
-#include "Player.h"
-#include "Enemy.h"
-#include "SpatialGrid.h"
+#include "../entities/Player.h"
+#include "../entities/Enemy.h"
+#include "../core/SpatialGrid.h"
 #include <vector>
 
 class Level1State : public AViewState

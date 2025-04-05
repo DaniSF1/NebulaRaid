@@ -1,6 +1,6 @@
 #pragma once
 #include "raylib.h"
-#include "GameObject.h"
+#include "../core/GameObject.h"
 
 class Bullet : public GameObject
 {

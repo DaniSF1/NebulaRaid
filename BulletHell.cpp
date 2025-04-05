@@ -1,7 +1,7 @@
 #include <iostream>
 #include "raylib.h"
-#include "StateManager.h"
-#include "MenuState.h"
+#include "src/state/StateManager.h"
+#include "src/state/MenuState.h"
 
 int main()
 {

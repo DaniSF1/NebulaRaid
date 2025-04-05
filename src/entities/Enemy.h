@@ -1,7 +1,7 @@
 #pragma once
-#include "BaseCharacter.h"
+#include "../core/BaseCharacter.h"
 #include "Bullet.h"
-#include "Pool.h"
+#include "../core/Pool.h"
 #include "raymath.h"
 
 class Enemy : public BaseCharacter

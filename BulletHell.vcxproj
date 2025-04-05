@@ -133,19 +133,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="BaseCharacter.cpp" />
-    <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="BulletHell.cpp" />
-    <ClCompile Include="Enemy.cpp" />
-    <ClCompile Include="GameObject.cpp" />
-    <ClCompile Include="Level1State.cpp" />
-    <ClCompile Include="LevelLoader.cpp" />
-    <ClCompile Include="MenuState.cpp" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Pool.cpp" />
-    <ClCompile Include="SpatialGrid.cpp" />
-    <ClCompile Include="StateManager.cpp" />
-    <ClCompile Include="TestState.cpp" />
+    <ClCompile Include="src\core\BaseCharacter.cpp" />
+    <ClCompile Include="src\core\GameObject.cpp" />
+    <ClCompile Include="src\core\Pool.cpp" />
+    <ClCompile Include="src\core\SpatialGrid.cpp" />
+    <ClCompile Include="src\entities\Bullet.cpp" />
+    <ClCompile Include="src\entities\Enemy.cpp" />
+    <ClCompile Include="src\entities\Player.cpp" />
+    <ClCompile Include="src\state\Level1State.cpp" />
+    <ClCompile Include="src\state\MenuState.cpp" />
+    <ClCompile Include="src\state\StateManager.cpp" />
+    <ClCompile Include="src\state\TestState.cpp" />
+    <ClCompile Include="src\utils\LevelLoader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\ships\Background 2 Effects Sprite Sheet.png" />
@@ -161,23 +161,22 @@
     <Image Include="assets\ships\Ship-Nebula - Sprite Sheet.png" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AViewState.h" />
-    <ClInclude Include="BaseCharacter.h" />
-    <ClInclude Include="Bullet.h" />
-    <ClInclude Include="Enemy.h" />
-    <ClInclude Include="external\json.hpp" />
-    <ClInclude Include="GameObject.h" />
-    <ClInclude Include="IGameState.h" />
-    <ClInclude Include="IManager.h" />
-    <ClInclude Include="IPool.h" />
-    <ClInclude Include="Level1State.h" />
-    <ClInclude Include="LevelLoader.h" />
-    <ClInclude Include="MenuState.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="Pool.h" />
-    <ClInclude Include="SpatialGrid.h" />
-    <ClInclude Include="StateManager.h" />
-    <ClInclude Include="TestState.h" />
+    <ClInclude Include="src\core\BaseCharacter.h" />
+    <ClInclude Include="src\core\GameObject.h" />
+    <ClInclude Include="src\core\IPool.h" />
+    <ClInclude Include="src\core\Pool.h" />
+    <ClInclude Include="src\core\SpatialGrid.h" />
+    <ClInclude Include="src\entities\Bullet.h" />
+    <ClInclude Include="src\entities\Enemy.h" />
+    <ClInclude Include="src\entities\Player.h" />
+    <ClInclude Include="src\state\AViewState.h" />
+    <ClInclude Include="src\state\IGameState.h" />
+    <ClInclude Include="src\state\IManager.h" />
+    <ClInclude Include="src\state\Level1State.h" />
+    <ClInclude Include="src\state\MenuState.h" />
+    <ClInclude Include="src\state\StateManager.h" />
+    <ClInclude Include="src\state\TestState.h" />
+    <ClInclude Include="src\utils\LevelLoader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

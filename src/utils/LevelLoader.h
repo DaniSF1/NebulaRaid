@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-#include "external/json.hpp"
+#include "../external/json.hpp"
 
 struct LevelData
 {

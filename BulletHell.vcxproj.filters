@@ -13,52 +13,70 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Archivos de encabezado\State">
-      <UniqueIdentifier>{9ad80e9b-1d1d-4e63-86b0-fd7fc230a542}</UniqueIdentifier>
+    <Filter Include="Archivos de encabezado\entities">
+      <UniqueIdentifier>{f9ce045f-ac05-4c0d-a0e7-eeca06f33e30}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Archivos de encabezado\Pool">
-      <UniqueIdentifier>{7333507b-cd53-43cb-886e-4044c535b706}</UniqueIdentifier>
+    <Filter Include="Archivos de encabezado\core">
+      <UniqueIdentifier>{734423e0-77b4-4949-9633-f4077e2637d1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Archivos de encabezado\NewFilter1">
-      <UniqueIdentifier>{c338403b-dcc2-49df-8bf1-0fd13ee760fc}</UniqueIdentifier>
+    <Filter Include="Archivos de encabezado\utils">
+      <UniqueIdentifier>{1dfa8750-0037-442c-8f28-5cbc768a3c0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\states">
+      <UniqueIdentifier>{6aa29767-5c35-499d-9ab3-84d941491c2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\states">
+      <UniqueIdentifier>{57c2359c-da68-497b-87da-994d8b150681}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\utils">
+      <UniqueIdentifier>{721bd35d-0135-4859-9571-4183f144dd1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\entities">
+      <UniqueIdentifier>{04339c6a-d1ee-480b-8218-25344efb30f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\core">
+      <UniqueIdentifier>{0ecdc69e-19dd-451c-8a54-9ca08a377c5a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BulletHell.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="StateManager.cpp">
-      <Filter>Archivos de origen</Filter>
+    <ClCompile Include="src\state\Level1State.cpp">
+      <Filter>Archivos de origen\states</Filter>
     </ClCompile>
-    <ClCompile Include="MenuState.cpp">
-      <Filter>Archivos de origen</Filter>
+    <ClCompile Include="src\state\MenuState.cpp">
+      <Filter>Archivos de origen\states</Filter>
     </ClCompile>
-    <ClCompile Include="TestState.cpp">
-      <Filter>Archivos de origen</Filter>
+    <ClCompile Include="src\state\StateManager.cpp">
+      <Filter>Archivos de origen\states</Filter>
     </ClCompile>
-    <ClCompile Include="Level1State.cpp">
-      <Filter>Archivos de origen</Filter>
+    <ClCompile Include="src\state\TestState.cpp">
+      <Filter>Archivos de origen\states</Filter>
     </ClCompile>
-    <ClCompile Include="LevelLoader.cpp">
-      <Filter>Archivos de origen</Filter>
+    <ClCompile Include="src\utils\LevelLoader.cpp">
+      <Filter>Archivos de origen\utils</Filter>
     </ClCompile>
-    <ClCompile Include="BaseCharacter.cpp">
-      <Filter>Archivos de origen</Filter>
+    <ClCompile Include="src\entities\Player.cpp">
+      <Filter>Archivos de origen\entities</Filter>
     </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>Archivos de origen</Filter>
+    <ClCompile Include="src\entities\Enemy.cpp">
+      <Filter>Archivos de origen\entities</Filter>
     </ClCompile>
-    <ClCompile Include="Bullet.cpp">
-      <Filter>Archivos de origen</Filter>
+    <ClCompile Include="src\entities\Bullet.cpp">
+      <Filter>Archivos de origen\entities</Filter>
     </ClCompile>
-    <ClCompile Include="Pool.cpp">
-      <Filter>Archivos de origen</Filter>
+    <ClCompile Include="src\core\GameObject.cpp">
+      <Filter>Archivos de origen\core</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy.cpp">
-      <Filter>Archivos de origen</Filter>
+    <ClCompile Include="src\core\BaseCharacter.cpp">
+      <Filter>Archivos de origen\core</Filter>
     </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>Archivos de origen</Filter>
+    <ClCompile Include="src\core\Pool.cpp">
+      <Filter>Archivos de origen\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\SpatialGrid.cpp">
+      <Filter>Archivos de origen\core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -97,53 +115,53 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="LevelLoader.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="src\core\BaseCharacter.h">
+      <Filter>Archivos de encabezado\core</Filter>
     </ClInclude>
-    <ClInclude Include="external\json.hpp">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="src\core\GameObject.h">
+      <Filter>Archivos de encabezado\core</Filter>
     </ClInclude>
-    <ClInclude Include="BaseCharacter.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="src\core\Pool.h">
+      <Filter>Archivos de encabezado\core</Filter>
     </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="src\core\IPool.h">
+      <Filter>Archivos de encabezado\core</Filter>
     </ClInclude>
-    <ClInclude Include="Bullet.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="src\core\SpatialGrid.h">
+      <Filter>Archivos de encabezado\core</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="src\entities\Bullet.h">
+      <Filter>Archivos de encabezado\entities</Filter>
     </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>Archivos de encabezado</Filter>
+    <ClInclude Include="src\entities\Enemy.h">
+      <Filter>Archivos de encabezado\entities</Filter>
     </ClInclude>
-    <ClInclude Include="AViewState.h">
-      <Filter>Archivos de encabezado\State</Filter>
+    <ClInclude Include="src\entities\Player.h">
+      <Filter>Archivos de encabezado\entities</Filter>
     </ClInclude>
-    <ClInclude Include="IManager.h">
-      <Filter>Archivos de encabezado\State</Filter>
+    <ClInclude Include="src\utils\LevelLoader.h">
+      <Filter>Archivos de encabezado\utils</Filter>
     </ClInclude>
-    <ClInclude Include="Level1State.h">
-      <Filter>Archivos de encabezado\State</Filter>
+    <ClInclude Include="src\state\AViewState.h">
+      <Filter>Archivos de encabezado\states</Filter>
     </ClInclude>
-    <ClInclude Include="MenuState.h">
-      <Filter>Archivos de encabezado\State</Filter>
+    <ClInclude Include="src\state\TestState.h">
+      <Filter>Archivos de encabezado\states</Filter>
     </ClInclude>
-    <ClInclude Include="TestState.h">
-      <Filter>Archivos de encabezado\State</Filter>
+    <ClInclude Include="src\state\IGameState.h">
+      <Filter>Archivos de encabezado\states</Filter>
     </ClInclude>
-    <ClInclude Include="IGameState.h">
-      <Filter>Archivos de encabezado\State</Filter>
+    <ClInclude Include="src\state\IManager.h">
+      <Filter>Archivos de encabezado\states</Filter>
     </ClInclude>
-    <ClInclude Include="StateManager.h">
-      <Filter>Archivos de encabezado\State</Filter>
+    <ClInclude Include="src\state\Level1State.h">
+      <Filter>Archivos de encabezado\states</Filter>
     </ClInclude>
-    <ClInclude Include="IPool.h">
-      <Filter>Archivos de encabezado\Pool</Filter>
+    <ClInclude Include="src\state\MenuState.h">
+      <Filter>Archivos de encabezado\states</Filter>
     </ClInclude>
-    <ClInclude Include="Pool.h">
-      <Filter>Archivos de encabezado\Pool</Filter>
+    <ClInclude Include="src\state\StateManager.h">
+      <Filter>Archivos de encabezado\states</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
