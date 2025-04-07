@@ -1,8 +1,4 @@
 #include "Level1State.h"
-#include "raylib.h"
-#include "MenuState.h"
-#include "../utils/LevelLoader.h"
-#include <iostream>
 
 void Level1State::enterState()
 {
@@ -17,11 +13,13 @@ void Level1State::enterState()
 
 void Level1State::exitState()
 {
-	player.unloadTexture();
+	player.~Player();
 	for (auto enemy : enemies)
 	{
-		enemy->unloadTexture();
+		delete enemy;
 	}
+
+	enemies.clear();
 	UnloadTexture(map);
 }
 
@@ -33,18 +31,66 @@ void Level1State::update()
 	DrawTextureEx(map, mapPos, 0.0, mapScale, WHITE);
 
 	grid.clearGrid();
-	grid.insert(&player);
+	insertIntoGrid();
+	checkCollisions();
+
+	if (player.getActive())
+	{
+		player.tick();
+	}
+	else
+	{
+		stateManager->setState(new GameOverState(stateManager));
+		EndDrawing();
+		return;
+	}
+
+	for (auto enemy : enemies)
+	{
+		enemy->tick();
+	}
+
+	for (auto it = enemies.begin(); it != enemies.end();)
+	{
+		Enemy* enemy = *it;
+		if (!enemy->getActive())
+		{
+			delete enemy;
+			it = enemies.erase(it);
+		}
+		else
+		{
+			++it;
+		}
+	}
+
+	if (IsKeyPressed(KEY_ENTER))
+	{
+		stateManager->setState(new MenuState(stateManager));
+		EndDrawing();
+		return;
+	}
+	
+#ifdef DEBUG_MODE
+	grid.drawDebugGrid();
+#endif // DEBUG_MODE
+
+
+	EndDrawing();
+}
+
+void Level1State::insertIntoGrid()
+{
+	if (player.getActive())
+	{
+		grid.insert(&player);
+	}
 	for (Enemy* enemy : enemies)
 	{
 		grid.insert(enemy);
 	}
 
-	for (Bullet* bullet : player.getBulletPool().getAllActiveObjects())
-	{
-		grid.insert(bullet);
-	}
-
-	for (Enemy* enemy : enemies)
+	if (player.getActive()) 
 	{
 		for (Bullet* bullet : player.getBulletPool().getAllActiveObjects())
 		{
@@ -54,15 +100,26 @@ void Level1State::update()
 
 	for (Enemy* enemy : enemies)
 	{
+		for (Bullet* bullet : player.getBulletPool().getAllActiveObjects())
+		{
+			grid.insert(bullet);
+		}
+	}
+}
+
+void Level1State::checkCollisions()
+{
+	for (Enemy* enemy : enemies)
+	{
 		for (Bullet* bullet : enemy->getBulletPool().getAllActiveObjects())
 		{
 			for (GameObject* obj : grid.getNearby(bullet))
 			{
 				Player* p = dynamic_cast<Player*>(obj);
-				if (p && bullet->checkCollision(p)) 
+				if (p && bullet->checkCollision(p))
 				{
-					bullet->handleCollision();
-					p->takeDamage();
+					p->bulletCollision(bullet);
+					break;
 				}
 			}
 		}
@@ -73,30 +130,11 @@ void Level1State::update()
 		for (GameObject* obj : grid.getNearby(bullet))
 		{
 			Enemy* e = dynamic_cast<Enemy*>(obj);
-			if (e && bullet->checkCollision(e)) 
+			if (e && bullet->checkCollision(e))
 			{
-				bullet->handleCollision();
-				e->takeDamage();
+				e->bulletCollision(bullet);
+				break;
 			}
 		}
 	}
-
-	player.tick();
-
-	for (auto enemy : enemies)
-	{
-		enemy->tick();
-	}
-
-	if (IsKeyPressed(KEY_ENTER))
-	{
-		stateManager->setState(new MenuState(stateManager));
-	}
-
-#ifdef DEBUG_MODE
-	grid.drawDebugGrid();
-#endif // DEBUG_MODE
-
-
-	EndDrawing();
 }

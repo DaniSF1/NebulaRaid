@@ -23,13 +23,13 @@ void BaseCharacter::tick()
 	GameObject::tick();
 }
 
-void BaseCharacter::unloadTexture()
-{
-	UnloadTexture(bulletTexture);
-	GameObject::unloadTexture();
-}
-
 void BaseCharacter::takeDamage()
 {
 	setActive(false);
+}
+
+void BaseCharacter::bulletCollision(Bullet* bullet)
+{
+	bulletPool.releaseObject(bullet);
+	takeDamage();
 }

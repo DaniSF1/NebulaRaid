@@ -22,11 +22,6 @@ bool Bullet::checkCollision(GameObject* obj)
 	return CheckCollisionRecs(getHitbox(), obj->getHitbox());
 }
 
-void Bullet::handleCollision()
-{
-	setActive(false);
-}
-
 void Bullet::initialize(Texture2D bulletTexture, Vector2 position, float bulletSpeed, int xRow, int yRow)
 {
 	setActive(true);

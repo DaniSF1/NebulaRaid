@@ -27,11 +27,6 @@ void GameObject::draw()
     DrawTexturePro(texture, source, dest, Vector2{}, 0.f, WHITE);
 }
 
-void GameObject::unloadTexture()
-{
-    UnloadTexture(texture);
-}
-
 bool GameObject::isOutOfBounds()
 {
     return

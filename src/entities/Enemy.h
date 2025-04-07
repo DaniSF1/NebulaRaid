@@ -11,6 +11,7 @@ public:
 	virtual void tick() override;
 	virtual void undoMovement() override;
 	virtual void shoot() override;
+	~Enemy() override = default;
 
 private:
 	bool readyToShoot;

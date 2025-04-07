@@ -1,5 +1,8 @@
 #pragma once
 #include "AViewState.h"
+#include "raylib.h"
+#include "TestState.h"
+#include "Level1State.h"
 
 class MenuState : public AViewState
 {

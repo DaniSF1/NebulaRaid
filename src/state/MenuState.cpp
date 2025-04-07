@@ -1,7 +1,4 @@
 #include "MenuState.h"
-#include "raylib.h"
-#include "TestState.h"
-#include "Level1State.h"
 
 void MenuState::enterState()
 {
