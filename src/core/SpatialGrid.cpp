@@ -53,7 +53,7 @@ int SpatialGrid::getCellIndex(int col, int rows) const
 {
 	return col + cols * rows;
 }
-
+#ifdef DEBUG_MODE
 void SpatialGrid::drawDebugGrid()
 {
 	Color gridColor = RED;
@@ -73,7 +73,7 @@ void SpatialGrid::drawDebugGrid()
 		DrawLine(0, y, gridWidth, y, gridColor);
 	}
 }
-
+#endif
 void SpatialGrid::obtainColRow(GameObject* object)
 {
 	Rectangle hitbox = object->getHitbox();

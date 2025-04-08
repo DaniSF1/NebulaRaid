@@ -10,16 +10,23 @@ public:
     BaseCharacter();
     virtual void tick();        
     virtual void undoMovement() = 0;
-    virtual void shoot() = 0; 
-    virtual void unloadTexture();
-    void takeDamage();
+    virtual void shoot() = 0;
+    virtual void takeDamage(int damage);
+    void bulletCollision(Bullet* bullet);
     Pool<Bullet>& getBulletPool() { return bulletPool; }
+
+    ~BaseCharacter()
+    {
+        if (bulletTexture.id != 0)
+        {
+            UnloadTexture(bulletTexture);
+        }
+    }
 
 protected:
     Pool<Bullet> bulletPool;
     Texture2D bulletTexture{};
+    int health{};
 
-private:
-    float health{};
 };
 

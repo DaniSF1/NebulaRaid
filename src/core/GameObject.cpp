@@ -9,7 +9,7 @@ void GameObject::tick()
     hitbox.y = worldPos.y;
 }
 
-void GameObject::draw()
+void GameObject::draw(Color tint)
 {
     // update animation frame
     runningTime += GetFrameTime();
@@ -24,12 +24,7 @@ void GameObject::draw()
     // Draw the character
     Rectangle source{ frame * width, 0.f, width, height };
     Rectangle dest{ worldPos.x, worldPos.y, scale * width, scale * height };
-    DrawTexturePro(texture, source, dest, Vector2{}, 0.f, WHITE);
-}
-
-void GameObject::unloadTexture()
-{
-    UnloadTexture(texture);
+    DrawTexturePro(texture, source, dest, Vector2{}, 0.f, tint);
 }
 
 bool GameObject::isOutOfBounds()

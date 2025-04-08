@@ -3,7 +3,12 @@
 #include "../entities/Player.h"
 #include "../entities/Enemy.h"
 #include "../core/SpatialGrid.h"
+#include "../utils/LevelLoader.h"
+#include "raylib.h"
+#include "MenuState.h"
+#include "GameOverState.h"
 #include <vector>
+#include <iostream>
 
 class Level1State : public AViewState
 {
@@ -12,6 +17,8 @@ public:
 	void enterState() override;
 	void exitState() override;
 	void update() override;
+	void insertIntoGrid();
+	void checkCollisions();
 
 private:
 	Player player;

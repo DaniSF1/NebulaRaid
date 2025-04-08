@@ -23,13 +23,20 @@ void BaseCharacter::tick()
 	GameObject::tick();
 }
 
-void BaseCharacter::unloadTexture()
+void BaseCharacter::takeDamage(int damage)
 {
-	UnloadTexture(bulletTexture);
-	GameObject::unloadTexture();
+	if (health > 0)
+	{
+		health -= damage;
+	}
+	if (health <= 0)
+	{
+		setActive(false);
+	}
 }
 
-void BaseCharacter::takeDamage()
+void BaseCharacter::bulletCollision(Bullet* bullet)
 {
-	setActive(false);
+	takeDamage(bullet->getDamage());
+	bullet->setActive(false);
 }

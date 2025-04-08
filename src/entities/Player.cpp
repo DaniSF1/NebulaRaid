@@ -20,6 +20,7 @@ Player::Player()
 	updateTime = 0.15f;
 	scale = 2;
 	hitbox = Rectangle{worldPos.x, worldPos.y, width, height};
+	health = 100;
 }
 
 void Player::tick()
@@ -39,11 +40,16 @@ void Player::tick()
 
 	lastFrameWorldPos = worldPos;
 
+	std::string remainingHealth = "Health: " + std::to_string(health);
+	DrawText(remainingHealth.c_str(), 10, 10, 20, WHITE);
+
+	if (isInvincible()) activeInvincibility -= GetFrameTime();
+
 	BaseCharacter::tick();
 
 #ifdef DEBUG_MODE
 	std::string remainingBulletsText = "Remaining Bullets: " + std::to_string(bulletPool.getAvailableObjects().size());
-	DrawText(remainingBulletsText.c_str(), 10, 10, 20, WHITE);
+	DrawText(remainingBulletsText.c_str(), 10, 30, 20, WHITE);
 
 	DrawRectangleLines(
 		getHitbox().x,
@@ -53,6 +59,22 @@ void Player::tick()
 		RED);
 	DrawCircle(worldPos.x + width, worldPos.y + height, 5, RED);
 #endif
+}
+
+void Player::draw(Color tint)
+{
+	if (!isInvincible())
+	{
+		GameObject::draw();
+	}
+	else
+	{
+		bool visible = static_cast<int>(activeInvincibility * 10) % 2 == 0;
+		if (visible)
+		{
+			GameObject::draw(Fade(WHITE, 0.4f));
+		}
+	}
 }
 
 void Player::undoMovement()
@@ -66,6 +88,15 @@ void Player::shoot()
 	if (bullet)
 	{
 		Vector2 bulletPos{ worldPos.x + width / 2, worldPos.y + height / 2};
-		bullet->initialize(bulletTexture, bulletPos, -800.f, 4, 1);
+		bullet->initialize(bulletTexture, bulletPos, -800.f, 4, 1, 20);
 	}
+}
+
+void Player::takeDamage(int damage)
+{
+	if (isInvincible()) return;
+
+	activeInvincibility = maxInvincibility;
+	BaseCharacter::takeDamage(damage);
+
 }

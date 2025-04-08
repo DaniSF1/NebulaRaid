@@ -5,11 +5,18 @@ class Player : public BaseCharacter
 {
 public:
     Player();
-    virtual void tick() override;
-    virtual void undoMovement() override;
-    virtual void shoot() override;
+    void tick() override;
+    void draw(Color tint) override;
+    void undoMovement() override;
+    void shoot() override;
+    void takeDamage(int damage) override;
+    bool isInvincible() const { return activeInvincibility > 0.0f; }
+
+    ~Player() override = default;
 
 private:
     Vector2 lastFrameWorldPos{};
+    float activeInvincibility = 0.0f;
+    const float maxInvincibility = 0.75f;
 };
 
