@@ -7,8 +7,10 @@ class Bullet : public GameObject
 public:
 	void tick() override;
 	bool checkCollision(GameObject* obj);
-	void initialize(Texture2D bulletTexture, Vector2 position, float bulletSpeed, int xRow, int yRow);
+	void initialize(Texture2D bulletTexture, Vector2 position, float bulletSpeed, int xRow, int yRow, int bulletDamage);
+	int getDamage() { return damage; }
+	void setDamage(int newDamage) { damage = newDamage; }
 
-protected:				
-	float damage;
+private:				
+	int damage;
 };

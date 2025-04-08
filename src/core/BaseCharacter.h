@@ -11,7 +11,7 @@ public:
     virtual void tick();        
     virtual void undoMovement() = 0;
     virtual void shoot() = 0;
-    void takeDamage();
+    virtual void takeDamage(int damage);
     void bulletCollision(Bullet* bullet);
     Pool<Bullet>& getBulletPool() { return bulletPool; }
 
@@ -26,8 +26,7 @@ public:
 protected:
     Pool<Bullet> bulletPool;
     Texture2D bulletTexture{};
+    int health{};
 
-private:
-    float health{};
 };
 

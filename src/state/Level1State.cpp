@@ -119,6 +119,7 @@ void Level1State::checkCollisions()
 				if (p && bullet->checkCollision(p))
 				{
 					p->bulletCollision(bullet);
+					enemy->getBulletPool().releaseObject(bullet);
 					break;
 				}
 			}
@@ -133,6 +134,7 @@ void Level1State::checkCollisions()
 			if (e && bullet->checkCollision(e))
 			{
 				e->bulletCollision(bullet);
+				player.getBulletPool().releaseObject(bullet);
 				break;
 			}
 		}

@@ -23,13 +23,20 @@ void BaseCharacter::tick()
 	GameObject::tick();
 }
 
-void BaseCharacter::takeDamage()
+void BaseCharacter::takeDamage(int damage)
 {
-	setActive(false);
+	if (health > 0)
+	{
+		health -= damage;
+	}
+	if (health <= 0)
+	{
+		setActive(false);
+	}
 }
 
 void BaseCharacter::bulletCollision(Bullet* bullet)
 {
-	bulletPool.releaseObject(bullet);
-	takeDamage();
+	takeDamage(bullet->getDamage());
+	bullet->setActive(false);
 }

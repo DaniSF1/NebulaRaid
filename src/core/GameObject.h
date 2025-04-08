@@ -6,7 +6,7 @@ class GameObject
 {
 public: 
 	virtual void tick();
-	void draw();
+	virtual void draw(Color tint = WHITE);
 	bool isOutOfBounds();
 	Rectangle getHitbox();
 	bool getActive() { return isActive; }

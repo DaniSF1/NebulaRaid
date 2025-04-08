@@ -8,9 +8,9 @@ class Enemy : public BaseCharacter
 {
 public:
 	Enemy();
-	virtual void tick() override;
-	virtual void undoMovement() override;
-	virtual void shoot() override;
+	void tick() override;
+	void undoMovement() override;
+	void shoot() override;
 	~Enemy() override = default;
 
 private:

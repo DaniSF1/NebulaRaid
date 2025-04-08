@@ -22,7 +22,8 @@ Enemy::Enemy()
 	readyToShoot = true;
 	bulletDelay = 0.f;
 	targetPos = {0.f, 0.f};
-	movBounds = Rectangle{0.0f, 0.0f, 720.f, 500.f};
+	movBounds = Rectangle{ 0.0f, 0.0f, 720.f, 500.f };
+	health = 20;
 	newPos();
 }
 
@@ -71,7 +72,7 @@ void Enemy::shoot()
 	if (bullet)
 	{
 		Vector2 bulletPos{ worldPos.x + width / 2, worldPos.y + height / 2 };
-		bullet->initialize(bulletTexture, bulletPos, 600.f, 4, 1);
+		bullet->initialize(bulletTexture, bulletPos, 600.f, 4, 1, 20);
 	}
 }
 
