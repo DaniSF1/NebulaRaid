@@ -8,10 +8,12 @@ class Enemy : public BaseCharacter
 {
 public:
 	Enemy();
+	~Enemy() override = default;
 	void tick() override;
 	void undoMovement() override;
 	void shoot() override;
-	~Enemy() override = default;
+	static void LoadSharedTexture();
+	static void UnloadSharedTexture();
 
 private:
 	bool readyToShoot;
@@ -20,6 +22,8 @@ private:
 	Rectangle movBounds;
 	Vector2 direction;
 	float length;
+	static Texture2D sharedTexture;
+	static Texture2D sharedBulletTexture;
 
 	void newPos();
 };

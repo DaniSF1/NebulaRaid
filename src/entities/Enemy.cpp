@@ -1,5 +1,8 @@
 #include "Enemy.h"
 
+Texture2D Enemy::sharedTexture = {};
+Texture2D Enemy::sharedBulletTexture = {};
+
 Enemy::Enemy()
 {
 	setActive(true);
@@ -7,8 +10,8 @@ Enemy::Enemy()
 	worldPos.y = 1280 / 4;
 	speed = 300.f;
 
-	texture = LoadTexture("assets/ships/Enemies/Enemies_T1.png");
-	bulletTexture = LoadTexture("assets/ships/Enemies/Enemies_T1_bullet.png");
+	texture = sharedTexture;
+	bulletTexture = sharedBulletTexture;
 	xRows = 4;
 	yRows = 1;
 	width = texture.width / xRows;
@@ -74,6 +77,18 @@ void Enemy::shoot()
 		Vector2 bulletPos{ worldPos.x + width / 2, worldPos.y + height / 2 };
 		bullet->initialize(bulletTexture, bulletPos, 600.f, 4, 1, 20);
 	}
+}
+
+void Enemy::LoadSharedTexture()
+{
+	sharedTexture = LoadTexture("assets/ships/Enemies/Enemies_T1.png");
+	sharedBulletTexture = LoadTexture("assets/ships/Enemies/Enemies_T1_bullet.png");
+}
+
+void Enemy::UnloadSharedTexture()
+{
+	UnloadTexture(sharedTexture);
+	UnloadTexture(sharedBulletTexture);
 }
 
 void Enemy::newPos()

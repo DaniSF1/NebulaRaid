@@ -15,13 +15,7 @@ public:
     void bulletCollision(Bullet* bullet);
     Pool<Bullet>& getBulletPool() { return bulletPool; }
 
-    ~BaseCharacter()
-    {
-        if (bulletTexture.id != 0)
-        {
-            UnloadTexture(bulletTexture);
-        }
-    }
+    virtual ~BaseCharacter() = default;
 
 protected:
     Pool<Bullet> bulletPool;

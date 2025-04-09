@@ -3,7 +3,9 @@
 void Level1State::enterState()
 {
 	LevelData level = LevelLoader::loadLevel("json/lvl1.json");
-	for (int i = 0; i < 1 /*level.enemyCount*/; i++)
+
+	Enemy::LoadSharedTexture();
+	for (int i = 0; i < level.enemyCount; i++)
 	{
 		Enemy* enemy = new Enemy();
 		enemies.push_back(enemy);
@@ -20,6 +22,7 @@ void Level1State::exitState()
 	}
 
 	enemies.clear();
+	Enemy::UnloadSharedTexture();
 	UnloadTexture(map);
 }
 
