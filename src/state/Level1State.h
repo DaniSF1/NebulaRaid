@@ -7,13 +7,14 @@
 #include "raylib.h"
 #include "MenuState.h"
 #include "GameOverState.h"
+#include "../utils/GameConfig.h"
 #include <vector>
 #include <iostream>
 
 class Level1State : public AViewState
 {
 public:
-	Level1State(IManager* managerReference) : AViewState(managerReference), grid(720, 1280, 128) {}
+	Level1State(IManager* managerReference) : AViewState(managerReference), grid(GameConfig::instance().screenWidth, GameConfig::instance().screenHeight, GameConfig::instance().gridCellSize) {}
 	void enterState() override;
 	void exitState() override;
 	void update() override;

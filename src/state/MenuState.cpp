@@ -15,7 +15,7 @@ void MenuState::update()
 	BeginDrawing();
 	ClearBackground(WHITE);
 
-	DrawText("Main Menu", 720/2 - 80, 200, 30, BLACK);
+	DrawText("Main Menu", GameConfig::instance().screenWidth/2 - 80, GameConfig::instance().screenHeight / 6, 30, BLACK);
 	if(IsKeyPressed(KEY_ENTER))
 	{
 		stateManager->setState(new Level1State(stateManager));

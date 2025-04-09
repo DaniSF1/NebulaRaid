@@ -3,6 +3,7 @@
 #include "raylib.h"
 #include "TestState.h"
 #include "Level1State.h"
+#include "../utils/GameConfig.h"
 
 class MenuState : public AViewState
 {
