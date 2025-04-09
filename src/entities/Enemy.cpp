@@ -3,8 +3,8 @@
 Enemy::Enemy()
 {
 	setActive(true);
-	worldPos.x = 720 / 2;
-	worldPos.y = 1280 / 4;
+	worldPos.x = GameConfig::instance().screenWidth / 2;
+	worldPos.y = GameConfig::instance().screenHeight / 4;
 	speed = 300.f;
 
 	texture = LoadTexture("assets/ships/Enemies/Enemies_T1.png");

@@ -1,11 +1,10 @@
 #include "Player.h"
-#include <string>
 
 Player::Player()
 {
 	setActive(true);
-	worldPos.x = 720 / 2;
-	worldPos.y = 1280 / 2;
+	worldPos.x = GameConfig::instance().screenWidth / 2;
+	worldPos.y = GameConfig::instance().screenHeight / 2;
 	speed = 700.f;
 
 	texture = LoadTexture("assets/ships/Player/Ship-Nebula - Sprite Sheet.png");

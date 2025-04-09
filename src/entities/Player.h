@@ -1,5 +1,7 @@
 #pragma once
 #include "../core/BaseCharacter.h"
+#include "../utils/GameConfig.h"
+#include <string>
 
 class Player : public BaseCharacter
 {
