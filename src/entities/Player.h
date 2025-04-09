@@ -12,7 +12,11 @@ public:
     void takeDamage(int damage) override;
     bool isInvincible() const { return activeInvincibility > 0.0f; }
 
-    ~Player() override = default;
+    ~Player() override
+    {
+        if (texture.id != 0) UnloadTexture(texture);
+        if (bulletTexture.id != 0) UnloadTexture(bulletTexture);
+    }
 
 private:
     Vector2 lastFrameWorldPos{};

@@ -12,13 +12,7 @@ public:
 	bool getActive() { return isActive; }
 	void setActive(bool active) { isActive = active; }
 
-	virtual ~GameObject() 
-	{
-		if (texture.id != 0) 
-		{
-			UnloadTexture(texture);
-		}
-	}
+	virtual ~GameObject() = default;
 
 protected:
 	Texture2D texture{};            
