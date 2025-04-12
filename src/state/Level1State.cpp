@@ -2,14 +2,9 @@
 
 void Level1State::enterState()
 {
-	LevelData level = LevelLoader::loadLevel("json/lvl1.json");
+	level = LevelLoader::loadLevel("json/lvl1.json");
 
 	Enemy::LoadSharedTexture();
-	for (int i = 0; i < level.enemyCount; i++)
-	{
-		Enemy* enemy = new Enemy();
-		enemies.push_back(enemy);
-	}
 	map = LoadTexture("assets/ships/background/Background 2 Sprite Sheet.png");
 }
 
@@ -36,6 +31,14 @@ void Level1State::update()
 	grid.clearGrid();
 	insertIntoGrid();
 	checkCollisions();
+
+	timeSinceSpawned += GetFrameTime();
+	if (timeSinceSpawned >= level.spawnRateSeconds && level.enemyCount != 0)
+	{
+		timeSinceSpawned = 0.0f;
+		level.enemyCount--;
+		spawnEnemy();
+	}
 
 	if (player.getActive())
 	{
@@ -74,10 +77,16 @@ void Level1State::update()
 		return;
 	}
 	
+	if (level.enemyCount == 0 && enemies.size() == 0)
+	{
+		stateManager->setState(new WinState(stateManager));
+		EndDrawing();
+		return;
+	}
+
 #ifdef DEBUG_MODE
 	grid.drawDebugGrid();
 #endif // DEBUG_MODE
-
 
 	EndDrawing();
 }
@@ -142,4 +151,10 @@ void Level1State::checkCollisions()
 			}
 		}
 	}
+}
+
+void Level1State::spawnEnemy()
+{
+	Enemy* enemy = new Enemy();
+	enemies.push_back(enemy);
 }

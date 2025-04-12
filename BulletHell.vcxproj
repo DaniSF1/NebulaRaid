@@ -146,6 +146,7 @@
     <ClCompile Include="src\state\MenuState.cpp" />
     <ClCompile Include="src\state\StateManager.cpp" />
     <ClCompile Include="src\state\TestState.cpp" />
+    <ClCompile Include="src\state\WinState.cpp" />
     <ClCompile Include="src\utils\GameConfig.cpp" />
     <ClCompile Include="src\utils\LevelLoader.cpp" />
   </ItemGroup>
@@ -179,6 +180,7 @@
     <ClInclude Include="src\state\MenuState.h" />
     <ClInclude Include="src\state\StateManager.h" />
     <ClInclude Include="src\state\TestState.h" />
+    <ClInclude Include="src\state\WinState.h" />
     <ClInclude Include="src\utils\GameConfig.h" />
     <ClInclude Include="src\utils\LevelLoader.h" />
   </ItemGroup>

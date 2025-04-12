@@ -81,6 +81,12 @@
     <ClCompile Include="src\state\GameOverState.cpp">
       <Filter>Archivos de origen\states</Filter>
     </ClCompile>
+    <ClCompile Include="src\utils\GameConfig.cpp">
+      <Filter>Archivos de origen\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\state\WinState.cpp">
+      <Filter>Archivos de origen\states</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\ships\Background 2 Effects Sprite Sheet.png">
@@ -167,6 +173,12 @@
       <Filter>Archivos de encabezado\states</Filter>
     </ClInclude>
     <ClInclude Include="src\state\GameOverState.h">
+      <Filter>Archivos de encabezado\states</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\GameConfig.h">
+      <Filter>Archivos de encabezado\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\state\WinState.h">
       <Filter>Archivos de encabezado\states</Filter>
     </ClInclude>
   </ItemGroup>

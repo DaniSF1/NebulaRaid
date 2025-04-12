@@ -5,7 +5,7 @@
 struct LevelData
 {
 	int enemyCount;
-	int spawnRateMs;
+	float spawnRateSeconds;
 	int bulletPool;
 };
 
