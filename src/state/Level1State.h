@@ -7,6 +7,7 @@
 #include "raylib.h"
 #include "MenuState.h"
 #include "GameOverState.h"
+#include "WinState.h"
 #include "../utils/GameConfig.h"
 #include <vector>
 #include <iostream>
@@ -20,6 +21,7 @@ public:
 	void update() override;
 	void insertIntoGrid();
 	void checkCollisions();
+	void spawnEnemy();
 
 private:
 	Player player;
@@ -28,5 +30,8 @@ private:
 	Vector2 mapPos{ 0.0f,0.0f };
 	const float mapScale = 1.25f;
 	SpatialGrid grid;
+
+	float timeSinceSpawned = 1.5f;
+	LevelData level;
 };
 

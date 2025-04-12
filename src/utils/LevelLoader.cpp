@@ -17,7 +17,7 @@ LevelData LevelLoader::loadLevel(const std::string& filePath)
     file >> jsonData;
 
     levelData.enemyCount = jsonData.value("enemyCount", 0);
-    levelData.spawnRateMs = jsonData.value("spawnRateMs", 1000);
+    levelData.spawnRateSeconds = jsonData.value("spawnRateMs", 1000) / 1000.f;
     levelData.bulletPool = jsonData.value("bulletPool", 500);
 
     return levelData;
