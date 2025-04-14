@@ -26,6 +26,7 @@ void Level1State::update()
 	BeginDrawing();
 	ClearBackground(WHITE);
 
+	//Background animation
 	bPos.y += 120.f * GetFrameTime();
 	if (bPos.y >= background.height * bScale) bPos.y = 0.0f;
 	b2Pos.y = bPos.y - background.height * bScale;
@@ -33,10 +34,14 @@ void Level1State::update()
 	DrawTextureEx(background, bPos, 0.0, bScale, WHITE);
 	DrawTextureEx(background, b2Pos, 0.0, bScale, WHITE);
 
+	//Grid management
 	grid.clearGrid();
 	insertIntoGrid();
+
+	//Repensar si esto va aquí
 	checkCollisions();
 
+	//Spawn enemies
 	timeSinceSpawned += GetFrameTime();
 	if (timeSinceSpawned >= level.spawnRateSeconds && level.enemyCount != 0)
 	{
@@ -45,6 +50,7 @@ void Level1State::update()
 		spawnEnemy();
 	}
 
+	//Player tick & elimination
 	if (player.getActive())
 	{
 		player.tick();
@@ -56,6 +62,7 @@ void Level1State::update()
 		return;
 	}
 
+	//Enemy tick & elimination
 	for (auto enemy : enemies)
 	{
 		enemy->tick();
@@ -75,6 +82,7 @@ void Level1State::update()
 		}
 	}
 	
+	//End level
 	if (level.enemyCount == 0 && enemies.size() == 0)
 	{
 		stateManager->setState(new WinState(stateManager));
