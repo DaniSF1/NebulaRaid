@@ -26,9 +26,10 @@ public:
 private:
 	Player player;
 	std::vector<Enemy*> enemies;
-	Texture2D map{};
-	Vector2 mapPos{ 0.0f,0.0f };
-	const float mapScale = 1.25f;
+	Texture2D background{};
+	Vector2 bPos{ 0.0f, 0.0f };
+	Vector2 b2Pos{ 0.0f, 0.0f };
+	const float bScale = 1.25f;
 	SpatialGrid grid;
 
 	float timeSinceSpawned = 1.5f;

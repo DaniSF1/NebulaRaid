@@ -5,7 +5,7 @@ void Level1State::enterState()
 	level = LevelLoader::loadLevel("json/lvl1.json");
 
 	Enemy::LoadSharedTexture();
-	map = LoadTexture("assets/ships/background/Background 2 Sprite Sheet.png");
+	background = LoadTexture("assets/ships/background/Background 2 Sprite Sheet.png");
 }
 
 void Level1State::exitState()
@@ -18,7 +18,7 @@ void Level1State::exitState()
 
 	enemies.clear();
 	Enemy::UnloadSharedTexture();
-	UnloadTexture(map);
+	UnloadTexture(background);
 }
 
 void Level1State::update()
@@ -26,7 +26,12 @@ void Level1State::update()
 	BeginDrawing();
 	ClearBackground(WHITE);
 
-	DrawTextureEx(map, mapPos, 0.0, mapScale, WHITE);
+	bPos.y += 120.f * GetFrameTime();
+	if (bPos.y >= background.height * bScale) bPos.y = 0.0f;
+	b2Pos.y = bPos.y - background.height * bScale;
+
+	DrawTextureEx(background, bPos, 0.0, bScale, WHITE);
+	DrawTextureEx(background, b2Pos, 0.0, bScale, WHITE);
 
 	grid.clearGrid();
 	insertIntoGrid();
@@ -69,13 +74,6 @@ void Level1State::update()
 			++it;
 		}
 	}
-
-	if (IsKeyPressed(KEY_ENTER))
-	{
-		stateManager->setState(new MenuState(stateManager));
-		EndDrawing();
-		return;
-	}
 	
 	if (level.enemyCount == 0 && enemies.size() == 0)
 	{
@@ -96,22 +94,14 @@ void Level1State::insertIntoGrid()
 	if (player.getActive())
 	{
 		grid.insert(&player);
-	}
-	for (Enemy* enemy : enemies)
-	{
-		grid.insert(enemy);
-	}
-
-	if (player.getActive()) 
-	{
 		for (Bullet* bullet : player.getBulletPool().getAllActiveObjects())
 		{
 			grid.insert(bullet);
 		}
 	}
-
 	for (Enemy* enemy : enemies)
 	{
+		grid.insert(enemy);
 		for (Bullet* bullet : player.getBulletPool().getAllActiveObjects())
 		{
 			grid.insert(bullet);
