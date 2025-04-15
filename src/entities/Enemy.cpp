@@ -7,7 +7,7 @@ Enemy::Enemy()
 {
 	setActive(true);
 	worldPos.x = GameConfig::instance().screenWidth / 2;
-	worldPos.y = GameConfig::instance().screenHeight / 4;
+	worldPos.y = -100.f;
 	speed = 300.f;
 
 	texture = sharedTexture;
@@ -22,33 +22,40 @@ Enemy::Enemy()
 	frame = 0;
 	updateTime = 0.15f;
 	scale = 2.5f;
-	readyToShoot = true;
-	bulletDelay = 0.f;
-	targetPos = {0.f, 0.f};
-	movBounds = Rectangle{ 0.0f, 0.0f, 720.f, 400.f };
 	health = 20;
-	newPos();
+	movementBehavior = new EnterTopBehavior();
+	attackBehavior = {};
 }
 
 void Enemy::tick()
 {
 	if (!getActive()) return;
 
-	if (readyToShoot)
+	switch (state)
 	{
-		shoot();
-		readyToShoot = false;
-	}
+	case EnemyState::Entering:
+		movementBehavior->update(this);
+		if (movementBehavior->isFinished())
+		{
+			state = EnemyState::Active;
+			delete movementBehavior;
+			//new movementBehavior
+		}
+		break;
+	case EnemyState::Active:
+		movementBehavior->update(this);
+		attackBehavior->update(this);
+		if (movementBehavior->isFinished())
+		{
+			state = EnemyState::Retreating;
+		}
+		break;
+	case EnemyState::Retreating:
 
-	bulletDelay += GetFrameTime();
-	if (bulletDelay >= 0.5f)
-	{
-		readyToShoot = true;
-		bulletDelay = 0;
+		break;
+	default:
+		break;
 	}
-
-	worldPos = Vector2Add(worldPos, Vector2Scale(direction, speed * GetFrameTime()));
-	if (Vector2DistanceSqr(worldPos, targetPos) < 10.f || isOutOfBounds()) undoMovement();
 
 	BaseCharacter::tick();
 
@@ -60,13 +67,12 @@ void Enemy::tick()
 		getHitbox().height,
 		RED);
 	DrawCircle(worldPos.x + (width * scale) / 2, worldPos.y + (height * scale) / 2, 5, RED);
-	DrawCircle(targetPos.x, targetPos.y, 5, YELLOW);
 #endif
 }
 
 void Enemy::undoMovement()
 {
-	newPos();
+	
 }
 
 void Enemy::shoot()
@@ -89,10 +95,4 @@ void Enemy::UnloadSharedTexture()
 {
 	UnloadTexture(sharedTexture);
 	UnloadTexture(sharedBulletTexture);
-}
-
-void Enemy::newPos()
-{
-	targetPos = { movBounds.x + GetRandomValue(0, movBounds.width), movBounds.y + GetRandomValue(0, movBounds.height)};
-	direction = Vector2Normalize(Vector2Subtract(targetPos, worldPos));
 }

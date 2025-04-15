@@ -12,6 +12,9 @@ public:
 	Rectangle getHitbox();
 	bool getActive() { return isActive; }
 	void setActive(bool active) { isActive = active; }
+	Vector2 getWorldPos() { return worldPos; }
+	void setWorldPos(Vector2 newPos) { worldPos = newPos; }
+	float getSpeed() { return speed; }
 
 	virtual ~GameObject() = default;
 

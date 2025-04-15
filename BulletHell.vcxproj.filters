@@ -37,6 +37,12 @@
     <Filter Include="Archivos de origen\core">
       <UniqueIdentifier>{0ecdc69e-19dd-451c-8a54-9ca08a377c5a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de encabezado\behaviors">
+      <UniqueIdentifier>{faf93ecb-d561-477e-bb3b-f045e0abd547}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\behaviors">
+      <UniqueIdentifier>{cae3fd42-f108-421e-b076-fbaeffdc7429}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BulletHell.cpp">
@@ -86,6 +92,9 @@
     </ClCompile>
     <ClCompile Include="src\state\WinState.cpp">
       <Filter>Archivos de origen\states</Filter>
+    </ClCompile>
+    <ClCompile Include="src\behaviors\EnterTopBehavior.cpp">
+      <Filter>Archivos de origen\behaviors</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -180,6 +189,15 @@
     </ClInclude>
     <ClInclude Include="src\state\WinState.h">
       <Filter>Archivos de encabezado\states</Filter>
+    </ClInclude>
+    <ClInclude Include="src\behaviors\IAttackBehavior.h">
+      <Filter>Archivos de encabezado\behaviors</Filter>
+    </ClInclude>
+    <ClInclude Include="src\behaviors\IMovementBehavior.h">
+      <Filter>Archivos de encabezado\behaviors</Filter>
+    </ClInclude>
+    <ClInclude Include="src\behaviors\EnterTopBehavior.h">
+      <Filter>Archivos de encabezado\behaviors</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

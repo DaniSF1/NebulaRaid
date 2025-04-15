@@ -1,9 +1,18 @@
 #pragma once
 #include "../core/BaseCharacter.h"
-#include "../core/Pool.h"
 #include "../utils/GameConfig.h"
+#include "../behaviors/IMovementBehavior.h"
+#include "../behaviors/IAttackBehavior.h"
+#include "../behaviors/EnterTopBehavior.h"
 #include "Bullet.h"
 #include "raymath.h"
+
+enum class EnemyState
+{
+	Entering,
+	Active,
+	Retreating
+};
 
 class Enemy : public BaseCharacter
 {
@@ -17,14 +26,10 @@ public:
 	static void UnloadSharedTexture();
 
 private:
-	bool readyToShoot;
-	float bulletDelay; //seconds
-	Vector2 targetPos;
-	Rectangle movBounds;
-	Vector2 direction;
-	float length;
 	static Texture2D sharedTexture;
 	static Texture2D sharedBulletTexture;
+	EnemyState state = EnemyState::Entering;
 
-	void newPos();
+	IAttackBehavior* attackBehavior;
+	IMovementBehavior* movementBehavior;
 };
