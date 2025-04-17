@@ -134,7 +134,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BulletHell.cpp" />
+    <ClCompile Include="src\behaviors\BasicAttackBehavior.cpp" />
+    <ClCompile Include="src\behaviors\BasicRetreatBehavior.cpp" />
     <ClCompile Include="src\behaviors\EnterTopBehavior.cpp" />
+    <ClCompile Include="src\behaviors\RandomMovement.cpp" />
     <ClCompile Include="src\core\BaseCharacter.cpp" />
     <ClCompile Include="src\core\GameObject.cpp" />
     <ClCompile Include="src\core\Pool.cpp" />
@@ -165,9 +168,12 @@
     <Image Include="assets\ships\Ship-Nebula - Sprite Sheet.png" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\behaviors\BasicAttackBehavior.h" />
+    <ClInclude Include="src\behaviors\BasicRetreatBehavior.h" />
     <ClInclude Include="src\behaviors\EnterTopBehavior.h" />
     <ClInclude Include="src\behaviors\IAttackBehavior.h" />
     <ClInclude Include="src\behaviors\IMovementBehavior.h" />
+    <ClInclude Include="src\behaviors\RandomMovement.h" />
     <ClInclude Include="src\core\BaseCharacter.h" />
     <ClInclude Include="src\core\GameObject.h" />
     <ClInclude Include="src\core\IPool.h" />

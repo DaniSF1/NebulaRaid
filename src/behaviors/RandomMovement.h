@@ -1,8 +1,8 @@
-#pragma once
+#pragma once 
 #include "IMovementBehavior.h"
 #include "../entities/Enemy.h"
 
-class EnterTopBehavior : public IMovementBehavior
+class RandomMovement : public IMovementBehavior
 {
 public:
 	void update(Enemy* enemy) override;
@@ -10,6 +10,9 @@ public:
 	void newPos(Enemy* enemy) override;
 
 private:
-	float targetY = 200.f;
 	bool finished = false;
+	float maxActiveSec = 20.f;
+
+	Rectangle movBounds = { 0.f, 0.f, 720.f, 400.f };
+	Vector2 targetPos, direction;
 };

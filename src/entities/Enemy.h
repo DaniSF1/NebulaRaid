@@ -4,6 +4,9 @@
 #include "../behaviors/IMovementBehavior.h"
 #include "../behaviors/IAttackBehavior.h"
 #include "../behaviors/EnterTopBehavior.h"
+#include "../behaviors/RandomMovement.h"
+#include "../behaviors/BasicAttackBehavior.h"
+#include "../behaviors/BasicRetreatBehavior.h"
 #include "Bullet.h"
 #include "raymath.h"
 

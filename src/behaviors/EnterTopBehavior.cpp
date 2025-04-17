@@ -1,5 +1,4 @@
 #include "EnterTopBehavior.h"
-#include "../entities/Enemy.h"
 
 void EnterTopBehavior::update(Enemy* enemy)
 {
@@ -17,4 +16,8 @@ void EnterTopBehavior::update(Enemy* enemy)
 bool EnterTopBehavior::isFinished() const
 {
 	return finished;
+}
+
+void EnterTopBehavior::newPos(Enemy* enemy)
+{
 }

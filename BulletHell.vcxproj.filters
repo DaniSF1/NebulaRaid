@@ -96,6 +96,15 @@
     <ClCompile Include="src\behaviors\EnterTopBehavior.cpp">
       <Filter>Archivos de origen\behaviors</Filter>
     </ClCompile>
+    <ClCompile Include="src\behaviors\RandomMovement.cpp">
+      <Filter>Archivos de origen\behaviors</Filter>
+    </ClCompile>
+    <ClCompile Include="src\behaviors\BasicAttackBehavior.cpp">
+      <Filter>Archivos de origen\behaviors</Filter>
+    </ClCompile>
+    <ClCompile Include="src\behaviors\BasicRetreatBehavior.cpp">
+      <Filter>Archivos de origen\behaviors</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\ships\Background 2 Effects Sprite Sheet.png">
@@ -197,6 +206,15 @@
       <Filter>Archivos de encabezado\behaviors</Filter>
     </ClInclude>
     <ClInclude Include="src\behaviors\EnterTopBehavior.h">
+      <Filter>Archivos de encabezado\behaviors</Filter>
+    </ClInclude>
+    <ClInclude Include="src\behaviors\RandomMovement.h">
+      <Filter>Archivos de encabezado\behaviors</Filter>
+    </ClInclude>
+    <ClInclude Include="src\behaviors\BasicAttackBehavior.h">
+      <Filter>Archivos de encabezado\behaviors</Filter>
+    </ClInclude>
+    <ClInclude Include="src\behaviors\BasicRetreatBehavior.h">
       <Filter>Archivos de encabezado\behaviors</Filter>
     </ClInclude>
   </ItemGroup>

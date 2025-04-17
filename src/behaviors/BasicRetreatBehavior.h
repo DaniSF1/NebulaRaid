@@ -2,7 +2,7 @@
 #include "IMovementBehavior.h"
 #include "../entities/Enemy.h"
 
-class EnterTopBehavior : public IMovementBehavior
+class BasicRetreatBehavior : public IMovementBehavior
 {
 public:
 	void update(Enemy* enemy) override;
@@ -10,6 +10,6 @@ public:
 	void newPos(Enemy* enemy) override;
 
 private:
-	float targetY = 200.f;
+	float targetY = -100.f;
 	bool finished = false;
 };
