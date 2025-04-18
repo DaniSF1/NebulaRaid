@@ -136,8 +136,13 @@
     <ClCompile Include="BulletHell.cpp" />
     <ClCompile Include="src\behaviors\BasicAttackBehavior.cpp" />
     <ClCompile Include="src\behaviors\BasicRetreatBehavior.cpp" />
+    <ClCompile Include="src\behaviors\BerserkerAttack.cpp" />
+    <ClCompile Include="src\behaviors\BerserkerMovement.cpp" />
     <ClCompile Include="src\behaviors\EnterTopBehavior.cpp" />
+    <ClCompile Include="src\behaviors\LateralMovement.cpp" />
+    <ClCompile Include="src\behaviors\PrecisionAttack.cpp" />
     <ClCompile Include="src\behaviors\RandomMovement.cpp" />
+    <ClCompile Include="src\behaviors\TurretAttack.cpp" />
     <ClCompile Include="src\core\BaseCharacter.cpp" />
     <ClCompile Include="src\core\GameObject.cpp" />
     <ClCompile Include="src\core\Pool.cpp" />
@@ -151,6 +156,7 @@
     <ClCompile Include="src\state\StateManager.cpp" />
     <ClCompile Include="src\state\TestState.cpp" />
     <ClCompile Include="src\state\WinState.cpp" />
+    <ClCompile Include="src\utils\EnemyTypeData.cpp" />
     <ClCompile Include="src\utils\GameConfig.cpp" />
     <ClCompile Include="src\utils\LevelLoader.cpp" />
   </ItemGroup>
@@ -170,10 +176,15 @@
   <ItemGroup>
     <ClInclude Include="src\behaviors\BasicAttackBehavior.h" />
     <ClInclude Include="src\behaviors\BasicRetreatBehavior.h" />
+    <ClInclude Include="src\behaviors\BerserkerAttack.h" />
+    <ClInclude Include="src\behaviors\BerserkerMovement.h" />
     <ClInclude Include="src\behaviors\EnterTopBehavior.h" />
     <ClInclude Include="src\behaviors\IAttackBehavior.h" />
     <ClInclude Include="src\behaviors\IMovementBehavior.h" />
+    <ClInclude Include="src\behaviors\LateralMovement.h" />
+    <ClInclude Include="src\behaviors\PrecisionAttack.h" />
     <ClInclude Include="src\behaviors\RandomMovement.h" />
+    <ClInclude Include="src\behaviors\TurretAttack.h" />
     <ClInclude Include="src\core\BaseCharacter.h" />
     <ClInclude Include="src\core\GameObject.h" />
     <ClInclude Include="src\core\IPool.h" />
@@ -191,6 +202,7 @@
     <ClInclude Include="src\state\StateManager.h" />
     <ClInclude Include="src\state\TestState.h" />
     <ClInclude Include="src\state\WinState.h" />
+    <ClInclude Include="src\utils\EnemyTypeData.h" />
     <ClInclude Include="src\utils\GameConfig.h" />
     <ClInclude Include="src\utils\LevelLoader.h" />
   </ItemGroup>

@@ -21,7 +21,7 @@ Enemy::Enemy()
 	runningTime = 0;
 	frame = 0;
 	updateTime = 0.15f;
-	scale = 2.5f;
+	scale = 3.f;
 	health = 20;
 	movementBehavior = new EnterTopBehavior();
 	attackBehavior = {};
@@ -99,7 +99,7 @@ void Enemy::shoot()
 
 void Enemy::LoadSharedTexture()
 {
-	sharedTexture = LoadTexture("assets/ships/Enemies/Enemies_T1.png");
+	sharedTexture = LoadTexture("assets/ships/Enemies/Enemies_T4.png");
 	sharedBulletTexture = LoadTexture("assets/ships/Enemies/Enemies_T1_bullet.png");
 }
 

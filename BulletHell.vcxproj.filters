@@ -105,6 +105,24 @@
     <ClCompile Include="src\behaviors\BasicRetreatBehavior.cpp">
       <Filter>Archivos de origen\behaviors</Filter>
     </ClCompile>
+    <ClCompile Include="src\behaviors\TurretAttack.cpp">
+      <Filter>Archivos de origen\behaviors</Filter>
+    </ClCompile>
+    <ClCompile Include="src\behaviors\PrecisionAttack.cpp">
+      <Filter>Archivos de origen\behaviors</Filter>
+    </ClCompile>
+    <ClCompile Include="src\behaviors\LateralMovement.cpp">
+      <Filter>Archivos de origen\behaviors</Filter>
+    </ClCompile>
+    <ClCompile Include="src\behaviors\BerserkerMovement.cpp">
+      <Filter>Archivos de origen\behaviors</Filter>
+    </ClCompile>
+    <ClCompile Include="src\behaviors\BerserkerAttack.cpp">
+      <Filter>Archivos de origen\behaviors</Filter>
+    </ClCompile>
+    <ClCompile Include="src\utils\EnemyTypeData.cpp">
+      <Filter>Archivos de origen\utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\ships\Background 2 Effects Sprite Sheet.png">
@@ -216,6 +234,24 @@
     </ClInclude>
     <ClInclude Include="src\behaviors\BasicRetreatBehavior.h">
       <Filter>Archivos de encabezado\behaviors</Filter>
+    </ClInclude>
+    <ClInclude Include="src\behaviors\BerserkerAttack.h">
+      <Filter>Archivos de encabezado\behaviors</Filter>
+    </ClInclude>
+    <ClInclude Include="src\behaviors\BerserkerMovement.h">
+      <Filter>Archivos de encabezado\behaviors</Filter>
+    </ClInclude>
+    <ClInclude Include="src\behaviors\LateralMovement.h">
+      <Filter>Archivos de encabezado\behaviors</Filter>
+    </ClInclude>
+    <ClInclude Include="src\behaviors\PrecisionAttack.h">
+      <Filter>Archivos de encabezado\behaviors</Filter>
+    </ClInclude>
+    <ClInclude Include="src\behaviors\TurretAttack.h">
+      <Filter>Archivos de encabezado\behaviors</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\EnemyTypeData.h">
+      <Filter>Archivos de encabezado\utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
