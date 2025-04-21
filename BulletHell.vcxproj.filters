@@ -43,6 +43,12 @@
     <Filter Include="Archivos de origen\behaviors">
       <UniqueIdentifier>{cae3fd42-f108-421e-b076-fbaeffdc7429}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de encabezado\factory">
+      <UniqueIdentifier>{268d9c1e-4310-40ba-98b5-20d3976e2da8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de origen\factory">
+      <UniqueIdentifier>{28d6d323-f58d-41d9-8122-0fcb5765a271}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BulletHell.cpp">
@@ -122,6 +128,9 @@
     </ClCompile>
     <ClCompile Include="src\utils\EnemyTypeData.cpp">
       <Filter>Archivos de origen\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\factory\EnemyFactory.cpp">
+      <Filter>Archivos de origen\factory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -252,6 +261,9 @@
     </ClInclude>
     <ClInclude Include="src\utils\EnemyTypeData.h">
       <Filter>Archivos de encabezado\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\factory\EnemyFactory.h">
+      <Filter>Archivos de encabezado\factory</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

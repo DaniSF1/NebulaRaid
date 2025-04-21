@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include "../external/json.hpp"
 
 struct EnemyTypeData
 {
@@ -12,3 +13,5 @@ struct EnemyTypeData
 	std::string texturePath;
 	std::string bulletTexturePath;
 };
+
+EnemyTypeData loadEnemyType(const nlohmann::json& json);

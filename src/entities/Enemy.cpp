@@ -6,25 +6,18 @@ Texture2D Enemy::sharedBulletTexture = {};
 Enemy::Enemy()
 {
 	setActive(true);
-	worldPos.x = GetRandomValue(0, GameConfig::instance().screenWidth - 64);
-	worldPos.y = -100.f;
-	speed = 300.f;
 
-	texture = sharedTexture;
-	bulletTexture = sharedBulletTexture;
 	xRows = 4;
 	yRows = 1;
-	width = texture.width / xRows;
-	height = texture.height / yRows;
-	hitbox = Rectangle{ worldPos.x, worldPos.y, width, height };
-
+	
 	runningTime = 0;
 	frame = 0;
 	updateTime = 0.15f;
-	scale = 3.f;
-	health = 20;
-	movementBehavior = new EnterTopBehavior();
-	attackBehavior = {};
+
+	enterBehavior = nullptr;
+	movementBehavior = nullptr;
+	retreatBehavior = nullptr;
+	attackBehavior = nullptr;
 }
 
 void Enemy::tick()
@@ -34,14 +27,13 @@ void Enemy::tick()
 	switch (state)
 	{
 	case EnemyState::Entering:
-		movementBehavior->update(this);
-		if (movementBehavior->isFinished())
+		enterBehavior->update(this);
+
+		if (enterBehavior->isFinished())
 		{
 			state = EnemyState::Active;
-			delete movementBehavior;
-			movementBehavior = new RandomMovement();
+			delete enterBehavior;
 			movementBehavior->newPos(this);
-			attackBehavior = new BasicAttackBehavior();
 		}
 		break;
 	case EnemyState::Active:
@@ -53,14 +45,13 @@ void Enemy::tick()
 		{
 			state = EnemyState::Retreating;
 			delete movementBehavior;
-			movementBehavior = new BasicRetreatBehavior();
 		}
 		break;
 	case EnemyState::Retreating:
-		movementBehavior->update(this);
+		retreatBehavior->update(this);
 		attackBehavior->update(this);
 
-		if (movementBehavior->isFinished())
+		if (retreatBehavior->isFinished())
 		{
 			setActive(false);
 		}
@@ -68,6 +59,8 @@ void Enemy::tick()
 	default:
 		break;
 	}
+
+	if (isDamaged()) activeDamaged -= GetFrameTime();
 
 	BaseCharacter::tick();
 
@@ -80,6 +73,22 @@ void Enemy::tick()
 		RED);
 	DrawCircle(worldPos.x + (width * scale) / 2, worldPos.y + (height * scale) / 2, 5, RED);
 #endif
+}
+
+void Enemy::draw(Color tint)
+{
+	if (!isDamaged())
+	{
+		GameObject::draw();
+	}
+	else 
+	{
+		bool visible = static_cast<int>(activeDamaged * 10) % 2 == 0;
+		if (visible)
+		{
+			GameObject::draw(Fade(RED, 0.9f));
+		}
+	}
 }
 
 void Enemy::undoMovement()
@@ -97,9 +106,15 @@ void Enemy::shoot()
 	}
 }
 
+void Enemy::takeDamage(int damage)
+{
+	activeDamaged = maxDamaged;
+	BaseCharacter::takeDamage(damage);
+}
+
 void Enemy::LoadSharedTexture()
 {
-	sharedTexture = LoadTexture("assets/ships/Enemies/Enemies_T4.png");
+	sharedTexture = LoadTexture("assets/ships/Enemies/Enemies_T1.png");
 	sharedBulletTexture = LoadTexture("assets/ships/Enemies/Enemies_T1_bullet.png");
 }
 

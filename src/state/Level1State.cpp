@@ -2,9 +2,30 @@
 
 void Level1State::enterState()
 {
-	level = LevelLoader::loadLevel("json/lvl1.json");
+	/* Test factory */
+	std::ifstream file("json/enemy_types.json");
+	nlohmann::json jsonData;
+	file >> jsonData;
 
-	Enemy::LoadSharedTexture();
+	std::unordered_map<std::string, EnemyTypeData> enemyTypeMap;
+
+	for (auto& pair : jsonData.items())
+	{
+		enemyTypeMap[pair.key()] = loadEnemyType(pair.value());
+	}
+
+	EnemyFactory::initialize(enemyTypeMap);
+	EnemyFactory::loadSharedTextures();
+
+	enemies.push_back(EnemyFactory::create("basic"));
+	enemies.push_back(EnemyFactory::create("sniper"));
+	enemies.push_back(EnemyFactory::create("turret"));
+	enemies.push_back(EnemyFactory::create("berserker"));
+
+	//
+	
+	//level = LevelLoader::loadLevel("json/lvl1.json");
+	//Enemy::LoadSharedTexture();
 	background = LoadTexture("assets/ships/background/Background 2 Sprite Sheet.png");
 }
 
@@ -17,7 +38,7 @@ void Level1State::exitState()
 	}
 
 	enemies.clear();
-	Enemy::UnloadSharedTexture();
+	EnemyFactory::unloadSharedTextures();
 	UnloadTexture(background);
 }
 
@@ -37,8 +58,6 @@ void Level1State::update()
 	//Grid management
 	grid.clearGrid();
 	insertIntoGrid();
-
-	//Repensar si esto va aquí
 	checkCollisions();
 
 	//Spawn enemies

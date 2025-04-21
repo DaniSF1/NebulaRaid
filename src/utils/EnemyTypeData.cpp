@@ -1,5 +1,5 @@
 #include "EnemyTypeData.h"
-#include "../external/json.hpp"
+
 
 EnemyTypeData loadEnemyType(const nlohmann::json& json)
 {

@@ -6,8 +6,8 @@
     "movement": "RandomMovement",
     "attack": "BasicAttackBehavior",
     "retreat": "BasicRetreatBehavior",
-    "texture": "Enemies_T1.png",
-    "bulletTexture": "Enemies_T1_bullet.png"
+    "texture": "assets/ships/Enemies/Enemies_T1.png",
+    "bulletTexture": "assets/ships/Enemies/Enemies_T1_bullet.png"
   },
   "sniper": {
     "health": 20,
@@ -16,18 +16,18 @@
     "movement": "LateralMovement",
     "attack": "PrecisionAttack",
     "retreat": "BasicRetreatBehavior",
-    "texture": "Enemies_T2.png",
-    "bulletTexture": "Enemies_T1_bullet.png"
+    "texture": "assets/ships/Enemies/Enemies_T2.png",
+    "bulletTexture": "assets/ships/Enemies/Enemies_T1_bullet.png"
   },
   "turret": {
     "health": 80,
-    "speed": 0,
+    "speed": 300,
     "scale": 2.5,
-    "movement": "",
+    "movement": "LateralMovement",
     "attack": "TurretAttack",
     "retreat": "BasicRetreatBehavior",
-    "texture": "Enemies_T3.png",
-    "bulletTexture": "Enemies_T1_bullet.png"
+    "texture": "assets/ships/Enemies/Enemies_T3.png",
+    "bulletTexture": "assets/ships/Enemies/Enemies_T1_bullet.png"
   },
   "berserker": {
     "health": 120,
@@ -36,7 +36,7 @@
     "movement": "BerserkerMovement",
     "attack": "Berserker",
     "retreat": "BasicRetreatBehavior",
-    "texture": "Enemies_T4.png",
-    "bulletTexture": "Enemies_T1_bullet.png"
+    "texture": "assets/ships/Enemies/Enemies_T4.png",
+    "bulletTexture": "assets/ships/Enemies/Enemies_T1_bullet.png"
   }
 }

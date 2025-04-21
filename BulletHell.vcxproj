@@ -150,6 +150,7 @@
     <ClCompile Include="src\entities\Bullet.cpp" />
     <ClCompile Include="src\entities\Enemy.cpp" />
     <ClCompile Include="src\entities\Player.cpp" />
+    <ClCompile Include="src\factory\EnemyFactory.cpp" />
     <ClCompile Include="src\state\GameOverState.cpp" />
     <ClCompile Include="src\state\Level1State.cpp" />
     <ClCompile Include="src\state\MenuState.cpp" />
@@ -193,6 +194,7 @@
     <ClInclude Include="src\entities\Bullet.h" />
     <ClInclude Include="src\entities\Enemy.h" />
     <ClInclude Include="src\entities\Player.h" />
+    <ClInclude Include="src\factory\EnemyFactory.h" />
     <ClInclude Include="src\state\AViewState.h" />
     <ClInclude Include="src\state\GameOverState.h" />
     <ClInclude Include="src\state\IGameState.h" />

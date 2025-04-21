@@ -15,6 +15,10 @@ public:
     void bulletCollision(Bullet* bullet);
     Pool<Bullet>& getBulletPool() { return bulletPool; }
 
+    int getHealth() { return health; }
+    void setHealth(int newHealth) { health = newHealth; }
+    void setBulletTexture(Texture2D bulletTex) { bulletTexture = bulletTex; }
+
     virtual ~BaseCharacter() = default;
 
 protected:

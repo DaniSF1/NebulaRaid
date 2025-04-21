@@ -4,13 +4,16 @@
 #include "../entities/Enemy.h"
 #include "../core/SpatialGrid.h"
 #include "../utils/LevelLoader.h"
+#include "../utils/EnemyTypeData.h"
+#include "../utils/GameConfig.h"
+#include "../factory/EnemyFactory.h"
 #include "raylib.h"
 #include "MenuState.h"
 #include "GameOverState.h"
 #include "WinState.h"
-#include "../utils/GameConfig.h"
 #include <vector>
 #include <iostream>
+#include <fstream>
 
 class Level1State : public AViewState
 {
