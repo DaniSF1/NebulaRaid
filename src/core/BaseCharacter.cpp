@@ -1,6 +1,6 @@
 #include "BaseCharacter.h"
 
-BaseCharacter::BaseCharacter() : bulletPool(10)
+BaseCharacter::BaseCharacter() : bulletPool(20)
 {
 }
 

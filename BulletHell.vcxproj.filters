@@ -132,6 +132,9 @@
     <ClCompile Include="src\factory\EnemyFactory.cpp">
       <Filter>Archivos de origen\factory</Filter>
     </ClCompile>
+    <ClCompile Include="src\behaviors\StaticMovement.cpp">
+      <Filter>Archivos de origen\behaviors</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\ships\Background 2 Effects Sprite Sheet.png">
@@ -267,6 +270,9 @@
     </ClInclude>
     <ClInclude Include="src\utils\GameWorld.h">
       <Filter>Archivos de encabezado\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\behaviors\StaticMovement.h">
+      <Filter>Archivos de encabezado\behaviors</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

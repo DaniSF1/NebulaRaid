@@ -1,13 +1,5 @@
 #include "EnemyFactory.h"
-#include "../behaviors/BasicAttackBehavior.h"
-#include "../behaviors/BasicRetreatBehavior.h"
-#include "../behaviors/BerserkerAttack.h"
-#include "../behaviors/BerserkerMovement.h"
-#include "../behaviors/EnterTopBehavior.h"
-#include "../behaviors/LateralMovement.h"
-#include "../behaviors/PrecisionAttack.h"
-#include "../behaviors/RandomMovement.h"
-#include "../behaviors/TurretAttack.h"
+
 
 std::unordered_map<std::string, EnemyTypeData> EnemyFactory::enemyTypes;
 std::unordered_map<std::string, Texture2D> EnemyFactory::sharedTextures;
@@ -36,6 +28,7 @@ Enemy* EnemyFactory::create(const std::string& typeName)
 	enemy->setEnterBehavior(new EnterTopBehavior(data.targetY));
 	if (data.movementType == "RandomMovement") enemy->setMovementBehavior(new RandomMovement());
 	else if (data.movementType == "LateralMovement") enemy->setMovementBehavior(new LateralMovement());
+	else if (data.movementType == "StaticMovement") enemy->setMovementBehavior(new StaticMovement());
 	else if (data.movementType == "BerserkerMovement") enemy->setMovementBehavior(new BerserkerMovement());
 	enemy->setRetreatBehavior(new BasicRetreatBehavior());
 

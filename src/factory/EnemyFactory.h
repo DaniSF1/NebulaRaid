@@ -5,6 +5,17 @@
 #include <string>
 #include <unordered_map>
 
+#include "../behaviors/BasicAttackBehavior.h"
+#include "../behaviors/BasicRetreatBehavior.h"
+#include "../behaviors/BerserkerAttack.h"
+#include "../behaviors/BerserkerMovement.h"
+#include "../behaviors/EnterTopBehavior.h"
+#include "../behaviors/LateralMovement.h"
+#include "../behaviors/PrecisionAttack.h"
+#include "../behaviors/RandomMovement.h"
+#include "../behaviors/TurretAttack.h"
+#include "../behaviors/StaticMovement.h"
+
 class EnemyFactory
 {
 public:

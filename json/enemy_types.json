@@ -26,7 +26,7 @@
     "speed": 300,
     "scale": 2.5,
     "initialY": 100,
-    "movement": "LateralMovement",
+    "movement": "StaticMovement",
     "attack": "TurretAttack",
     "retreat": "BasicRetreatBehavior",
     "texture": "assets/ships/Enemies/Enemies_T3.png",

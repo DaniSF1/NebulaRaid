@@ -8,5 +8,7 @@ public:
 	void update(Enemy* enemy) override;
 
 private:
-
+	float bulletDelay = 0.f;
+	int numberOfBullets = 24;
+	int currentBullet = 0;
 };
