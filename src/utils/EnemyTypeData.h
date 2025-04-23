@@ -7,6 +7,7 @@ struct EnemyTypeData
 	int health;
 	float speed;
 	float scale;
+	int targetY;
 	std::string movementType;
 	std::string attackType;
 	std::string retreatType;

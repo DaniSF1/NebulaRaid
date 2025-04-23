@@ -1,5 +1,14 @@
 #include "EnterTopBehavior.h"
 
+EnterTopBehavior::EnterTopBehavior()
+{
+}
+
+EnterTopBehavior::EnterTopBehavior(int target)
+{
+	targetY = target;
+}
+
 void EnterTopBehavior::update(Enemy* enemy)
 {
 	Vector2 pos = enemy->getWorldPos();

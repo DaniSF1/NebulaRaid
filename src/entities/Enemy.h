@@ -25,7 +25,7 @@ public:
 	void tick() override;
 	void draw(Color tint) override;
 	void undoMovement() override;
-	void shoot() override;
+	void shoot(Vector2 dir) override;
 	void takeDamage(int damage) override;
 	bool isDamaged() const { return activeDamaged > 0.0f; }
 

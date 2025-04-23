@@ -33,7 +33,7 @@ Enemy* EnemyFactory::create(const std::string& typeName)
 	enemy->setHitbox(Rectangle{ enemy->getWorldPos().x, enemy->getWorldPos().y, enemy->getWidth(), enemy->getHeight() });
 
 	//Movement
-	enemy->setEnterBehavior(new EnterTopBehavior());
+	enemy->setEnterBehavior(new EnterTopBehavior(data.targetY));
 	if (data.movementType == "RandomMovement") enemy->setMovementBehavior(new RandomMovement());
 	else if (data.movementType == "LateralMovement") enemy->setMovementBehavior(new LateralMovement());
 	else if (data.movementType == "BerserkerMovement") enemy->setMovementBehavior(new BerserkerMovement());

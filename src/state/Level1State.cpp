@@ -17,16 +17,17 @@ void Level1State::enterState()
 	EnemyFactory::initialize(enemyTypeMap);
 	EnemyFactory::loadSharedTextures();
 
-	enemies.push_back(EnemyFactory::create("basic"));
-	enemies.push_back(EnemyFactory::create("sniper"));
+	//enemies.push_back(EnemyFactory::create("basic"));
+	//enemies.push_back(EnemyFactory::create("sniper"));
 	enemies.push_back(EnemyFactory::create("turret"));
-	enemies.push_back(EnemyFactory::create("berserker"));
+	//enemies.push_back(EnemyFactory::create("berserker"));
 
 	//
 	
 	//level = LevelLoader::loadLevel("json/lvl1.json");
 	//Enemy::LoadSharedTexture();
 	background = LoadTexture("assets/ships/background/Background 2 Sprite Sheet.png");
+	GameWorld::instance().setPlayer(&player);
 }
 
 void Level1State::exitState()

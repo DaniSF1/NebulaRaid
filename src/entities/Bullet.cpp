@@ -4,7 +4,7 @@ void Bullet::tick()
 {
 	if (!getActive()) return;
 
-	worldPos.y += speed * GetFrameTime();
+	worldPos = Vector2Add(worldPos, Vector2Scale(direction, speed * GetFrameTime()));
 	GameObject::tick();
 
 #ifdef DEBUG_MODE
@@ -22,7 +22,7 @@ bool Bullet::checkCollision(GameObject* obj)
 	return CheckCollisionRecs(getHitbox(), obj->getHitbox());
 }
 
-void Bullet::initialize(Texture2D bulletTexture, Vector2 position, float bulletSpeed, int xRow, int yRow, int bulletDamage)
+void Bullet::initialize(Texture2D bulletTexture, Vector2 position, float bulletSpeed, int xRow, int yRow, int bulletDamage, Vector2 dir)
 {
 	setActive(true);
 
@@ -34,6 +34,7 @@ void Bullet::initialize(Texture2D bulletTexture, Vector2 position, float bulletS
 	width = texture.width / xRows;
 	height = texture.height / yRows;
 	scale = 1;
+	direction = dir;
 
 	hitbox = Rectangle{ worldPos.x, worldPos.y, width, height };
 	runningTime = 0;

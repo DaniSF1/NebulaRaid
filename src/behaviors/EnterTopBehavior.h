@@ -5,6 +5,8 @@
 class EnterTopBehavior : public IMovementBehavior
 {
 public:
+	EnterTopBehavior();
+	EnterTopBehavior(int target);
 	void update(Enemy* enemy) override;
 	bool isFinished() const override;
 	void newPos(Enemy* enemy) override;

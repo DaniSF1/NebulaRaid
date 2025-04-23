@@ -30,7 +30,7 @@ void Player::tick()
 	if (IsKeyDown(KEY_S)) worldPos.y += speed * GetFrameTime();
 	if (IsKeyDown(KEY_A)) worldPos.x -= speed * GetFrameTime();
 	if (IsKeyDown(KEY_D)) worldPos.x += speed * GetFrameTime();
-	if (IsKeyPressed(KEY_SPACE) || IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) shoot();
+	if (IsKeyPressed(KEY_SPACE) || IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) shoot(Vector2({0.f, -1.f}));
 
 	if (isOutOfBounds())
 	{
@@ -81,13 +81,13 @@ void Player::undoMovement()
 	worldPos = lastFrameWorldPos;
 }
 
-void Player::shoot()
+void Player::shoot(Vector2 dir)
 {
 	Bullet* bullet = bulletPool.getObject();
 	if (bullet)
 	{
 		Vector2 bulletPos{ worldPos.x + width / 2, worldPos.y + height / 2};
-		bullet->initialize(bulletTexture, bulletPos, -800.f, 4, 1, 20);
+		bullet->initialize(bulletTexture, bulletPos, 800.f, 4, 1, 20, Vector2Normalize(dir));
 	}
 }
 

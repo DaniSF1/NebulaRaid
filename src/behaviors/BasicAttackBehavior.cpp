@@ -3,16 +3,10 @@
 
 void BasicAttackBehavior::update(Enemy* enemy)
 {
-	if (readyToShoot)
-	{
-		enemy->shoot();
-		readyToShoot = false;
-	}
-
 	bulletDelay += GetFrameTime();
-	if (bulletDelay >= 0.5f)
-	{
-		bulletDelay = 0.f;
-		readyToShoot = true;
-	}
+	if (bulletDelay < 0.5f) return;
+
+	enemy->shoot(Vector2({ 0.f, 1.f }));
+
+	if (bulletDelay >= 0.5f) bulletDelay = 0.f;
 }

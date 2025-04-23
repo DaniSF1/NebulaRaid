@@ -8,6 +8,5 @@ public:
 	void update(Enemy* enemy) override;
 
 private:
-	bool readyToShoot = false;
 	float bulletDelay = 0.f;
 };

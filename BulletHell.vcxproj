@@ -206,6 +206,7 @@
     <ClInclude Include="src\state\WinState.h" />
     <ClInclude Include="src\utils\EnemyTypeData.h" />
     <ClInclude Include="src\utils\GameConfig.h" />
+    <ClInclude Include="src\utils\GameWorld.h" />
     <ClInclude Include="src\utils\LevelLoader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

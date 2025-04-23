@@ -6,6 +6,7 @@
 #include "../utils/LevelLoader.h"
 #include "../utils/EnemyTypeData.h"
 #include "../utils/GameConfig.h"
+#include "../utils/GameWorld.h"
 #include "../factory/EnemyFactory.h"
 #include "raylib.h"
 #include "MenuState.h"

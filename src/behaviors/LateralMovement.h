@@ -2,6 +2,7 @@
 #include "IMovementBehavior.h"
 #include "../entities/Enemy.h"
 
+
 class LateralMovement : public IMovementBehavior
 {
 public:
@@ -10,5 +11,9 @@ public:
 	void newPos(Enemy* enemy) override;
 
 private:
+	bool finished = false;
+	float maxActiveSec = 40.f;
 
+	Vector2 targetPos, direction;
+	float targetX;
 };
