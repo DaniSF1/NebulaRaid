@@ -7,7 +7,9 @@ struct EnemyTypeData
 	int health;
 	float speed;
 	float scale;
-	int targetY;
+	float targetY;
+	float bulletDelay;
+	int poolSize;
 	std::string movementType;
 	std::string attackType;
 	std::string retreatType;

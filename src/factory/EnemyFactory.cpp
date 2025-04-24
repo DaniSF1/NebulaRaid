@@ -12,7 +12,7 @@ void EnemyFactory::initialize(const std::unordered_map<std::string, EnemyTypeDat
 Enemy* EnemyFactory::create(const std::string& typeName)
 {
 	const EnemyTypeData& data = enemyTypes[typeName];
-	Enemy* enemy = new Enemy();
+	Enemy* enemy = new Enemy(data.poolSize);
 
 	enemy->setHealth(data.health);
 	enemy->setSpeed(data.speed);
@@ -33,9 +33,9 @@ Enemy* EnemyFactory::create(const std::string& typeName)
 	enemy->setRetreatBehavior(new BasicRetreatBehavior());
 
 	//Attack
-	if (data.attackType == "BasicAttackBehavior") enemy->setAttackBehavior(new BasicAttackBehavior());
-	else if (data.attackType == "PrecisionAttack") enemy->setAttackBehavior(new PrecisionAttack());
-	else if (data.attackType == "TurretAttack") enemy->setAttackBehavior(new TurretAttack());
+	if (data.attackType == "BasicAttackBehavior") enemy->setAttackBehavior(new BasicAttackBehavior(data.bulletDelay));
+	else if (data.attackType == "PrecisionAttack") enemy->setAttackBehavior(new PrecisionAttack(data.bulletDelay));
+	else if (data.attackType == "TurretAttack") enemy->setAttackBehavior(new TurretAttack(data.bulletDelay));
 	else if (data.attackType == "Berserker") enemy->setAttackBehavior(new BerserkerAttack());
 
 	return enemy;

@@ -6,9 +6,11 @@
 class PrecisionAttack : public IAttackBehavior
 {
 public:
+	PrecisionAttack(float delay);
 	void update(Enemy* enemy) override;
 
 private:
-	float bulletDelay = 0.f;
+	float bulletDelay;
+	float actualDelay;
 	Player* player;
 };

@@ -20,7 +20,7 @@ enum class EnemyState
 class Enemy : public BaseCharacter
 {
 public:
-	Enemy();
+	Enemy(size_t bulletCount);
 	~Enemy() override = default;
 	void tick() override;
 	void draw(Color tint) override;

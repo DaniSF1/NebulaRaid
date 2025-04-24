@@ -7,7 +7,7 @@
 class BaseCharacter : public GameObject
 {
 public:
-    BaseCharacter();
+    BaseCharacter(size_t bulletPoolSize);
     virtual void tick();        
     virtual void undoMovement() = 0;
     virtual void shoot(Vector2 dir) = 0;

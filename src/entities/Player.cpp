@@ -1,6 +1,6 @@
 #include "Player.h"
 
-Player::Player()
+Player::Player() : BaseCharacter(10)
 {
 	setActive(true);
 	worldPos.x = GameConfig::instance().screenWidth / 2;

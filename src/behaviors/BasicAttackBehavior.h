@@ -5,8 +5,10 @@
 class BasicAttackBehavior : public IAttackBehavior
 {
 public:
+	BasicAttackBehavior(float delay);
 	void update(Enemy* enemy) override;
 
 private:
-	float bulletDelay = 0.f;
+	float bulletDelay;
+	float actualDelay;
 };

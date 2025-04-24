@@ -19,8 +19,8 @@ void Level1State::enterState()
 
 	//enemies.push_back(EnemyFactory::create("basic"));
 	//enemies.push_back(EnemyFactory::create("sniper"));
-	enemies.push_back(EnemyFactory::create("turret"));
-	//enemies.push_back(EnemyFactory::create("berserker"));
+	//enemies.push_back(EnemyFactory::create("turret"));
+	enemies.push_back(EnemyFactory::create("berserker"));
 
 	//
 	
@@ -173,6 +173,6 @@ void Level1State::checkCollisions()
 
 void Level1State::spawnEnemy()
 {
-	Enemy* enemy = new Enemy();
-	enemies.push_back(enemy);
+	/*Enemy* enemy = new Enemy();
+	enemies.push_back(enemy);*/
 }

@@ -1,9 +1,15 @@
 #include "TurretAttack.h"
 
+TurretAttack::TurretAttack(float delay)
+{
+	bulletDelay = delay;
+	actualDelay = 0;
+}
+
 void TurretAttack::update(Enemy* enemy)
 {
-	bulletDelay += GetFrameTime();
-	if (bulletDelay < 0.1f) return;
+	actualDelay += GetFrameTime();
+	if (actualDelay < bulletDelay) return;
 
 	Vector2 center = { enemy->getWorldPos().x + enemy->getWidth() * enemy->getScale() / 2, enemy->getWorldPos().y + enemy->getHeight() * enemy->getScale() / 2 };
 	float step = 360.f / numberOfBullets;
@@ -13,6 +19,5 @@ void TurretAttack::update(Enemy* enemy)
 
 	currentBullet++;
 	if (currentBullet >= numberOfBullets) currentBullet = 0;
-
-	bulletDelay = 0.f;
+	if (actualDelay >= bulletDelay) actualDelay = 0.f;
 }

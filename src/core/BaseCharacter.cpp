@@ -1,6 +1,6 @@
 #include "BaseCharacter.h"
 
-BaseCharacter::BaseCharacter() : bulletPool(20)
+BaseCharacter::BaseCharacter(size_t bulletPoolSize) : bulletPool(bulletPoolSize)
 {
 }
 

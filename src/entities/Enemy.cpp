@@ -3,7 +3,7 @@
 Texture2D Enemy::sharedTexture = {};
 Texture2D Enemy::sharedBulletTexture = {};
 
-Enemy::Enemy()
+Enemy::Enemy(size_t bulletCount) : BaseCharacter(bulletCount)
 {
 	setActive(true);
 
