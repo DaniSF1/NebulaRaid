@@ -30,7 +30,10 @@ public:
 		T* obj = availableObjects.back();
 		availableObjects.pop_back();
 
-		activeObjects.push_back(obj);
+		if (std::find(activeObjects.begin(), activeObjects.end(), obj) == activeObjects.end())
+		{
+			activeObjects.push_back(obj);
+		}
 
 		return obj;
 	}
@@ -41,9 +44,8 @@ public:
 		if (it != activeObjects.end())
 		{
 			activeObjects.erase(it);
+			availableObjects.push_back(obj);
 		}
-
-		availableObjects.push_back(obj);
 	}
 
 	int getSize()

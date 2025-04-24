@@ -25,20 +25,27 @@ bool Bullet::checkCollision(GameObject* obj)
 void Bullet::initialize(Texture2D bulletTexture, Vector2 position, float bulletSpeed, int xRow, int yRow, int bulletDamage, Vector2 dir)
 {
 	setActive(true);
+	this->texture = bulletTexture;
+	this->worldPos = position;
+	this->speed = bulletSpeed;
+	this->xRows = xRow;
+	this->yRows = yRow;
+	this->width = texture.width / xRows;
+	this->height = texture.height / yRows;
+	this->scale = 1;
+	this->direction = Vector2Normalize(dir);
 
-	texture = bulletTexture;
-	worldPos = position;
-	speed = bulletSpeed;
-	xRows = xRow;
-	yRows = yRow;
-	width = texture.width / xRows;
-	height = texture.height / yRows;
-	scale = 1;
-	direction = dir;
+	this->hitbox = Rectangle{ worldPos.x, worldPos.y, width, height };
+	this->runningTime = 0;
+	this->frame = 0;
 
-	hitbox = Rectangle{ worldPos.x, worldPos.y, width, height };
-	runningTime = 0;
-	frame = 0;
+	this->damage = bulletDamage;
+}
 
-	damage = bulletDamage;
+void Bullet::resetBullet()
+{
+	setActive(false);
+	this->direction = { 0, 0 };
+	this->damage = 0;
+	this->speed = 0;
 }

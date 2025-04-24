@@ -14,7 +14,7 @@ void BaseCharacter::tick()
 
 			if (bullet->isOutOfBounds())
 			{
-				bullet->setActive(false);
+				bullet->resetBullet();
 				bulletPool.releaseObject(bullet);
 			}
 		}
