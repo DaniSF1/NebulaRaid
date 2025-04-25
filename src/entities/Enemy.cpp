@@ -1,4 +1,5 @@
 #include "Enemy.h"
+#include "../behaviors/BerserkerMovement.h"
 
 Texture2D Enemy::sharedTexture = {};
 Texture2D Enemy::sharedBulletTexture = {};
@@ -110,6 +111,17 @@ void Enemy::takeDamage(int damage)
 {
 	activeDamaged = maxDamaged;
 	BaseCharacter::takeDamage(damage);
+}
+
+BerserkerMovementMode Enemy::getCurrentMovementMode() const
+{
+	auto* berserkerMove = dynamic_cast<BerserkerMovement*>(movementBehavior);
+	if (berserkerMove)
+	{
+		return berserkerMove->getMode();
+	}
+
+	return BerserkerMovementMode::Random;
 }
 
 void Enemy::LoadSharedTexture()

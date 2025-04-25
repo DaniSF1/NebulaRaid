@@ -36,7 +36,7 @@ Enemy* EnemyFactory::create(const std::string& typeName)
 	if (data.attackType == "BasicAttackBehavior") enemy->setAttackBehavior(new BasicAttackBehavior(data.bulletDelay));
 	else if (data.attackType == "PrecisionAttack") enemy->setAttackBehavior(new PrecisionAttack(data.bulletDelay));
 	else if (data.attackType == "TurretAttack") enemy->setAttackBehavior(new TurretAttack(data.bulletDelay));
-	else if (data.attackType == "Berserker") enemy->setAttackBehavior(new BerserkerAttack());
+	else if (data.attackType == "Berserker") enemy->setAttackBehavior(new BerserkerAttack(data.bulletDelay));
 
 	return enemy;
 }

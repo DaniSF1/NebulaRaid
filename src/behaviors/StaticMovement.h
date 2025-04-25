@@ -2,7 +2,8 @@
 #include "IMovementBehavior.h"
 #include "../entities/Enemy.h"
 
-enum MovementMode {
+enum class LateralMovementMode 
+{
 	Left,
 	Right
 };
@@ -19,6 +20,6 @@ private:
 	float maxActiveSec = 30.f;
 
 	Vector2 targetPos, direction;
-	MovementMode mode = MovementMode::Right;
+	LateralMovementMode mode = LateralMovementMode::Right;
 	bool initialized = false;
 };

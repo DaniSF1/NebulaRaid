@@ -274,5 +274,8 @@
     <ClInclude Include="src\behaviors\StaticMovement.h">
       <Filter>Archivos de encabezado\behaviors</Filter>
     </ClInclude>
+    <ClInclude Include="src\behaviors\BerserkerMovementMode.h">
+      <Filter>Archivos de encabezado\behaviors</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

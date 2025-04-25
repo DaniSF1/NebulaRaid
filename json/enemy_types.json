@@ -39,11 +39,11 @@
     "bulletTexture": "assets/ships/Enemies/Enemies_T1_bullet.png"
   },
   "berserker": {
-    "health": 120,
+    "health": 200,
     "speed": 300,
     "scale": 3,
     "initialY": 200,
-    "bulletDelay": 0.1,
+    "bulletDelay": 0.3,
     "poolSize": 50,
     "movement": "BerserkerMovement",
     "attack": "Berserker",

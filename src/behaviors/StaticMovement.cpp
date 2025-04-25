@@ -31,15 +31,15 @@ bool StaticMovement::isFinished() const
 
 void StaticMovement::newPos(Enemy* enemy)
 {
-	if (mode == MovementMode::Right)
+	if (mode == LateralMovementMode::Right)
 	{
 		targetPos = { GameConfig::instance().screenWidth - enemy->getWidth() * enemy->getScale(), enemy->getWorldPos().y };
-		mode = MovementMode::Left;
+		mode = LateralMovementMode::Left;
 	}
 	else
 	{
 		targetPos = { 10.f, enemy->getWorldPos().y };
-		mode = MovementMode::Right;
+		mode = LateralMovementMode::Right;
 	}
 
 	direction = Vector2Normalize(Vector2Subtract(targetPos, enemy->getWorldPos()));

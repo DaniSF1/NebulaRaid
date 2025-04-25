@@ -180,6 +180,7 @@
     <ClInclude Include="src\behaviors\BasicRetreatBehavior.h" />
     <ClInclude Include="src\behaviors\BerserkerAttack.h" />
     <ClInclude Include="src\behaviors\BerserkerMovement.h" />
+    <ClInclude Include="src\behaviors\BerserkerMovementMode.h" />
     <ClInclude Include="src\behaviors\EnterTopBehavior.h" />
     <ClInclude Include="src\behaviors\IAttackBehavior.h" />
     <ClInclude Include="src\behaviors\IMovementBehavior.h" />

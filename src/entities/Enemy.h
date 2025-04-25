@@ -3,10 +3,7 @@
 #include "../utils/GameConfig.h"
 #include "../behaviors/IMovementBehavior.h"
 #include "../behaviors/IAttackBehavior.h"
-#include "../behaviors/EnterTopBehavior.h"
-#include "../behaviors/RandomMovement.h"
-#include "../behaviors/BasicAttackBehavior.h"
-#include "../behaviors/BasicRetreatBehavior.h"
+#include "../behaviors/BerserkerMovementMode.h"
 #include "Bullet.h"
 #include "raymath.h"
 
@@ -33,6 +30,7 @@ public:
 	void setMovementBehavior(IMovementBehavior* movement) { movementBehavior = movement; }
 	void setRetreatBehavior(IMovementBehavior* retreat) { retreatBehavior = retreat; }
 	void setAttackBehavior(IAttackBehavior* attack) { attackBehavior = attack; }
+	BerserkerMovementMode getCurrentMovementMode() const;
 
 	static void LoadSharedTexture();
 	static void UnloadSharedTexture();
