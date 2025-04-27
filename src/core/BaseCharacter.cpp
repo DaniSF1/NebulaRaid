@@ -1,6 +1,6 @@
 #include "BaseCharacter.h"
 
-BaseCharacter::BaseCharacter() : bulletPool(10)
+BaseCharacter::BaseCharacter(size_t bulletPoolSize) : bulletPool(bulletPoolSize)
 {
 }
 
@@ -14,7 +14,7 @@ void BaseCharacter::tick()
 
 			if (bullet->isOutOfBounds())
 			{
-				bullet->setActive(false);
+				bullet->resetBullet();
 				bulletPool.releaseObject(bullet);
 			}
 		}

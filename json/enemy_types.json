@@ -1,0 +1,54 @@
+{
+  "basic": {
+    "health": 80,
+    "speed": 400,
+    "scale": 3,
+    "initialY": 200,
+    "bulletDelay": 0.5,
+    "poolSize": 10,
+    "movement": "RandomMovement",
+    "attack": "BasicAttackBehavior",
+    "retreat": "BasicRetreatBehavior",
+    "texture": "assets/ships/Enemies/Enemies_T1.png",
+    "bulletTexture": "assets/ships/Enemies/Enemies_T1_bullet.png"
+  },
+  "sniper": {
+    "health": 40,
+    "speed": 600,
+    "scale": 3,
+    "initialY": 10,
+    "bulletDelay": 1,
+    "poolSize": 5,
+    "movement": "LateralMovement",
+    "attack": "PrecisionAttack",
+    "retreat": "BasicRetreatBehavior",
+    "texture": "assets/ships/Enemies/Enemies_T2.png",
+    "bulletTexture": "assets/ships/Enemies/Enemies_T1_bullet.png"
+  },
+  "turret": {
+    "health": 160,
+    "speed": 300,
+    "scale": 3,
+    "initialY": 100,
+    "bulletDelay": 0.1,
+    "poolSize": 30,
+    "movement": "StaticMovement",
+    "attack": "TurretAttack",
+    "retreat": "BasicRetreatBehavior",
+    "texture": "assets/ships/Enemies/Enemies_T3.png",
+    "bulletTexture": "assets/ships/Enemies/Enemies_T1_bullet.png"
+  },
+  "berserker": {
+    "health": 280,
+    "speed": 450,
+    "scale": 4,
+    "initialY": 200,
+    "bulletDelay": 0.3,
+    "poolSize": 50,
+    "movement": "BerserkerMovement",
+    "attack": "Berserker",
+    "retreat": "BasicRetreatBehavior",
+    "texture": "assets/ships/Enemies/Enemies_T4.png",
+    "bulletTexture": "assets/ships/Enemies/Enemies_T1_bullet.png"
+  }
+}

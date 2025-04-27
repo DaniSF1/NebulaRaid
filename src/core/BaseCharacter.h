@@ -7,13 +7,17 @@
 class BaseCharacter : public GameObject
 {
 public:
-    BaseCharacter();
+    BaseCharacter(size_t bulletPoolSize);
     virtual void tick();        
     virtual void undoMovement() = 0;
-    virtual void shoot() = 0;
+    virtual void shoot(Vector2 dir) = 0;
     virtual void takeDamage(int damage);
     void bulletCollision(Bullet* bullet);
     Pool<Bullet>& getBulletPool() { return bulletPool; }
+
+    int getHealth() { return health; }
+    void setHealth(int newHealth) { health = newHealth; }
+    void setBulletTexture(Texture2D bulletTex) { bulletTexture = bulletTex; }
 
     virtual ~BaseCharacter() = default;
 

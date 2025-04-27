@@ -134,6 +134,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BulletHell.cpp" />
+    <ClCompile Include="src\behaviors\BasicAttackBehavior.cpp" />
+    <ClCompile Include="src\behaviors\BasicRetreatBehavior.cpp" />
+    <ClCompile Include="src\behaviors\BerserkerAttack.cpp" />
+    <ClCompile Include="src\behaviors\BerserkerMovement.cpp" />
+    <ClCompile Include="src\behaviors\EnterTopBehavior.cpp" />
+    <ClCompile Include="src\behaviors\LateralMovement.cpp" />
+    <ClCompile Include="src\behaviors\PrecisionAttack.cpp" />
+    <ClCompile Include="src\behaviors\RandomMovement.cpp" />
+    <ClCompile Include="src\behaviors\StaticMovement.cpp" />
+    <ClCompile Include="src\behaviors\TurretAttack.cpp" />
     <ClCompile Include="src\core\BaseCharacter.cpp" />
     <ClCompile Include="src\core\GameObject.cpp" />
     <ClCompile Include="src\core\Pool.cpp" />
@@ -141,12 +151,14 @@
     <ClCompile Include="src\entities\Bullet.cpp" />
     <ClCompile Include="src\entities\Enemy.cpp" />
     <ClCompile Include="src\entities\Player.cpp" />
+    <ClCompile Include="src\factory\EnemyFactory.cpp" />
     <ClCompile Include="src\state\GameOverState.cpp" />
     <ClCompile Include="src\state\Level1State.cpp" />
     <ClCompile Include="src\state\MenuState.cpp" />
     <ClCompile Include="src\state\StateManager.cpp" />
     <ClCompile Include="src\state\TestState.cpp" />
     <ClCompile Include="src\state\WinState.cpp" />
+    <ClCompile Include="src\utils\EnemyTypeData.cpp" />
     <ClCompile Include="src\utils\GameConfig.cpp" />
     <ClCompile Include="src\utils\LevelLoader.cpp" />
   </ItemGroup>
@@ -164,6 +176,19 @@
     <Image Include="assets\ships\Ship-Nebula - Sprite Sheet.png" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\behaviors\BasicAttackBehavior.h" />
+    <ClInclude Include="src\behaviors\BasicRetreatBehavior.h" />
+    <ClInclude Include="src\behaviors\BerserkerAttack.h" />
+    <ClInclude Include="src\behaviors\BerserkerMovement.h" />
+    <ClInclude Include="src\behaviors\BerserkerMovementMode.h" />
+    <ClInclude Include="src\behaviors\EnterTopBehavior.h" />
+    <ClInclude Include="src\behaviors\IAttackBehavior.h" />
+    <ClInclude Include="src\behaviors\IMovementBehavior.h" />
+    <ClInclude Include="src\behaviors\LateralMovement.h" />
+    <ClInclude Include="src\behaviors\PrecisionAttack.h" />
+    <ClInclude Include="src\behaviors\RandomMovement.h" />
+    <ClInclude Include="src\behaviors\StaticMovement.h" />
+    <ClInclude Include="src\behaviors\TurretAttack.h" />
     <ClInclude Include="src\core\BaseCharacter.h" />
     <ClInclude Include="src\core\GameObject.h" />
     <ClInclude Include="src\core\IPool.h" />
@@ -172,6 +197,7 @@
     <ClInclude Include="src\entities\Bullet.h" />
     <ClInclude Include="src\entities\Enemy.h" />
     <ClInclude Include="src\entities\Player.h" />
+    <ClInclude Include="src\factory\EnemyFactory.h" />
     <ClInclude Include="src\state\AViewState.h" />
     <ClInclude Include="src\state\GameOverState.h" />
     <ClInclude Include="src\state\IGameState.h" />
@@ -181,7 +207,9 @@
     <ClInclude Include="src\state\StateManager.h" />
     <ClInclude Include="src\state\TestState.h" />
     <ClInclude Include="src\state\WinState.h" />
+    <ClInclude Include="src\utils\EnemyTypeData.h" />
     <ClInclude Include="src\utils\GameConfig.h" />
+    <ClInclude Include="src\utils\GameWorld.h" />
     <ClInclude Include="src\utils\LevelLoader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
