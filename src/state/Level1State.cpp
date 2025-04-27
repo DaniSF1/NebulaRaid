@@ -2,7 +2,17 @@
 
 void Level1State::enterState()
 {
-	/* Test factory */
+	level = LevelLoader::loadLevel("json/lvl1.json");
+	background = LoadTexture(level.backgroundTexture.c_str());
+	
+	for (auto& levelWave : level.waves)
+	{
+		ActiveWave wave = ActiveWave();
+		wave.wave = levelWave;
+		waves.push_back(wave);
+		remainingEnemies += levelWave.count;
+	}
+
 	std::ifstream file("json/enemy_types.json");
 	nlohmann::json jsonData;
 	file >> jsonData;
@@ -17,16 +27,6 @@ void Level1State::enterState()
 	EnemyFactory::initialize(enemyTypeMap);
 	EnemyFactory::loadSharedTextures();
 
-	//enemies.push_back(EnemyFactory::create("basic"));
-	//enemies.push_back(EnemyFactory::create("sniper"));
-	//enemies.push_back(EnemyFactory::create("turret"));
-	enemies.push_back(EnemyFactory::create("berserker"));
-
-	//
-	
-	//level = LevelLoader::loadLevel("json/lvl1.json");
-	//Enemy::LoadSharedTexture();
-	background = LoadTexture("assets/ships/background/Background 2 Sprite Sheet.png");
 	GameWorld::instance().setPlayer(&player);
 }
 
@@ -53,8 +53,8 @@ void Level1State::update()
 	if (bPos.y >= background.height * bScale) bPos.y = 0.0f;
 	b2Pos.y = bPos.y - background.height * bScale;
 
-	DrawTextureEx(background, bPos, 0.0, bScale, WHITE);
-	DrawTextureEx(background, b2Pos, 0.0, bScale, WHITE);
+	DrawTextureEx(background, bPos, 0.0, bScale, Fade(WHITE, 0.99f));
+	DrawTextureEx(background, b2Pos, 0.0, bScale, Fade(WHITE, 0.99f));
 
 	//Grid management
 	grid.clearGrid();
@@ -62,12 +62,21 @@ void Level1State::update()
 	checkCollisions();
 
 	//Spawn enemies
-	timeSinceSpawned += GetFrameTime();
-	if (timeSinceSpawned >= level.spawnRateSeconds && level.enemyCount != 0)
+	timeSinceLevelStart += GetFrameTime();
+	for (auto& wave : waves)
 	{
-		timeSinceSpawned = 0.0f;
-		level.enemyCount--;
-		spawnEnemy();
+		if (timeSinceLevelStart >= wave.wave.startTime)
+		{
+			wave.timeSinceLastSpawn += GetFrameTime();
+
+			if (wave.spawnedCount < wave.wave.count && wave.timeSinceLastSpawn >= wave.wave.delay)
+			{
+				spawnEnemy(wave.wave.type);
+				wave.timeSinceLastSpawn = 0.f;
+				wave.spawnedCount++;
+				remainingEnemies--;
+			}
+		}
 	}
 
 	//Player tick & elimination
@@ -103,7 +112,7 @@ void Level1State::update()
 	}
 	
 	//End level
-	if (level.enemyCount == 0 && enemies.size() == 0)
+	if (remainingEnemies == 0 && enemies.size() == 0)
 	{
 		stateManager->setState(new WinState(stateManager));
 		EndDrawing();
@@ -171,8 +180,8 @@ void Level1State::checkCollisions()
 	}
 }
 
-void Level1State::spawnEnemy()
+void Level1State::spawnEnemy(std::string& type)
 {
-	/*Enemy* enemy = new Enemy();
-	enemies.push_back(enemy);*/
+	Enemy* enemy = EnemyFactory::create(type);
+	enemies.push_back(enemy);
 }

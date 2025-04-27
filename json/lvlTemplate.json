@@ -1,0 +1,30 @@
+{
+  "backgroundTexture": "",
+  "musicTrack": "",
+  "enemyWave": [
+    {
+      "enemyType": "basic",
+      "count": 0,
+      "spawnDelay": 0,
+      "startTime": 0
+    },
+    {
+      "enemyType": "sniper",
+      "count": 0,
+      "spawnDelay": 0,
+      "startTime": 0
+    },
+    {
+      "enemyType": "turret",
+      "count": 0,
+      "spawnDelay": 0,
+      "startTime": 0
+    },
+    {
+      "enemyType": "berserker",
+      "count": 0,
+      "spawnDelay": 0,
+      "startTime": 0
+    }
+  ]
+}

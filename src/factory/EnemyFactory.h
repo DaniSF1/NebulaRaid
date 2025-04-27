@@ -28,4 +28,5 @@ public:
 private:
 	static std::unordered_map<std::string, EnemyTypeData> enemyTypes;
 	static std::unordered_map<std::string, Texture2D> sharedTextures;
+	static std::unordered_map<std::string, Texture2D> sharedBulletTextures;
 };

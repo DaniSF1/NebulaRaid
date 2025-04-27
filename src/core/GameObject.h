@@ -1,7 +1,7 @@
 #pragma once
 #include "raylib.h"
 #include "../utils/GameConfig.h"
-#define DEBUG_MODE
+//#define DEBUG_MODE
 
 class GameObject
 {

@@ -5,7 +5,9 @@ Player::Player() : BaseCharacter(10)
 	setActive(true);
 	worldPos.x = GameConfig::instance().screenWidth / 2;
 	worldPos.y = GameConfig::instance().screenHeight / 2;
-	speed = 700.f;
+	baseSpeed = 700.f;
+	precisionSpeed = baseSpeed / 4;
+	speed = baseSpeed;
 
 	texture = LoadTexture("assets/ships/Player/Ship-Nebula - Sprite Sheet.png");
 	bulletTexture = LoadTexture("assets/ships/Player/Nebula Shot Levels - Sprite Sheet 32x32.png");
@@ -30,12 +32,20 @@ void Player::tick()
 	if (IsKeyDown(KEY_S)) worldPos.y += speed * GetFrameTime();
 	if (IsKeyDown(KEY_A)) worldPos.x -= speed * GetFrameTime();
 	if (IsKeyDown(KEY_D)) worldPos.x += speed * GetFrameTime();
-	if (IsKeyPressed(KEY_SPACE) || IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) shoot(Vector2({0.f, -1.f}));
-
-	if (isOutOfBounds())
+	if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) shoot(Vector2({0.f, -1.f}));
+	if (IsKeyDown(KEY_SPACE)) 
 	{
-		undoMovement();
+		setSpeed(precisionSpeed);
+		DrawRectangleLines(
+			getHitbox().x,
+			getHitbox().y,
+			getHitbox().width,
+			getHitbox().height,
+			RED);
 	}
+	else setSpeed(baseSpeed);
+	
+	if (isOutOfBounds()) undoMovement();
 
 	lastFrameWorldPos = worldPos;
 

@@ -24,5 +24,7 @@ private:
     Vector2 lastFrameWorldPos{};
     float activeInvincibility = 0.0f;
     const float maxInvincibility = 0.75f;
+    float precisionSpeed = 0.f;
+    float baseSpeed = 0.f;
 };
 

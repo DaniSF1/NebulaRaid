@@ -3,6 +3,7 @@
 
 std::unordered_map<std::string, EnemyTypeData> EnemyFactory::enemyTypes;
 std::unordered_map<std::string, Texture2D> EnemyFactory::sharedTextures;
+std::unordered_map<std::string, Texture2D> EnemyFactory::sharedBulletTextures;
 
 void EnemyFactory::initialize(const std::unordered_map<std::string, EnemyTypeData>& types)
 {
@@ -18,7 +19,7 @@ Enemy* EnemyFactory::create(const std::string& typeName)
 	enemy->setSpeed(data.speed);
 	enemy->setScale(data.scale);
 	enemy->setTexture(sharedTextures[data.texturePath]);
-	enemy->setBulletTexture(LoadTexture("assets/ships/Enemies/Enemies_T1_bullet.png"));
+	enemy->setBulletTexture(sharedBulletTextures[data.bulletTexturePath]);
 	enemy->setWidth(enemy->getTexture().width / enemy->getXRows());
 	enemy->setHeight(enemy->getTexture().height / enemy->getYRows());
 	enemy->setWorldPos({ (float)GetRandomValue(0, GameConfig::instance().screenWidth - (enemy->getTexture().width * enemy->getScale())), -100.f });
@@ -49,7 +50,12 @@ void EnemyFactory::loadSharedTextures()
 		{
 			sharedTextures[pair.second.texturePath] = LoadTexture(pair.second.texturePath.c_str());
 		}
+		if (sharedBulletTextures.find(pair.second.bulletTexturePath) == sharedBulletTextures.end())
+		{
+			sharedBulletTextures[pair.second.bulletTexturePath] = LoadTexture(pair.second.bulletTexturePath.c_str());
+		}
 	}
+
 }
 
 void EnemyFactory::unloadSharedTextures()
@@ -58,5 +64,10 @@ void EnemyFactory::unloadSharedTextures()
 	{
 		UnloadTexture(texture.second);
 	}
+	for (auto& texture : sharedBulletTextures)
+	{
+		UnloadTexture(texture.second);
+	}
 	sharedTextures.clear();
+	sharedBulletTextures.clear();
 }
