@@ -2,16 +2,7 @@
 
 void LevelState::enterState()
 {
-	level = LevelLoader::loadLevel("json/lvl1.json");
-	background = LoadTexture(level.backgroundTexture.c_str());
-	
-	for (auto& levelWave : level.waves)
-	{
-		ActiveWave wave = ActiveWave();
-		wave.wave = levelWave;
-		waves.push_back(wave);
-		remainingEnemies += levelWave.count;
-	}
+	loadLevel(levelPaths[currentLevelIndex]);
 
 	std::ifstream file("json/enemy_types.json");
 	nlohmann::json jsonData;
@@ -110,13 +101,37 @@ void LevelState::update()
 			++it;
 		}
 	}
-	
-	//End level
-	if (remainingEnemies == 0 && enemies.size() == 0)
+
+	if (isTransitioning)
 	{
-		stateManager->setState(new WinState(stateManager));
+		levelTransitionTimer -= GetFrameTime();
+
+		DrawText("Loading next level...", GameConfig::instance().screenWidth / 2 - 200, GameConfig::instance().screenHeight / 6, 40, WHITE);
+		if (levelTransitionTimer <= 0.f)
+		{
+			isTransitioning = false;
+			resetLevel();
+		}
 		EndDrawing();
 		return;
+	}
+	
+	//End level
+	if (!levelCompleted && remainingEnemies == 0 && enemies.size() == 0)
+	{
+		currentLevelIndex++;
+		if (currentLevelIndex < levelPaths.size())
+		{
+			isTransitioning = true;
+			levelTransitionTimer = levelTransitionDelay;
+			levelCompleted = true;
+		}
+		else
+		{
+			stateManager->setState(new WinState(stateManager));
+			EndDrawing();
+			return;
+		}
 	}
 
 #ifdef DEBUG_MODE
@@ -184,4 +199,37 @@ void LevelState::spawnEnemy(std::string& type)
 {
 	Enemy* enemy = EnemyFactory::create(type);
 	enemies.push_back(enemy);
+}
+
+void LevelState::loadLevel(const std::string& levelPath)
+{
+	level = LevelLoader::loadLevel(levelPath);
+	background = LoadTexture(level.backgroundTexture.c_str());
+
+	waves.clear();
+	for (auto& levelWave : level.waves)
+	{
+		ActiveWave wave = ActiveWave();
+		wave.wave = levelWave;
+		waves.push_back(wave);
+		remainingEnemies += levelWave.count;
+	}
+}
+
+void LevelState::resetLevel()
+{
+	for (auto enemy : enemies)
+	{
+		delete enemy;
+	}
+	enemies.clear();
+
+	UnloadTexture(background);
+	background = {};
+
+	levelCompleted = false;
+	timeSinceLevelStart = 0.f;
+	remainingEnemies = 0;
+
+	loadLevel(levelPaths[currentLevelIndex]);
 }
