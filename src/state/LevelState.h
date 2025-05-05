@@ -17,7 +17,6 @@
 #include <fstream>
 
 
-
 struct ActiveWave
 {
 	EnemyWave wave;
@@ -25,10 +24,10 @@ struct ActiveWave
 	int spawnedCount = 0;
 };
 
-class Level1State : public AViewState
+class LevelState : public AViewState
 {
 public:
-	Level1State(IManager* managerReference) : AViewState(managerReference), grid(GameConfig::instance().screenWidth, GameConfig::instance().screenHeight, GameConfig::instance().gridCellSize) {}
+	LevelState(IManager* managerReference) : AViewState(managerReference), grid(GameConfig::instance().screenWidth, GameConfig::instance().screenHeight, GameConfig::instance().gridCellSize) {}
 	void enterState() override;
 	void exitState() override;
 	void update() override;

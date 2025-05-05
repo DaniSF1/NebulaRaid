@@ -1,6 +1,6 @@
-#include "Level1State.h"
+#include "LevelState.h"
 
-void Level1State::enterState()
+void LevelState::enterState()
 {
 	level = LevelLoader::loadLevel("json/lvl1.json");
 	background = LoadTexture(level.backgroundTexture.c_str());
@@ -30,7 +30,7 @@ void Level1State::enterState()
 	GameWorld::instance().setPlayer(&player);
 }
 
-void Level1State::exitState()
+void LevelState::exitState()
 {
 	player.~Player();
 	for (auto enemy : enemies)
@@ -43,7 +43,7 @@ void Level1State::exitState()
 	UnloadTexture(background);
 }
 
-void Level1State::update()
+void LevelState::update()
 {
 	BeginDrawing();
 	ClearBackground(WHITE);
@@ -126,7 +126,7 @@ void Level1State::update()
 	EndDrawing();
 }
 
-void Level1State::insertIntoGrid()
+void LevelState::insertIntoGrid()
 {
 	if (player.getActive())
 	{
@@ -146,7 +146,7 @@ void Level1State::insertIntoGrid()
 	}
 }
 
-void Level1State::checkCollisions()
+void LevelState::checkCollisions()
 {
 	for (Enemy* enemy : enemies)
 	{
@@ -180,7 +180,7 @@ void Level1State::checkCollisions()
 	}
 }
 
-void Level1State::spawnEnemy(std::string& type)
+void LevelState::spawnEnemy(std::string& type)
 {
 	Enemy* enemy = EnemyFactory::create(type);
 	enemies.push_back(enemy);

@@ -2,7 +2,7 @@
 #include "AViewState.h"
 #include "raylib.h"
 #include "TestState.h"
-#include "Level1State.h"
+#include "LevelState.h"
 #include "../utils/GameConfig.h"
 
 class MenuState : public AViewState

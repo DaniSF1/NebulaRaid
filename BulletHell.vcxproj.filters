@@ -54,7 +54,7 @@
     <ClCompile Include="BulletHell.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="src\state\Level1State.cpp">
+    <ClCompile Include="src\state\LevelState.cpp">
       <Filter>Archivos de origen\states</Filter>
     </ClCompile>
     <ClCompile Include="src\state\MenuState.cpp">
@@ -211,7 +211,7 @@
     <ClInclude Include="src\state\IManager.h">
       <Filter>Archivos de encabezado\states</Filter>
     </ClInclude>
-    <ClInclude Include="src\state\Level1State.h">
+    <ClInclude Include="src\state\LevelState.h">
       <Filter>Archivos de encabezado\states</Filter>
     </ClInclude>
     <ClInclude Include="src\state\MenuState.h">
