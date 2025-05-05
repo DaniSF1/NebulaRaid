@@ -4,20 +4,20 @@
   "enemyWaves": [
     {
       "enemyType": "basic",
-      "count": 12,
-      "spawnDelay": 3,
+      "count": 15,
+      "spawnDelay": 2,
       "startTime": 0
     },
     {
       "enemyType": "sniper",
-      "count": 3,
-      "spawnDelay": 5,
-      "startTime": 2
+      "count": 0,
+      "spawnDelay": 0,
+      "startTime": 0
     },
     {
       "enemyType": "turret",
-      "count": 0,
-      "spawnDelay": 0,
+      "count": 4,
+      "spawnDelay": 5,
       "startTime": 0
     },
     {

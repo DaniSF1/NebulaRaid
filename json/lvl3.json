@@ -4,7 +4,7 @@
   "enemyWaves": [
     {
       "enemyType": "basic",
-      "count": 12,
+      "count": 10,
       "spawnDelay": 3,
       "startTime": 0
     },
@@ -16,15 +16,15 @@
     },
     {
       "enemyType": "turret",
-      "count": 0,
-      "spawnDelay": 0,
-      "startTime": 0
+      "count": 2,
+      "spawnDelay": 5,
+      "startTime": 15
     },
     {
       "enemyType": "berserker",
-      "count": 0,
+      "count": 1,
       "spawnDelay": 0,
-      "startTime": 0
+      "startTime": 30
     }
   ]
 }
