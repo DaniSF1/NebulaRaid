@@ -29,6 +29,10 @@ void BerserkerMovement::update(Enemy* enemy)
 	}
 	else
 	{
+		if (tpTime <= 1.f) 
+		{
+			drawBerserkerNewPos(enemy);
+		}
 		if (tpTime <= 0 || enemy->isOutOfBounds())
 		{
 			enemy->setWorldPos(targetPos);
@@ -99,7 +103,7 @@ void BerserkerMovement::changeCicle(Enemy* enemy)
 		mode = BerserkerMovementMode::Teleporting;
 		break;
 	case BerserkerMovementMode::Teleporting: 
-		mode = BerserkerMovementMode::Stalking;    
+		mode = BerserkerMovementMode::Stalking;
 		break;
 	case BerserkerMovementMode::Stalking:    
 		mode = BerserkerMovementMode::Random;     
@@ -108,4 +112,14 @@ void BerserkerMovement::changeCicle(Enemy* enemy)
 	}
 
 	enemy->setSpeed(mode == BerserkerMovementMode::Stalking ? stalkingSpeed : speed);
+}
+
+void BerserkerMovement::drawBerserkerNewPos(Enemy* enemy)
+{
+	float alpha = (sinf(tpTime * 10) + 1) * 0.25f;
+	Color faded = Fade(WHITE, alpha);
+	Rectangle destRect = { targetPos.x, targetPos.y, enemy->getWidth() * enemy->getScale(), enemy->getHeight() * enemy->getScale() };
+	Rectangle sourceRect = { 0.f, 0.f, enemy->getWidth(), enemy->getHeight() };
+
+	DrawTexturePro(enemy->getTexture(), sourceRect, destRect, Vector2{}, 0.f, faded);
 }

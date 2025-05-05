@@ -15,6 +15,7 @@ public:
 	void newPos(Enemy* enemy) override;
 	void changeCicle(Enemy* enemy);
 	BerserkerMovementMode getMode() { return mode; }
+	void drawBerserkerNewPos(Enemy* enemy);
 
 private:
 	const float stalkingSpeed = 500.f;
