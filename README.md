@@ -39,3 +39,13 @@ Enemies are instantiated via an `EnemyFactory`, which reads from a centralized J
 ## 🎮 Gameplay Overview
 
 The player must dodge incoming projectiles and defeat enemies with various attack and movement patterns. Enemies are introduced via timed waves defined in JSON. Each enemy can behave uniquely thanks to behavior composition.
+
+## 🛠️ Future Work
+This project is still in development. Planned improvements include:
+- Improved UI and menu aesthetics
+- Background music and sound effects
+- Score system
+- Endless mode with scaling difficulty
+- New gameplay mechanics
+
+Stay tuned for updates as the project evolves!
