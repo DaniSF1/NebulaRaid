@@ -1,4 +1,4 @@
-# Nebula Raid
+# Nebula Raid (WIP)
 
 **Nebula Raid** is a C++ arcade-style shooter built from scratch using [raylib](https://www.raylib.com/). The project is designed to showcase solid game architecture and programming principles, with a strong focus on performance, reusability, and scalability.
 
