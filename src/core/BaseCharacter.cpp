@@ -40,3 +40,9 @@ void BaseCharacter::bulletCollision(Bullet* bullet)
 	takeDamage(bullet->getDamage());
 	bullet->setActive(false);
 }
+
+Rectangle BaseCharacter::getHitbox()
+{
+	if (health <= 0) return Rectangle{-1000, -1000, 1, 1};
+	return GameObject::getHitbox();
+}

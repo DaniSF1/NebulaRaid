@@ -26,5 +26,7 @@ private:
     const float maxInvincibility = 0.75f;
     float precisionSpeed = 0.f;
     float baseSpeed = 0.f;
+    float shootCooldown = 0.f;
+    const float shootDelay = 0.15f;
 };
 

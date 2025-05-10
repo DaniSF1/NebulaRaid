@@ -91,7 +91,7 @@ void LevelState::update()
 	for (auto it = enemies.begin(); it != enemies.end();)
 	{
 		Enemy* enemy = *it;
-		if (!enemy->getActive())
+		if (!enemy->getActive() && enemy->getBulletPool().getAllActiveObjects().size() == 0)
 		{
 			delete enemy;
 			it = enemies.erase(it);
@@ -106,7 +106,8 @@ void LevelState::update()
 	{
 		levelTransitionTimer -= GetFrameTime();
 
-		DrawText("Loading next level...", GameConfig::instance().screenWidth / 2 - 200, GameConfig::instance().screenHeight / 6, 40, WHITE);
+		DrawText("Level cleared!", GameConfig::instance().screenWidth / 2 - 200, GameConfig::instance().screenHeight / 6, 40, WHITE);
+		DrawText("Loading next level...", GameConfig::instance().screenWidth / 2 - 200, GameConfig::instance().screenHeight / 4, 40, WHITE);
 		if (levelTransitionTimer <= 0.f)
 		{
 			isTransitioning = false;
@@ -230,6 +231,11 @@ void LevelState::resetLevel()
 	levelCompleted = false;
 	timeSinceLevelStart = 0.f;
 	remainingEnemies = 0;
+
+	float newHealth;
+	if (player.getHealth() + 40.f + 20.f * currentLevelIndex < 250.f) newHealth = player.getHealth() + 40.f + 20.f * currentLevelIndex;
+	else newHealth = 250.f;
+	player.setHealth(newHealth);
 
 	loadLevel(levelPaths[currentLevelIndex]);
 }

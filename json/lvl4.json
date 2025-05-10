@@ -16,15 +16,15 @@
     },
     {
       "enemyType": "turret",
-      "count": 4,
-      "spawnDelay": 8,
+      "count": 2,
+      "spawnDelay": 0,
       "startTime": 0
     },
     {
       "enemyType": "berserker",
-      "count": 0,
-      "spawnDelay": 0,
-      "startTime": 0
+      "count": 2,
+      "spawnDelay": 12,
+      "startTime": 20
     }
   ]
 }

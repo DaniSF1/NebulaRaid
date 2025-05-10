@@ -1,6 +1,6 @@
 #include "Player.h"
 
-Player::Player() : BaseCharacter(10)
+Player::Player() : BaseCharacter(20)
 {
 	setActive(true);
 	worldPos.x = GameConfig::instance().screenWidth / 2;
@@ -21,7 +21,7 @@ Player::Player() : BaseCharacter(10)
 	updateTime = 0.15f;
 	scale = 2;
 	hitbox = Rectangle{worldPos.x, worldPos.y, width, height};
-	health = 100;
+	health = 250;
 }
 
 void Player::tick()
@@ -32,8 +32,13 @@ void Player::tick()
 	if (IsKeyDown(KEY_S)) worldPos.y += speed * GetFrameTime();
 	if (IsKeyDown(KEY_A)) worldPos.x -= speed * GetFrameTime();
 	if (IsKeyDown(KEY_D)) worldPos.x += speed * GetFrameTime();
-	if (IsMouseButtonPressed(MOUSE_BUTTON_LEFT)) shoot(Vector2({0.f, -1.f}));
-	if (IsKeyDown(KEY_SPACE)) 
+	shootCooldown -= GetFrameTime();
+	if (IsKeyDown(KEY_SPACE) && shootCooldown <= 0.f) 
+	{
+		shoot(Vector2({ 0.f, -1.f }));
+		shootCooldown = shootDelay;
+	}
+	if (IsMouseButtonDown(MOUSE_BUTTON_LEFT))
 	{
 		setSpeed(precisionSpeed);
 		DrawRectangleLines(
