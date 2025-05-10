@@ -112,6 +112,9 @@
       <AdditionalLibraryDirectories>C:\Dev\Raylib\raylib-5.5_win64_msvc16\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>raylib.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /Y /E /I "$(ProjectDir)assets" "$(OutDir)assets" &amp; xcopy /Y /E /I "$(ProjectDir)json" "$(OutDir)json"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -131,6 +134,9 @@
       <AdditionalLibraryDirectories>C:\Dev\Raylib\raylib-5.5_win64_msvc16\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>raylib.lib;winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /Y /E /I "$(ProjectDir)assets" "$(OutDir)assets" &amp; xcopy /Y /E /I "$(ProjectDir)json" "$(OutDir)json"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BulletHell.cpp" />
