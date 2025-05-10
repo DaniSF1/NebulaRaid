@@ -9,6 +9,8 @@ struct EnemyTypeData
 	float scale;
 	float targetY;
 	float bulletDelay;
+	float damage;
+	float bulletSpeed;
 	int poolSize;
 	std::string movementType;
 	std::string attackType;

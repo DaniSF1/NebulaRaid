@@ -56,6 +56,6 @@ private:
 	bool isTransitioning = false;
 	float levelTransitionTimer = 0.f;
 	const float levelTransitionDelay = 5.f;
-	std::vector<std::string> levelPaths = { "json/lvl1.json", "json/lvl2.json", "json/lvl3.json"};
+	std::vector<std::string> levelPaths = { "json/lvl1.json", "json/lvl2.json", "json/lvl3.json", "json/lvl4.json", "json/lvl5.json" };
 };
 

@@ -25,15 +25,16 @@ public:
 	void shoot(Vector2 dir) override;
 	void takeDamage(int damage) override;
 	bool isDamaged() const { return activeDamaged > 0.0f; }
+	float getDamage() { return damage; }
+	void setDamage(float newDamage) { damage = newDamage; }
+	float getBulletSpeed() { return bulletSpeed; }
+	void setBulletSpeed(float newBulletSpeed) { bulletSpeed = newBulletSpeed; }
 
 	void setEnterBehavior(IMovementBehavior* enter) { enterBehavior = enter; }
 	void setMovementBehavior(IMovementBehavior* movement) { movementBehavior = movement; }
 	void setRetreatBehavior(IMovementBehavior* retreat) { retreatBehavior = retreat; }
 	void setAttackBehavior(IAttackBehavior* attack) { attackBehavior = attack; }
 	BerserkerMovementMode getCurrentMovementMode() const;
-
-	static void LoadSharedTexture();
-	static void UnloadSharedTexture();
 
 private:
 	static Texture2D sharedTexture;
@@ -47,4 +48,6 @@ private:
 
 	float activeDamaged = 0.f;
 	const float maxDamaged = 0.5f;
+	float damage = 0.f;
+	float bulletSpeed = 0.f;
 };

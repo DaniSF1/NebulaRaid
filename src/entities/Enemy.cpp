@@ -23,45 +23,46 @@ Enemy::Enemy(size_t bulletCount) : BaseCharacter(bulletCount)
 
 void Enemy::tick()
 {
-	if (!getActive()) return;
-
-	switch (state)
+	if (getHealth() > 0)
 	{
-	case EnemyState::Entering:
-		enterBehavior->update(this);
+		switch (state)
+		{
+		case EnemyState::Entering:
+			enterBehavior->update(this);
 
-		if (enterBehavior->isFinished())
-		{
-			state = EnemyState::Active;
-			delete enterBehavior;
-			movementBehavior->newPos(this);
-		}
-		break;
-	case EnemyState::Active:
-		movementBehavior->update(this);
-		attackBehavior->update(this);
-		
-		if (isOutOfBounds()) undoMovement();
-		if (movementBehavior->isFinished())
-		{
-			state = EnemyState::Retreating;
-			delete movementBehavior;
-		}
-		break;
-	case EnemyState::Retreating:
-		retreatBehavior->update(this);
-		attackBehavior->update(this);
+			if (enterBehavior->isFinished())
+			{
+				state = EnemyState::Active;
+				delete enterBehavior;
+				movementBehavior->newPos(this);
+			}
+			break;
+		case EnemyState::Active:
+			movementBehavior->update(this);
+			attackBehavior->update(this);
 
-		if (retreatBehavior->isFinished())
-		{
-			setActive(false);
+			if (isOutOfBounds()) undoMovement();
+			if (movementBehavior->isFinished())
+			{
+				state = EnemyState::Retreating;
+				delete movementBehavior;
+			}
+			break;
+		case EnemyState::Retreating:
+			retreatBehavior->update(this);
+			attackBehavior->update(this);
+
+			if (retreatBehavior->isFinished())
+			{
+				setActive(false);
+			}
+			break;
+		default:
+			break;
 		}
-		break;
-	default:
-		break;
+
+		if (isDamaged()) activeDamaged -= GetFrameTime();
 	}
-
-	if (isDamaged()) activeDamaged -= GetFrameTime();
 
 	BaseCharacter::tick();
 
@@ -78,6 +79,8 @@ void Enemy::tick()
 
 void Enemy::draw(Color tint)
 {
+	if (getHealth() <= 0) return;
+
 	if (!isDamaged())
 	{
 		GameObject::draw();
@@ -103,7 +106,7 @@ void Enemy::shoot(Vector2 dir)
 	if (bullet)
 	{
 		Vector2 bulletPos{ worldPos.x + width / 2, worldPos.y + height / 2 };
-		bullet->initialize(bulletTexture, bulletPos, 1000.f, 4, 1, 20, Vector2Normalize(dir));
+		bullet->initialize(bulletTexture, bulletPos, bulletSpeed, 4, 1, damage, Vector2Normalize(dir));
 	}
 }
 
@@ -122,16 +125,4 @@ BerserkerMovementMode Enemy::getCurrentMovementMode() const
 	}
 
 	return BerserkerMovementMode::Random;
-}
-
-void Enemy::LoadSharedTexture()
-{
-	sharedTexture = LoadTexture("assets/ships/Enemies/Enemies_T1.png");
-	sharedBulletTexture = LoadTexture("assets/ships/Enemies/Enemies_T1_bullet.png");
-}
-
-void Enemy::UnloadSharedTexture()
-{
-	UnloadTexture(sharedTexture);
-	UnloadTexture(sharedBulletTexture);
 }

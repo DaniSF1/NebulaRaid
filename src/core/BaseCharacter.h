@@ -13,6 +13,7 @@ public:
     virtual void shoot(Vector2 dir) = 0;
     virtual void takeDamage(int damage);
     void bulletCollision(Bullet* bullet);
+    Rectangle getHitbox() override;
     Pool<Bullet>& getBulletPool() { return bulletPool; }
 
     int getHealth() { return health; }

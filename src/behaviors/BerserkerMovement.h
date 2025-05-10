@@ -20,10 +20,10 @@ public:
 private:
 	const float stalkingSpeed = 500.f;
 	const float speed = 300.f;
-	const float damageThreshold = 40.f;
+	const float damageThreshold = 80.f;
 	const float radius = 250.f;
 	const float tpDelay = 2.f;
-	const float cycleTime = 20.f;
+	const float cycleTime = 10.f;
 
 	float lastHealth = 0.f;
 	bool finished = false;

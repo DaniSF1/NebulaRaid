@@ -10,20 +10,20 @@
     },
     {
       "enemyType": "sniper",
-      "count": 0,
-      "spawnDelay": 0,
-      "startTime": 0
+      "count": 6,
+      "spawnDelay": 5,
+      "startTime": 4
     },
     {
       "enemyType": "turret",
-      "count": 4,
-      "spawnDelay": 8,
-      "startTime": 0
+      "count": 6,
+      "spawnDelay": 10,
+      "startTime": 2
     },
     {
       "enemyType": "berserker",
-      "count": 0,
-      "spawnDelay": 0,
+      "count": 4,
+      "spawnDelay": 15,
       "startTime": 0
     }
   ]

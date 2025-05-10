@@ -1,7 +1,7 @@
 #pragma once
 #include "raylib.h"
 #include "../utils/GameConfig.h"
-//#define DEBUG_MODE
+#define DEBUG_MODE
 
 class GameObject
 {
@@ -9,7 +9,7 @@ public:
 	virtual void tick();
 	virtual void draw(Color tint = WHITE);
 	bool isOutOfBounds();
-	Rectangle getHitbox();
+	virtual Rectangle getHitbox();
 	void setHitbox(Rectangle r) { hitbox = r; }
 	bool getActive() { return isActive; }
 	void setActive(bool active) { isActive = active; }

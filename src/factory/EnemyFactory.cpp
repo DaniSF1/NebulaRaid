@@ -24,6 +24,8 @@ Enemy* EnemyFactory::create(const std::string& typeName)
 	enemy->setHeight(enemy->getTexture().height / enemy->getYRows());
 	enemy->setWorldPos({ (float)GetRandomValue(0, GameConfig::instance().screenWidth - (enemy->getTexture().width * enemy->getScale())), -100.f });
 	enemy->setHitbox(Rectangle{ enemy->getWorldPos().x, enemy->getWorldPos().y, enemy->getWidth(), enemy->getHeight() });
+	enemy->setDamage(data.damage);
+	enemy->setBulletSpeed(data.bulletSpeed);
 
 	//Movement
 	enemy->setEnterBehavior(new EnterTopBehavior(data.targetY));
