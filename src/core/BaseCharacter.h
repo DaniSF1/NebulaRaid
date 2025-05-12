@@ -1,6 +1,7 @@
 #pragma once
 #include "raylib.h"
 #include "GameObject.h"
+#include "../utils/AudioManager.h"
 #include "../entities/Bullet.h"
 #include "Pool.h"
 

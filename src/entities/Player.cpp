@@ -98,6 +98,7 @@ void Player::undoMovement()
 
 void Player::shoot(Vector2 dir)
 {
+	AudioManager::instance().playSound("laser");
 	Bullet* bullet = bulletPool.getObject();
 	if (bullet)
 	{

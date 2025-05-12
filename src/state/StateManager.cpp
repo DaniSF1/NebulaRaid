@@ -1,6 +1,5 @@
 #include "StateManager.h"
 
-
 void StateManager::setState(IGameState* state)
 {
     if(currentState) currentState->exitState();
@@ -11,5 +10,6 @@ void StateManager::setState(IGameState* state)
 
 void StateManager::update()
 {
+    AudioManager::instance().update();
     currentState->update();
 }

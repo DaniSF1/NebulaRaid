@@ -135,6 +135,9 @@
     <ClCompile Include="src\behaviors\StaticMovement.cpp">
       <Filter>Archivos de origen\behaviors</Filter>
     </ClCompile>
+    <ClCompile Include="src\utils\AudioManager.cpp">
+      <Filter>Archivos de origen\utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\ships\Background 2 Effects Sprite Sheet.png">
@@ -276,6 +279,9 @@
     </ClInclude>
     <ClInclude Include="src\behaviors\BerserkerMovementMode.h">
       <Filter>Archivos de encabezado\behaviors</Filter>
+    </ClInclude>
+    <ClInclude Include="src\utils\AudioManager.h">
+      <Filter>Archivos de encabezado\utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

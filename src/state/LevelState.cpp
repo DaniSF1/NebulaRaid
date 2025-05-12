@@ -19,6 +19,8 @@ void LevelState::enterState()
 	EnemyFactory::loadSharedTextures();
 
 	GameWorld::instance().setPlayer(&player);
+
+	AudioManager::instance().playSound("startgame");
 }
 
 void LevelState::exitState()
@@ -28,9 +30,9 @@ void LevelState::exitState()
 	{
 		delete enemy;
 	}
-
 	enemies.clear();
 	EnemyFactory::unloadSharedTextures();
+	AudioManager::instance().stopMusic();
 	UnloadTexture(background);
 }
 
@@ -77,6 +79,7 @@ void LevelState::update()
 	}
 	else
 	{
+		AudioManager::instance().playSound("gameover");
 		stateManager->setState(new GameOverState(stateManager));
 		EndDrawing();
 		return;
@@ -108,6 +111,7 @@ void LevelState::update()
 
 		DrawText("Level cleared!", GameConfig::instance().screenWidth / 2 - 200, GameConfig::instance().screenHeight / 6, 40, WHITE);
 		DrawText("Loading next level...", GameConfig::instance().screenWidth / 2 - 200, GameConfig::instance().screenHeight / 4, 40, WHITE);
+		AudioManager::instance().stopMusic();
 		if (levelTransitionTimer <= 0.f)
 		{
 			isTransitioning = false;
@@ -129,6 +133,7 @@ void LevelState::update()
 		}
 		else
 		{
+			AudioManager::instance().playSound("win");
 			stateManager->setState(new WinState(stateManager));
 			EndDrawing();
 			return;
@@ -208,6 +213,7 @@ void LevelState::loadLevel(const std::string& levelPath)
 {
 	level = LevelLoader::loadLevel(levelPath);
 	background = LoadTexture(level.backgroundTexture.c_str());
+	AudioManager::instance().playMusic(level.musicTrack);
 
 	waves.clear();
 	for (auto& levelWave : level.waves)
@@ -221,6 +227,7 @@ void LevelState::loadLevel(const std::string& levelPath)
 
 void LevelState::resetLevel()
 {
+	AudioManager::instance().playSound("nextLevel");
 	for (auto enemy : enemies)
 	{
 		delete enemy;

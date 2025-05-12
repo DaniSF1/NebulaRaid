@@ -1,5 +1,6 @@
 #include "BaseCharacter.h"
 
+
 BaseCharacter::BaseCharacter(size_t bulletPoolSize) : bulletPool(bulletPoolSize)
 {
 }
@@ -31,6 +32,7 @@ void BaseCharacter::takeDamage(int damage)
 	}
 	if (health <= 0)
 	{
+		if (health <= 0) AudioManager::instance().playSound("explosion");
 		setActive(false);
 	}
 }
