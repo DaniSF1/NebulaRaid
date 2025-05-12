@@ -135,7 +135,9 @@ void LevelState::update()
 		}
 	}
 
+	DrawFPS(680, 10);
 #ifdef DEBUG_MODE
+
 	grid.drawDebugGrid();
 #endif // DEBUG_MODE
 

@@ -15,7 +15,7 @@ int main()
     MenuState* menu = new MenuState(managerPtr);
     stateManager.setState(menu);
 
-    SetTargetFPS(60);
+    SetTargetFPS(240);
     while (!WindowShouldClose())
     {
         stateManager.update();
