@@ -1,6 +1,6 @@
 {
   "backgroundTexture": "assets/ships/background/Background 2 Sprite Sheet.png",
-  "musicTrack": "",
+  "musicTrack": "assets/music/glitch.ogg",
   "enemyWaves": [
     {
       "enemyType": "basic",

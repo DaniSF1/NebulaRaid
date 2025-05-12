@@ -2,6 +2,7 @@
 #include "raylib.h"
 #include "src/state/StateManager.h"
 #include "src/state/MenuState.h"
+#include "src/utils/AudioManager.h"
 #include "src/utils/GameConfig.h"
 
 int main()
@@ -16,9 +17,13 @@ int main()
     stateManager.setState(menu);
 
     SetTargetFPS(240);
+    AudioManager::instance().init();
+    AudioManager::instance().playMusic("assets/music/16_bit_space.ogg");
     while (!WindowShouldClose())
     {
         stateManager.update();
     }
+
+    AudioManager::instance().unload();
     CloseWindow();
 }

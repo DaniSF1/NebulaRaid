@@ -1,6 +1,7 @@
 #pragma once
 #include "../core/BaseCharacter.h"
 #include "../utils/GameConfig.h"
+#include "../utils/AudioManager.h"
 #include <string>
 
 class Player : public BaseCharacter
@@ -16,6 +17,7 @@ public:
 
     ~Player() override
     {
+        AudioManager::instance().playSound("death");
         if (texture.id != 0) UnloadTexture(texture);
         if (bulletTexture.id != 0) UnloadTexture(bulletTexture);
     }

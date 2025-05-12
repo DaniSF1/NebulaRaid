@@ -102,6 +102,7 @@ void Enemy::undoMovement()
 
 void Enemy::shoot(Vector2 dir)
 {
+	AudioManager::instance().playSound("laser2");
 	Bullet* bullet = bulletPool.getObject();
 	if (bullet)
 	{

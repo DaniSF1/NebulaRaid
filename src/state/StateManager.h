@@ -1,6 +1,7 @@
 #pragma once
 #include "IGameState.h"
 #include "IManager.h"
+#include "../utils/AudioManager.h"
 #include <memory>
 
 class StateManager : public IManager
