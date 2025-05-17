@@ -14,6 +14,8 @@ public:
     void shoot(Vector2 dir) override;
     void takeDamage(int damage) override;
     bool isInvincible() const { return activeInvincibility > 0.0f; }
+    int getScore() { return score; }
+    void setScore(int newScore) { score = newScore; }
 
     ~Player() override
     {
@@ -30,5 +32,12 @@ private:
     float baseSpeed = 0.f;
     float shootCooldown = 0.f;
     const float shootDelay = 0.15f;
+    
+    int score = 10000;
+    float scorePenalty = 10.f;
+    float penaltyAccumulator = 0.0f;
+
+    void drawInterface();
+    void subtractScore();
 };
 

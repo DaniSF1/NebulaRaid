@@ -7,6 +7,7 @@
 #include "../utils/EnemyTypeData.h"
 #include "../utils/GameConfig.h"
 #include "../utils/GameWorld.h"
+#include "../utils/ScoreManager.h"
 #include "../utils/AudioManager.h"
 #include "../factory/EnemyFactory.h"
 #include "raylib.h"

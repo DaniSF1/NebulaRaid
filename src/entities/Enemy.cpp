@@ -115,6 +115,7 @@ void Enemy::takeDamage(int damage)
 {
 	activeDamaged = maxDamaged;
 	BaseCharacter::takeDamage(damage);
+	if (health <= 0) GameWorld::instance().getPlayer()->setScore(GameWorld::instance().getPlayer()->getScore() + score);
 }
 
 BerserkerMovementMode Enemy::getCurrentMovementMode() const

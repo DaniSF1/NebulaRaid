@@ -25,6 +25,8 @@ void LevelState::enterState()
 
 void LevelState::exitState()
 {
+	ScoreManager::instance().addScore("Player1", player.getScore(), currentLevelIndex);
+
 	player.~Player();
 	for (auto enemy : enemies)
 	{
