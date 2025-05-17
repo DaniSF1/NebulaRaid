@@ -1,0 +1,26 @@
+[
+    {
+        "level": 2,
+        "name": "Player1",
+        "score": 48556,
+        "timestamp": "2025-05-17T14:04:55"
+    },
+    {
+        "level": 1,
+        "name": "Player1",
+        "score": 34750,
+        "timestamp": "2025-05-17T13:50:05"
+    },
+    {
+        "level": 1,
+        "name": "Player1",
+        "score": 9361,
+        "timestamp": "2025-05-17T13:28:57"
+    },
+    {
+        "level": 0,
+        "name": "Player1",
+        "score": 5000,
+        "timestamp": "2025-05-17T13:11:37"
+    }
+]

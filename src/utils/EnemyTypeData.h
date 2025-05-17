@@ -12,6 +12,7 @@ struct EnemyTypeData
 	float damage;
 	float bulletSpeed;
 	int poolSize;
+	int score;
 	std::string movementType;
 	std::string attackType;
 	std::string retreatType;

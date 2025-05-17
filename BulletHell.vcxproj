@@ -168,6 +168,7 @@
     <ClCompile Include="src\utils\EnemyTypeData.cpp" />
     <ClCompile Include="src\utils\GameConfig.cpp" />
     <ClCompile Include="src\utils\LevelLoader.cpp" />
+    <ClCompile Include="src\utils\ScoreManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\ships\Background 2 Effects Sprite Sheet.png" />
@@ -219,6 +220,7 @@
     <ClInclude Include="src\utils\GameConfig.h" />
     <ClInclude Include="src\utils\GameWorld.h" />
     <ClInclude Include="src\utils\LevelLoader.h" />
+    <ClInclude Include="src\utils\ScoreManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

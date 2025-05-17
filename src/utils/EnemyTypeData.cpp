@@ -12,6 +12,7 @@ EnemyTypeData loadEnemyType(const nlohmann::json& json)
 	data.bulletDelay = json.value("bulletDelay", 0.1f);
 	data.damage = json.value("damage", 20.f);
 	data.bulletSpeed = json.value("bulletSpeed", 1000.f);
+	data.score = json.value("score", 1000.f);
 	data.poolSize = json.value("poolSize", 10);
 	data.movementType = json.value("movement", "RandomMovement");
 	data.attackType = json.value("attack", "BasicAttackBehavior");

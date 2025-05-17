@@ -26,6 +26,7 @@ Enemy* EnemyFactory::create(const std::string& typeName)
 	enemy->setHitbox(Rectangle{ enemy->getWorldPos().x, enemy->getWorldPos().y, enemy->getWidth(), enemy->getHeight() });
 	enemy->setDamage(data.damage);
 	enemy->setBulletSpeed(data.bulletSpeed);
+	enemy->setScore(data.score);
 
 	//Movement
 	enemy->setEnterBehavior(new EnterTopBehavior(data.targetY));

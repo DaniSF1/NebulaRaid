@@ -1,6 +1,7 @@
 #pragma once
 #include "../core/BaseCharacter.h"
 #include "../utils/GameConfig.h"
+#include "../utils/GameWorld.h"
 #include "../behaviors/IMovementBehavior.h"
 #include "../behaviors/IAttackBehavior.h"
 #include "../behaviors/BerserkerMovementMode.h"
@@ -29,6 +30,8 @@ public:
 	void setDamage(float newDamage) { damage = newDamage; }
 	float getBulletSpeed() { return bulletSpeed; }
 	void setBulletSpeed(float newBulletSpeed) { bulletSpeed = newBulletSpeed; }
+	int getScore() { return score; }
+	void setScore(int newScore) { score = newScore; }
 
 	void setEnterBehavior(IMovementBehavior* enter) { enterBehavior = enter; }
 	void setMovementBehavior(IMovementBehavior* movement) { movementBehavior = movement; }
@@ -50,4 +53,5 @@ private:
 	const float maxDamaged = 0.5f;
 	float damage = 0.f;
 	float bulletSpeed = 0.f;
+	int score;
 };

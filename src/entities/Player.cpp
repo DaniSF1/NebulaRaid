@@ -54,25 +54,12 @@ void Player::tick()
 
 	lastFrameWorldPos = worldPos;
 
-	std::string remainingHealth = "Health: " + std::to_string(health);
-	DrawText(remainingHealth.c_str(), 10, 10, 20, WHITE);
-
 	if (isInvincible()) activeInvincibility -= GetFrameTime();
 
+	subtractScore();
+	drawInterface();
+
 	BaseCharacter::tick();
-
-#ifdef DEBUG_MODE
-	std::string remainingBulletsText = "Remaining Bullets: " + std::to_string(bulletPool.getAvailableObjects().size());
-	DrawText(remainingBulletsText.c_str(), 10, 30, 20, WHITE);
-
-	DrawRectangleLines(
-		getHitbox().x,
-		getHitbox().y,
-		getHitbox().width,
-		getHitbox().height,
-		RED);
-	DrawCircle(worldPos.x + width, worldPos.y + height, 5, RED);
-#endif
 }
 
 void Player::draw(Color tint)
@@ -114,4 +101,43 @@ void Player::takeDamage(int damage)
 	activeInvincibility = maxInvincibility;
 	BaseCharacter::takeDamage(damage);
 
+}
+
+void Player::drawInterface()
+{
+	std::string remainingHealth = "Health: " + std::to_string(health);
+	DrawText(remainingHealth.c_str(), 10, 10, 20, WHITE);
+
+	std::string actualScore = "Score: " + std::to_string(score);
+	DrawText(actualScore.c_str(), 10, 30, 20, WHITE);
+
+#ifdef DEBUG_MODE
+	std::string remainingBulletsText = "Remaining Bullets: " + std::to_string(bulletPool.getAvailableObjects().size());
+	DrawText(remainingBulletsText.c_str(), 10, 60, 20, WHITE);
+
+	DrawRectangleLines(
+		getHitbox().x,
+		getHitbox().y,
+		getHitbox().width,
+		getHitbox().height,
+		RED);
+	DrawCircle(worldPos.x + width, worldPos.y + height, 5, RED);
+#endif
+}
+
+void Player::subtractScore()
+{
+	penaltyAccumulator += scorePenalty * GetFrameTime();
+
+	while (penaltyAccumulator >= 1.0f) {
+		score -= 1;
+		penaltyAccumulator -= 1.0f;
+
+		if (score < 0) {
+			score = 0;
+			penaltyAccumulator = 0.0f;
+			break;
+		}
+	}
+	if (score == 0) score = 0;
 }
