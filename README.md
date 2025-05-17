@@ -22,7 +22,6 @@ A grid-based system is used to optimize collision detection. Only nearby objects
 Enemies are instantiated via an `EnemyFactory`, which reads from a centralized JSON configuration. This system allows for quick prototyping and extension of new enemy types without touching gameplay code.
 
 ## ⚙️ Efficiency and Performance
-
 - **Pooling** of bullets and reuse of enemy textures prevents memory bloat and redundant loading.
 - **Separation of update/draw logic**, with only active entities processed each frame.
 - **Controlled spawning** using JSON-based wave definitions.
@@ -32,9 +31,7 @@ Enemies are instantiated via an `EnemyFactory`, which reads from a centralized J
 
 - **C++**
 - **[raylib](https://www.raylib.com/)**: lightweight C library for game development.
-- **Visual Studio 2022** (Debug & Release configurations)
 - **nlohmann/json** for JSON parsing.
-- Custom math utilities (`raymath`) and game config singleton for shared state.
 
 ## 🎮 Gameplay Overview
 
@@ -46,3 +43,5 @@ This project is still in development. Planned improvements include:
 - Endless mode with scaling difficulty
 
 Stay tuned for updates as the project evolves!
+
+Disclaimer: None of the sounds, sprites or art used in the game are mine. All assets used in the project are open source or are used with the permission of the author.
