@@ -164,7 +164,7 @@ void LevelState::insertIntoGrid()
 	for (Enemy* enemy : enemies)
 	{
 		grid.insert(enemy);
-		for (Bullet* bullet : player.getBulletPool().getAllActiveObjects())
+		for (Bullet* bullet : enemy->getBulletPool().getAllActiveObjects())
 		{
 			grid.insert(bullet);
 		}

@@ -30,6 +30,6 @@ private:
 	Music currentMusic;
 	bool musicLoaded = false;
 
-	float soundVolume = 0.1f;
+	float soundVolume = 0.05f;
 	float musicVolume = 0.1f;
 };
