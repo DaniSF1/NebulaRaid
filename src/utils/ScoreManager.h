@@ -4,6 +4,7 @@
 #include <fstream>
 #include <algorithm>
 #include <ctime>
+#include <filesystem>
 #include "../external/json.hpp"
 
 struct ScoreEntry 

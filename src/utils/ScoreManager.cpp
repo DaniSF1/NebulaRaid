@@ -25,6 +25,14 @@ void ScoreManager::addScore(const std::string& name, int score, int level)
 
 void ScoreManager::save(const std::string& path)
 {
+	std::filesystem::path outputPath(path);
+	std::filesystem::path folder = outputPath.parent_path();
+
+	if (!std::filesystem::exists(folder))
+	{
+		std::filesystem::create_directories(folder);
+	}
+
 	json j;
 	for (const auto& score : scores)
 	{
