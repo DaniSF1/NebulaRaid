@@ -23,7 +23,7 @@
     {
       "enemyType": "berserker",
       "count": 2,
-      "spawnDelay": 12,
+      "spawnDelay": 5,
       "startTime": 20
     }
   ]

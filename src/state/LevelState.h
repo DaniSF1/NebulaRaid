@@ -1,22 +1,8 @@
 #pragma once
-#include "AViewState.h"
-#include "../entities/Player.h"
-#include "../entities/Enemy.h"
-#include "../core/SpatialGrid.h"
+
+#include "PlayState.h"
 #include "../utils/LevelLoader.h"
-#include "../utils/EnemyTypeData.h"
-#include "../utils/GameConfig.h"
-#include "../utils/GameWorld.h"
-#include "../utils/ScoreManager.h"
-#include "../utils/AudioManager.h"
-#include "../factory/EnemyFactory.h"
-#include "raylib.h"
-#include "MenuState.h"
-#include "GameOverState.h"
 #include "WinState.h"
-#include <vector>
-#include <iostream>
-#include <fstream>
 
 
 struct ActiveWave
@@ -26,28 +12,19 @@ struct ActiveWave
 	int spawnedCount = 0;
 };
 
-class LevelState : public AViewState
+class LevelState : public PlayState
 {
 public:
-	LevelState(IManager* managerReference) : AViewState(managerReference), grid(GameConfig::instance().screenWidth, GameConfig::instance().screenHeight, GameConfig::instance().gridCellSize) {}
+	LevelState(IManager* managerReference) : PlayState(managerReference) {}
 	void enterState() override;
 	void exitState() override;
 	void update() override;
-	void insertIntoGrid();
-	void checkCollisions();
+
 	void spawnEnemy(std::string& type);
 	void loadLevel(const std::string& levelPath);
 	void resetLevel();
 
 private:
-	Player player;
-	Texture2D background{};
-	Vector2 bPos{ 0.0f, 0.0f };
-	Vector2 b2Pos{ 0.0f, 0.0f };
-	const float bScale = 1.25f;
-	SpatialGrid grid;
-
-	std::vector<Enemy*> enemies;
 	std::vector<ActiveWave> waves;
 	float timeSinceLevelStart = 0.f;
 	int remainingEnemies = 0;

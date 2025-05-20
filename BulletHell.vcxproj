@@ -161,8 +161,10 @@
     <ClCompile Include="src\entities\Player.cpp" />
     <ClCompile Include="src\factory\EnemyFactory.cpp" />
     <ClCompile Include="src\state\GameOverState.cpp" />
+    <ClCompile Include="src\state\InfiniteState.cpp" />
     <ClCompile Include="src\state\LevelState.cpp" />
     <ClCompile Include="src\state\MenuState.cpp" />
+    <ClCompile Include="src\state\PlayState.cpp" />
     <ClCompile Include="src\state\StateManager.cpp" />
     <ClCompile Include="src\state\TestState.cpp" />
     <ClCompile Include="src\state\WinState.cpp" />
@@ -212,8 +214,10 @@
     <ClInclude Include="src\state\GameOverState.h" />
     <ClInclude Include="src\state\IGameState.h" />
     <ClInclude Include="src\state\IManager.h" />
+    <ClInclude Include="src\state\InfiniteState.h" />
     <ClInclude Include="src\state\LevelState.h" />
     <ClInclude Include="src\state\MenuState.h" />
+    <ClInclude Include="src\state\PlayState.h" />
     <ClInclude Include="src\state\StateManager.h" />
     <ClInclude Include="src\state\TestState.h" />
     <ClInclude Include="src\state\WinState.h" />
