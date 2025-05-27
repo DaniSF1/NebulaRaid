@@ -40,7 +40,6 @@ The player must dodge incoming projectiles and defeat enemies with various attac
 ## 🛠️ Future Work
 This project is still in development. Planned improvements include:
 - Improved UI and menu aesthetics
-- Endless mode with scaling difficulty
 
 Stay tuned for updates as the project evolves!
 
