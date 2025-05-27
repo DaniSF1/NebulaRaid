@@ -73,7 +73,7 @@ void PlayState::update()
 		Enemy* enemy = *it;
 		if (!enemy->getActive() && enemy->getBulletPool().getAllActiveObjects().size() == 0)
 		{
-			delete enemy;
+			handleEnemyRemoval(enemy);
 			it = enemies.erase(it);
 		}
 		else

@@ -8,6 +8,7 @@ TurretAttack::TurretAttack(float delay)
 
 void TurretAttack::update(Enemy* enemy)
 {
+	if (!enemy->getActive()) return;
 	actualDelay += GetFrameTime();
 	if (actualDelay < bulletDelay) return;
 

@@ -14,6 +14,7 @@ void BerserkerAttack::update(Enemy* enemy)
 {
 	if (!player) player = GameWorld::instance().getPlayer();
 	if (!player->getActive()) return;
+	if (!enemy->getActive()) return;
 
 	actualDelay += GetFrameTime();
 	burstCooldown -= GetFrameTime();

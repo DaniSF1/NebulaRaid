@@ -2,6 +2,7 @@
 
 void BasicRetreatBehavior::update(Enemy* enemy)
 {
+	if (!enemy->getActive()) return;
 	Vector2 pos = enemy->getWorldPos();
 	if (pos.y > targetY)
 	{
@@ -20,4 +21,9 @@ bool BasicRetreatBehavior::isFinished() const
 
 void BasicRetreatBehavior::newPos(Enemy* enemy)
 {
+}
+
+void BasicRetreatBehavior::reset()
+{
+	finished = false;
 }

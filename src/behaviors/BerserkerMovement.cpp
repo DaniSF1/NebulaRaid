@@ -14,6 +14,7 @@ void BerserkerMovement::update(Enemy* enemy)
 {
 	if (!player) player = GameWorld::instance().getPlayer();
 	if (lastHealth <= 0) lastHealth = enemy->getHealth();
+	if (!enemy->getActive()) return;
 	if (mode != BerserkerMovementMode::Teleporting)
 	{
 		Vector2 newPosition = Vector2Add(enemy->getWorldPos(), Vector2Scale(direction, enemy->getSpeed() * GetFrameTime()));
@@ -90,6 +91,13 @@ void BerserkerMovement::newPos(Enemy* enemy)
 		break;
 	}
 	direction = Vector2Normalize(Vector2Subtract(targetPos, enemy->getWorldPos()));
+}
+
+void BerserkerMovement::reset()
+{
+	finished = false;
+	maxActiveSec = 240.f;
+	mode = BerserkerMovementMode::Random;
 }
 
 void BerserkerMovement::changeCicle(Enemy* enemy)

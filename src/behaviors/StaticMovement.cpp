@@ -2,6 +2,7 @@
 
 void StaticMovement::update(Enemy* enemy)
 {
+	if (!enemy->getActive()) return;
 	if (enemy->getHealth() <= 40)
 	{
 		if (!initialized)
@@ -43,4 +44,10 @@ void StaticMovement::newPos(Enemy* enemy)
 	}
 
 	direction = Vector2Normalize(Vector2Subtract(targetPos, enemy->getWorldPos()));
+}
+
+void StaticMovement::reset()
+{
+	finished = false;
+	maxActiveSec = 30.f;
 }

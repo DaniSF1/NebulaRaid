@@ -20,9 +20,12 @@ public:
 	void exitState() override;
 	void update() override;
 
-	void spawnEnemy(std::string& type);
 	void loadLevel(const std::string& levelPath);
 	void resetLevel();
+
+protected:
+	void spawnEnemy(std::string& type) override;
+	void handleEnemyRemoval(Enemy* enemy) override;
 
 private:
 	std::vector<ActiveWave> waves;

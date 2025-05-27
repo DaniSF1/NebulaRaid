@@ -2,6 +2,7 @@
 
 void LateralMovement::update(Enemy* enemy)
 {
+	if (!enemy->getActive()) return;
 	Vector2 newPosition = Vector2Add(enemy->getWorldPos(), Vector2Scale(direction, enemy->getSpeed() * GetFrameTime()));
 	bool passedTarget = (direction.x > 0 && newPosition.x >= targetPos.x) ||
 						(direction.x < 0 && newPosition.x <= targetPos.x);
@@ -34,4 +35,10 @@ void LateralMovement::newPos(Enemy* enemy)
 
 	targetPos = { targetX, enemy->getWorldPos().y};
 	direction = Vector2Normalize(Vector2Subtract(targetPos, enemy->getWorldPos()));
+}
+
+void LateralMovement::reset()
+{
+	finished = false;
+	maxActiveSec = 40.f;
 }

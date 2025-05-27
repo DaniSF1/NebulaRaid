@@ -24,9 +24,13 @@ void MenuState::update()
 	DrawText("Press intro to start: Level Mode", screenWidth / 2 - MeasureText("Press intro to start: Level Mode", 30) / 2, screenHeight / 2, 30, BLACK);
 	DrawText("Press space to start: Infinite Mode", screenWidth / 2 - MeasureText("Press space to start: Infinite Mode", 30) / 2, screenHeight / 2 + 40, 30, BLACK);
 
-	if(IsKeyPressed(KEY_ENTER))
+	if (IsKeyPressed(KEY_ENTER))
 	{
 		stateManager->setState(new LevelState(stateManager));
+	}
+	if (IsKeyPressed(KEY_SPACE))
+	{
+		stateManager->setState(new InfiniteState(stateManager));
 	}
 
 	EndDrawing();

@@ -27,6 +27,7 @@ protected:
 	Texture2D background{};
 
 	virtual void spawnEnemy(std::string& type) = 0;
+	virtual void handleEnemyRemoval(Enemy* enemy) = 0;
 	void insertIntoGrid();
 	void checkCollisions();
 

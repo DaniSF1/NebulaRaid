@@ -2,6 +2,7 @@
 
 void RandomMovement::update(Enemy* enemy)
 {
+	if (!enemy->getActive()) return;
 	enemy->setWorldPos(Vector2Add(enemy->getWorldPos(), Vector2Scale(direction, enemy->getSpeed() * GetFrameTime())));
 	if (Vector2DistanceSqr(enemy->getWorldPos(), targetPos) < 10.f) newPos(enemy);
 
@@ -24,4 +25,10 @@ void RandomMovement::newPos(Enemy* enemy)
 {
 	targetPos = { movBounds.x + GetRandomValue(0, movBounds.width), movBounds.y + GetRandomValue(0, movBounds.height) };
 	direction = Vector2Normalize(Vector2Subtract(targetPos, enemy->getWorldPos()));
+}
+
+void RandomMovement::reset()
+{
+	finished = false;
+	maxActiveSec = 20.f;
 }

@@ -9,6 +9,7 @@ BasicAttackBehavior::BasicAttackBehavior(float delay)
 
 void BasicAttackBehavior::update(Enemy* enemy)
 {
+	if (!enemy->getActive()) return;
 	actualDelay += GetFrameTime();
 	if (actualDelay < bulletDelay) return;
 

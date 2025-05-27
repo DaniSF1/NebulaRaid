@@ -19,7 +19,11 @@ void LevelState::update()
 	
 	PlayState::update();
 
-	if (GameWorld::instance().getPlayer() == nullptr) return;
+	if (GameWorld::instance().getPlayer() == nullptr)
+	{
+		EndDrawing();
+		return;
+	}
 	
 	//Spawn enemies
 	timeSinceLevelStart += GetFrameTime();
@@ -79,6 +83,11 @@ void LevelState::spawnEnemy(std::string& type)
 {
 	Enemy* enemy = EnemyFactory::create(type);
 	enemies.push_back(enemy);
+}
+
+void LevelState::handleEnemyRemoval(Enemy* enemy)
+{
+	delete enemy;
 }
 
 void LevelState::loadLevel(const std::string& levelPath)
