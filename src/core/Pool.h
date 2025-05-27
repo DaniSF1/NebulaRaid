@@ -5,6 +5,7 @@ template <typename T>
 class Pool : public IPool<T>
 {
 public:
+	Pool() = default;
 	Pool(size_t size)
 	{
 		objects.resize(size);
@@ -46,6 +47,12 @@ public:
 			activeObjects.erase(it);
 			availableObjects.push_back(obj);
 		}
+	}
+
+	void addObject(T* obj)
+	{
+		objects.push_back(obj);
+		availableObjects.push_back(obj);
 	}
 
 	int getSize()

@@ -3,59 +3,28 @@
 void LevelState::enterState()
 {
 	loadLevel(levelPaths[currentLevelIndex]);
-
-	std::ifstream file("json/enemy_types.json");
-	nlohmann::json jsonData;
-	file >> jsonData;
-
-	std::unordered_map<std::string, EnemyTypeData> enemyTypeMap;
-
-	for (auto& pair : jsonData.items())
-	{
-		enemyTypeMap[pair.key()] = loadEnemyType(pair.value());
-	}
-
-	EnemyFactory::initialize(enemyTypeMap);
-	EnemyFactory::loadSharedTextures();
-
-	GameWorld::instance().setPlayer(&player);
-
-	AudioManager::instance().playSound("startgame");
+	PlayState::enterState();
 }
 
 void LevelState::exitState()
 {
 	ScoreManager::instance().addScore("Player1", player.getScore(), currentLevelIndex);
-
-	player.~Player();
-	for (auto enemy : enemies)
-	{
-		delete enemy;
-	}
-	enemies.clear();
-	EnemyFactory::unloadSharedTextures();
-	AudioManager::instance().stopMusic();
-	UnloadTexture(background);
+	PlayState::exitState();
 }
 
 void LevelState::update()
 {
 	BeginDrawing();
 	ClearBackground(WHITE);
+	
+	PlayState::update();
 
-	//Background animation
-	bPos.y += 120.f * GetFrameTime();
-	if (bPos.y >= background.height * bScale) bPos.y = 0.0f;
-	b2Pos.y = bPos.y - background.height * bScale;
-
-	DrawTextureEx(background, bPos, 0.0, bScale, Fade(WHITE, 0.99f));
-	DrawTextureEx(background, b2Pos, 0.0, bScale, Fade(WHITE, 0.99f));
-
-	//Grid management
-	grid.clearGrid();
-	insertIntoGrid();
-	checkCollisions();
-
+	if (GameWorld::instance().getPlayer() == nullptr)
+	{
+		EndDrawing();
+		return;
+	}
+	
 	//Spawn enemies
 	timeSinceLevelStart += GetFrameTime();
 	for (auto& wave : waves)
@@ -74,55 +43,22 @@ void LevelState::update()
 		}
 	}
 
-	//Player tick & elimination
-	if (player.getActive())
-	{
-		player.tick();
-	}
-	else
-	{
-		AudioManager::instance().playSound("gameover");
-		stateManager->setState(new GameOverState(stateManager));
-		EndDrawing();
-		return;
-	}
-
-	//Enemy tick & elimination
-	for (auto enemy : enemies)
-	{
-		enemy->tick();
-	}
-
-	for (auto it = enemies.begin(); it != enemies.end();)
-	{
-		Enemy* enemy = *it;
-		if (!enemy->getActive() && enemy->getBulletPool().getAllActiveObjects().size() == 0)
-		{
-			delete enemy;
-			it = enemies.erase(it);
-		}
-		else
-		{
-			++it;
-		}
-	}
-
 	if (isTransitioning)
 	{
 		levelTransitionTimer -= GetFrameTime();
 
-		DrawText("Level cleared!", GameConfig::instance().screenWidth / 2 - 200, GameConfig::instance().screenHeight / 6, 40, WHITE);
-		DrawText("Loading next level...", GameConfig::instance().screenWidth / 2 - 200, GameConfig::instance().screenHeight / 4, 40, WHITE);
+		int screenWidth = GameConfig::instance().screenWidth;
+		int screenHeight = GameConfig::instance().screenHeight;
+		DrawText("Level cleared!", screenWidth / 2 - MeasureText("Level cleared!", 40) / 2, screenHeight / 6, 40, WHITE);
+		DrawText("Loading next level...", screenWidth / 2 - MeasureText("Loading next level...", 40) / 2, screenHeight / 6 + 40, 40, WHITE);
 		AudioManager::instance().stopMusic();
 		if (levelTransitionTimer <= 0.f)
 		{
 			isTransitioning = false;
 			resetLevel();
 		}
-		EndDrawing();
-		return;
 	}
-	
+
 	//End level
 	if (!levelCompleted && remainingEnemies == 0 && enemies.size() == 0)
 	{
@@ -132,83 +68,26 @@ void LevelState::update()
 			isTransitioning = true;
 			levelTransitionTimer = levelTransitionDelay;
 			levelCompleted = true;
+			player.setScore(player.getScore() + (1000 * currentLevelIndex));
 		}
 		else
 		{
 			AudioManager::instance().playSound("win");
 			stateManager->setState(new WinState(stateManager));
-			EndDrawing();
-			return;
 		}
 	}
-
-	DrawFPS(680, 10);
-#ifdef DEBUG_MODE
-
-	grid.drawDebugGrid();
-#endif // DEBUG_MODE
-
 	EndDrawing();
-}
-
-void LevelState::insertIntoGrid()
-{
-	if (player.getActive())
-	{
-		grid.insert(&player);
-		for (Bullet* bullet : player.getBulletPool().getAllActiveObjects())
-		{
-			grid.insert(bullet);
-		}
-	}
-	for (Enemy* enemy : enemies)
-	{
-		grid.insert(enemy);
-		for (Bullet* bullet : enemy->getBulletPool().getAllActiveObjects())
-		{
-			grid.insert(bullet);
-		}
-	}
-}
-
-void LevelState::checkCollisions()
-{
-	for (Enemy* enemy : enemies)
-	{
-		for (Bullet* bullet : enemy->getBulletPool().getAllActiveObjects())
-		{
-			for (GameObject* obj : grid.getNearby(bullet))
-			{
-				Player* p = dynamic_cast<Player*>(obj);
-				if (p && bullet->checkCollision(p))
-				{
-					p->bulletCollision(bullet);
-					enemy->getBulletPool().releaseObject(bullet);
-					break;
-				}
-			}
-		}
-	}
-
-	for (Bullet* bullet : player.getBulletPool().getAllActiveObjects())
-	{
-		for (GameObject* obj : grid.getNearby(bullet))
-		{
-			Enemy* e = dynamic_cast<Enemy*>(obj);
-			if (e && bullet->checkCollision(e))
-			{
-				e->bulletCollision(bullet);
-				player.getBulletPool().releaseObject(bullet);
-				break;
-			}
-		}
-	}
 }
 
 void LevelState::spawnEnemy(std::string& type)
 {
 	Enemy* enemy = EnemyFactory::create(type);
 	enemies.push_back(enemy);
+}
+
+void LevelState::handleEnemyRemoval(Enemy* enemy)
+{
+	delete enemy;
 }
 
 void LevelState::loadLevel(const std::string& levelPath)

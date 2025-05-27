@@ -2,9 +2,6 @@
 
 #include "../utils/EnemyTypeData.h"
 #include "../entities/Enemy.h"
-#include <string>
-#include <unordered_map>
-
 #include "../behaviors/BasicAttackBehavior.h"
 #include "../behaviors/BasicRetreatBehavior.h"
 #include "../behaviors/BerserkerAttack.h"
@@ -15,6 +12,8 @@
 #include "../behaviors/RandomMovement.h"
 #include "../behaviors/TurretAttack.h"
 #include "../behaviors/StaticMovement.h"
+#include <string>
+#include <unordered_map>
 
 class EnemyFactory
 {

@@ -32,6 +32,21 @@ public:
 	void setBulletSpeed(float newBulletSpeed) { bulletSpeed = newBulletSpeed; }
 	int getScore() { return score; }
 	void setScore(int newScore) { score = newScore; }
+	std::string getType() { return type; }
+	void setType(std::string newType) { type = newType; }
+	int getMaxHealth() { return maxHealth; }
+	void setMaxHealth(int newMax) { maxHealth = newMax; }
+	void resetState() 
+	{ 
+		state = EnemyState::Entering; 
+		health = maxHealth;
+		runningTime = 0.f;
+		frame = 0;
+		activeDamaged = 0;
+		enterBehavior->reset();
+		movementBehavior->reset();
+		retreatBehavior->reset();
+	}
 
 	void setEnterBehavior(IMovementBehavior* enter) { enterBehavior = enter; }
 	void setMovementBehavior(IMovementBehavior* movement) { movementBehavior = movement; }
@@ -53,5 +68,8 @@ private:
 	const float maxDamaged = 0.5f;
 	float damage = 0.f;
 	float bulletSpeed = 0.f;
-	int score;
+	int score = 0.f;
+	int maxHealth = 0.f;
+
+	std::string type;
 };

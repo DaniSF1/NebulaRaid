@@ -141,6 +141,12 @@
     <ClCompile Include="src\utils\ScoreManager.cpp">
       <Filter>Archivos de origen\utils</Filter>
     </ClCompile>
+    <ClCompile Include="src\state\InfiniteState.cpp">
+      <Filter>Archivos de origen\states</Filter>
+    </ClCompile>
+    <ClCompile Include="src\state\PlayState.cpp">
+      <Filter>Archivos de origen\states</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\ships\Background 2 Effects Sprite Sheet.png">
@@ -288,6 +294,12 @@
     </ClInclude>
     <ClInclude Include="src\utils\ScoreManager.h">
       <Filter>Archivos de encabezado\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\state\InfiniteState.h">
+      <Filter>Archivos de encabezado\states</Filter>
+    </ClInclude>
+    <ClInclude Include="src\state\PlayState.h">
+      <Filter>Archivos de encabezado\states</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

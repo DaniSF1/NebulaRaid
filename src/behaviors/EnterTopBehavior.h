@@ -10,6 +10,7 @@ public:
 	void update(Enemy* enemy) override;
 	bool isFinished() const override;
 	void newPos(Enemy* enemy) override;
+	void reset() override;
 
 private:
 	float targetY = 200.f;

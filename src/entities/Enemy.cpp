@@ -33,7 +33,6 @@ void Enemy::tick()
 			if (enterBehavior->isFinished())
 			{
 				state = EnemyState::Active;
-				delete enterBehavior;
 				movementBehavior->newPos(this);
 			}
 			break;
@@ -45,7 +44,6 @@ void Enemy::tick()
 			if (movementBehavior->isFinished())
 			{
 				state = EnemyState::Retreating;
-				delete movementBehavior;
 			}
 			break;
 		case EnemyState::Retreating:

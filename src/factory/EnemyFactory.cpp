@@ -1,6 +1,5 @@
 #include "EnemyFactory.h"
 
-
 std::unordered_map<std::string, EnemyTypeData> EnemyFactory::enemyTypes;
 std::unordered_map<std::string, Texture2D> EnemyFactory::sharedTextures;
 std::unordered_map<std::string, Texture2D> EnemyFactory::sharedBulletTextures;
@@ -16,6 +15,7 @@ Enemy* EnemyFactory::create(const std::string& typeName)
 	Enemy* enemy = new Enemy(data.poolSize);
 
 	enemy->setHealth(data.health);
+	enemy->setMaxHealth(data.health);
 	enemy->setSpeed(data.speed);
 	enemy->setScale(data.scale);
 	enemy->setTexture(sharedTextures[data.texturePath]);
@@ -27,6 +27,7 @@ Enemy* EnemyFactory::create(const std::string& typeName)
 	enemy->setDamage(data.damage);
 	enemy->setBulletSpeed(data.bulletSpeed);
 	enemy->setScore(data.score);
+	enemy->setType(typeName);
 
 	//Movement
 	enemy->setEnterBehavior(new EnterTopBehavior(data.targetY));

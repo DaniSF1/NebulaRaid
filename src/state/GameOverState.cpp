@@ -16,6 +16,7 @@ void GameOverState::update()
 	ClearBackground(BLACK);
 
 	DrawText("Game Over", GameConfig::instance().screenWidth / 2 - MeasureText("Game Over", 30) / 2, GameConfig::instance().screenHeight / 6, 30, RED);
+	DrawText("Press enter to return", GameConfig::instance().screenWidth / 2 - MeasureText("Press enter to return", 30) / 2, GameConfig::instance().screenHeight / 6 + 30, 30, RED);
 	if (IsKeyPressed(KEY_ENTER))
 	{
 		stateManager->setState(new MenuState(stateManager));

@@ -13,6 +13,7 @@ public:
 	void update(Enemy* enemy) override;
 	bool isFinished() const override;
 	void newPos(Enemy* enemy) override;
+	void reset() override;
 	void changeCicle(Enemy* enemy);
 	BerserkerMovementMode getMode() { return mode; }
 	void drawBerserkerNewPos(Enemy* enemy);

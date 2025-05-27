@@ -11,6 +11,7 @@ EnterTopBehavior::EnterTopBehavior(int target)
 
 void EnterTopBehavior::update(Enemy* enemy)
 {
+	if (!enemy->getActive()) return;
 	Vector2 pos = enemy->getWorldPos();
 	if (pos.y < targetY) 
 	{
@@ -29,4 +30,9 @@ bool EnterTopBehavior::isFinished() const
 
 void EnterTopBehavior::newPos(Enemy* enemy)
 {
+}
+
+void EnterTopBehavior::reset()
+{
+	finished = false;
 }

@@ -9,6 +9,7 @@ PrecisionAttack::PrecisionAttack(float delay)
 
 void PrecisionAttack::update(Enemy* enemy)
 {
+	if (!enemy->getActive()) return;
 	actualDelay += GetFrameTime();
 	if (!player) player = GameWorld::instance().getPlayer();
 	if (actualDelay < bulletDelay || !player || !player->getActive()) return;
