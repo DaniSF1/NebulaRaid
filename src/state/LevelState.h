@@ -3,6 +3,8 @@
 #include "PlayState.h"
 #include "../utils/LevelLoader.h"
 #include "WinState.h"
+#include <memory>
+#include <algorithm>
 
 
 struct ActiveWave
@@ -32,6 +34,8 @@ private:
 	float timeSinceLevelStart = 0.f;
 	int remainingEnemies = 0;
 	LevelData level;
+
+	std::vector<std::unique_ptr<Enemy>> ownedEnemies;
 
 	int currentLevelIndex = 0;
 	bool levelCompleted = false;

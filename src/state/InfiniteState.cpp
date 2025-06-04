@@ -7,11 +7,11 @@ void InfiniteState::enterState()
 	AudioManager::instance().playMusic("assets/music/future.ogg");
 	for (const std::string& type : spawnTypes)
 	{
-		enemyPools.emplace(type, Pool<Enemy>());
+		enemyPools.emplace(std::piecewise_construct, std::forward_as_tuple(type), std::forward_as_tuple());
 		for (int i = 0; i < 5; ++i)
 		{
-			Enemy* enemy = EnemyFactory::create(type);
-			enemyPools[type].addObject(enemy);
+			auto enemy = EnemyFactory::create(type);
+			enemyPools[type].addObject(std::move(enemy));
 		}
 	}
 }

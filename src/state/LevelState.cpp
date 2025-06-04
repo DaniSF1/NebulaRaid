@@ -9,6 +9,7 @@ void LevelState::enterState()
 void LevelState::exitState()
 {
 	ScoreManager::instance().addScore("Player1", player.getScore(), currentLevelIndex);
+	ownedEnemies.clear();
 	PlayState::exitState();
 }
 
@@ -81,13 +82,18 @@ void LevelState::update()
 
 void LevelState::spawnEnemy(std::string& type)
 {
-	Enemy* enemy = EnemyFactory::create(type);
-	enemies.push_back(enemy);
+	auto enemy = EnemyFactory::create(type);
+	enemies.push_back(enemy.get());
+	ownedEnemies.push_back(std::move(enemy));
 }
 
 void LevelState::handleEnemyRemoval(Enemy* enemy)
 {
-	delete enemy;
+	auto it = std::find_if(ownedEnemies.begin(), ownedEnemies.end(), [enemy](const std::unique_ptr<Enemy>& ptr) { return ptr.get() == enemy; });
+	if (it != ownedEnemies.end())
+	{
+		ownedEnemies.erase(it);
+	}
 }
 
 void LevelState::loadLevel(const std::string& levelPath)
@@ -109,10 +115,7 @@ void LevelState::loadLevel(const std::string& levelPath)
 void LevelState::resetLevel()
 {
 	AudioManager::instance().playSound("nextLevel");
-	for (auto enemy : enemies)
-	{
-		delete enemy;
-	}
+	ownedEnemies.clear();
 	enemies.clear();
 
 	UnloadTexture(background);
