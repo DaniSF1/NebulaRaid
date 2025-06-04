@@ -7,7 +7,7 @@
 This project demonstrates the use of several design patterns and game development techniques:
 
 ### 🎮 State Pattern
-Used to manage different game states (`MenuState`, `GameState`, `GameOverState`, etc.), enabling a clean and modular flow between scenes.
+Used to manage different game states (`MenuState`, `PlayState`, `GameOverState`, etc.), enabling a clean and modular flow between scenes.
 
 ### ♻️ Object Pool Pattern
 Bullets are managed via a custom generic `ObjectPool<T>`, avoiding costly dynamic allocations at runtime. Bullets are reused after being deactivated, minimizing memory fragmentation and boosting performance.
