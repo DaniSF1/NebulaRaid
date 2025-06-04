@@ -125,9 +125,9 @@ void LevelState::resetLevel()
 	timeSinceLevelStart = 0.f;
 	remainingEnemies = 0;
 
-	float newHealth;
-	if (player.getHealth() + 40.f + 20.f * currentLevelIndex < 250.f) newHealth = player.getHealth() + 40.f + 20.f * currentLevelIndex;
-	else newHealth = 250.f;
+	int newHealth;
+	if (player.getHealth() + 40 + 20 * currentLevelIndex < 250) newHealth = player.getHealth() + 40 + 20 * currentLevelIndex;
+	else newHealth = 250;
 	player.setHealth(newHealth);
 
 	loadLevel(levelPaths[currentLevelIndex]);

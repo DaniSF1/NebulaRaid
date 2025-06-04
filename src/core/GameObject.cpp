@@ -31,8 +31,8 @@ void GameObject::draw(Color tint)
 bool GameObject::isOutOfBounds()
 {
     return
-        worldPos.x <= 0 ||
-        worldPos.y <= 0 ||
+        worldPos.x < 0 ||
+        worldPos.y < 0 ||
         worldPos.x + width * scale > GameConfig::instance().screenWidth ||
         worldPos.y + height * scale > GameConfig::instance().screenHeight;
 }
