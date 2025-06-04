@@ -44,3 +44,15 @@ This project is still in development. Planned improvements include:
 Stay tuned for updates as the project evolves!
 
 Disclaimer: None of the sounds, sprites or art used in the game are mine. All assets used in the project are open source or are used with the permission of the author.
+
+## Running Tests
+
+The unit tests are located in the `tests` directory and are built using CMake. To compile and run them:
+
+```bash
+cmake -S . -B build
+cmake --build build
+cd build && ctest
+```
+
+This will build the test executable and execute the tests.
