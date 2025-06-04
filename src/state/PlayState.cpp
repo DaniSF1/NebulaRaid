@@ -25,6 +25,7 @@ void PlayState::exitState()
 	enemies.clear();
 	EnemyFactory::unloadSharedTextures();
 	AudioManager::instance().stopMusic();
+	GameWorld::instance().setPlayer(nullptr);
 	UnloadTexture(background);
 }
 
@@ -41,7 +42,6 @@ void PlayState::update()
 	//Grid management
 	grid.clearGrid();
 	insertIntoGrid();
-	checkCollisions();
 
 	//Player tick & elimination
 	if (player.getActive())
@@ -53,7 +53,6 @@ void PlayState::update()
 		GameWorld::instance().setPlayer(nullptr);
 		AudioManager::instance().playSound("gameover");
 		stateManager->setState(new GameOverState(stateManager));
-		EndDrawing();
 		return;
 	}
 
@@ -76,6 +75,8 @@ void PlayState::update()
 			++it;
 		}
 	}
+
+	checkCollisions();
 
 	DrawFPS(680, 10);
 #ifdef DEBUG_MODE
