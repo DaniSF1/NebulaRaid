@@ -39,10 +39,6 @@ void PlayState::update()
 	DrawTextureEx(background, bPos, 0.0, bScale, Fade(WHITE, 0.99f));
 	DrawTextureEx(background, b2Pos, 0.0, bScale, Fade(WHITE, 0.99f));
 
-	//Grid management
-	grid.clearGrid();
-	insertIntoGrid();
-
 	//Player tick & elimination
 	if (player.getActive())
 	{
@@ -76,6 +72,9 @@ void PlayState::update()
 		}
 	}
 
+	//Grid management
+	grid.clearGrid();
+	insertIntoGrid();
 	checkCollisions();
 
 	DrawFPS(680, 10);
