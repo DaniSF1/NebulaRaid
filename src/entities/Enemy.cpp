@@ -14,11 +14,6 @@ Enemy::Enemy(size_t bulletCount) : BaseCharacter(bulletCount)
 	runningTime = 0;
 	frame = 0;
 	updateTime = 0.15f;
-
-	enterBehavior = nullptr;
-	movementBehavior = nullptr;
-	retreatBehavior = nullptr;
-	attackBehavior = nullptr;
 }
 
 void Enemy::tick()
@@ -118,7 +113,7 @@ void Enemy::takeDamage(int damage)
 
 BerserkerMovementMode Enemy::getCurrentMovementMode() const
 {
-	auto* berserkerMove = dynamic_cast<BerserkerMovement*>(movementBehavior);
+	auto* berserkerMove = dynamic_cast<BerserkerMovement*>(movementBehavior.get());
 	if (berserkerMove)
 	{
 		return berserkerMove->getMode();

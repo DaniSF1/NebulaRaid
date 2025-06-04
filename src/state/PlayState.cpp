@@ -22,13 +22,6 @@ void PlayState::enterState()
 
 void PlayState::exitState()
 {
-        // Player resources will be released when PlayState is destroyed.
-        // Avoid manually calling the destructor here to prevent double
-        // destruction when the state object is cleaned up.
-        for (auto enemy : enemies)
-        {
-                delete enemy;
-        }
 	enemies.clear();
 	EnemyFactory::unloadSharedTextures();
 	AudioManager::instance().stopMusic();

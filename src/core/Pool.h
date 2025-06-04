@@ -1,5 +1,7 @@
 #pragma once
 #include "IPool.h"
+#include <memory>
+#include <algorithm>
 
 template <typename T>
 class Pool : public IPool<T>
@@ -8,21 +10,15 @@ public:
 	Pool() = default;
 	Pool(size_t size)
 	{
-		objects.resize(size);
-		for (auto& obj : objects)
+		objects.reserve(size);
+		for (size_t i = 0; i < size; ++i)
 		{
-			obj = new T();
-			availableObjects.push_back(obj);
+			objects.push_back(std::make_unique<T>());
+			availableObjects.push_back(objects.back().get());
 		}
 	}
 
-	~Pool()
-	{
-		for (T* obj : objects)
-		{
-			delete obj;
-		}
-	}
+	~Pool() override = default;
 
 	T* getObject() override
 	{
@@ -49,10 +45,10 @@ public:
 		}
 	}
 
-	void addObject(T* obj)
+	void addObject(std::unique_ptr<T> obj)
 	{
-		objects.push_back(obj);
-		availableObjects.push_back(obj);
+		availableObjects.push_back(obj.get());
+		objects.push_back(std::move(obj));
 	}
 
 	int getSize()
@@ -71,7 +67,7 @@ public:
 	}
 
 private:
-	std::vector<T*> objects;
+	std::vector<std::unique_ptr<T>> objects;
 	std::vector<T*> availableObjects;
 	std::vector<T*> activeObjects;
 };

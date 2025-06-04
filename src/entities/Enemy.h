@@ -7,6 +7,7 @@
 #include "../behaviors/BerserkerMovementMode.h"
 #include "Bullet.h"
 #include "raymath.h"
+#include <memory>
 
 enum class EnemyState
 {
@@ -48,10 +49,10 @@ public:
 		retreatBehavior->reset();
 	}
 
-	void setEnterBehavior(IMovementBehavior* enter) { enterBehavior = enter; }
-	void setMovementBehavior(IMovementBehavior* movement) { movementBehavior = movement; }
-	void setRetreatBehavior(IMovementBehavior* retreat) { retreatBehavior = retreat; }
-	void setAttackBehavior(IAttackBehavior* attack) { attackBehavior = attack; }
+	void setEnterBehavior(std::unique_ptr<IMovementBehavior> enter) { enterBehavior = std::move(enter); }
+	void setMovementBehavior(std::unique_ptr<IMovementBehavior> movement) { movementBehavior = std::move(movement); }
+	void setRetreatBehavior(std::unique_ptr<IMovementBehavior> retreat) { retreatBehavior = std::move(retreat); }
+	void setAttackBehavior(std::unique_ptr<IAttackBehavior> attack) { attackBehavior = std::move(attack); }
 	BerserkerMovementMode getCurrentMovementMode() const;
 
 private:
@@ -59,10 +60,10 @@ private:
 	static Texture2D sharedBulletTexture;
 	EnemyState state = EnemyState::Entering;
 
-	IMovementBehavior* enterBehavior;
-	IAttackBehavior* attackBehavior;
-	IMovementBehavior* movementBehavior;
-	IMovementBehavior* retreatBehavior;
+	std::unique_ptr<IMovementBehavior> enterBehavior;
+	std::unique_ptr<IAttackBehavior> attackBehavior;
+	std::unique_ptr<IMovementBehavior> movementBehavior;
+	std::unique_ptr<IMovementBehavior> retreatBehavior;
 
 	float activeDamaged = 0.f;
 	const float maxDamaged = 0.5f;

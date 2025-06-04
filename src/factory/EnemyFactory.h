@@ -14,12 +14,13 @@
 #include "../behaviors/StaticMovement.h"
 #include <string>
 #include <unordered_map>
+#include <memory>
 
 class EnemyFactory
 {
 public:
 	static void initialize(const std::unordered_map<std::string, EnemyTypeData>& types);
-	static Enemy* create(const std::string& typeName);
+	static std::unique_ptr<Enemy> create(const std::string& typeName);
 
 	static void loadSharedTextures();
 	static void unloadSharedTextures();

@@ -9,10 +9,10 @@ void EnemyFactory::initialize(const std::unordered_map<std::string, EnemyTypeDat
 	enemyTypes = types;
 }
 
-Enemy* EnemyFactory::create(const std::string& typeName)
+std::unique_ptr<Enemy> EnemyFactory::create(const std::string& typeName)
 {
 	const EnemyTypeData& data = enemyTypes[typeName];
-	Enemy* enemy = new Enemy(data.poolSize);
+	auto enemy = std::make_unique<Enemy>(data.poolSize);
 
 	enemy->setHealth(data.health);
 	enemy->setMaxHealth(data.health);
@@ -30,18 +30,18 @@ Enemy* EnemyFactory::create(const std::string& typeName)
 	enemy->setType(typeName);
 
 	//Movement
-	enemy->setEnterBehavior(new EnterTopBehavior(data.targetY));
-	if (data.movementType == "RandomMovement") enemy->setMovementBehavior(new RandomMovement());
-	else if (data.movementType == "LateralMovement") enemy->setMovementBehavior(new LateralMovement());
-	else if (data.movementType == "StaticMovement") enemy->setMovementBehavior(new StaticMovement());
-	else if (data.movementType == "BerserkerMovement") enemy->setMovementBehavior(new BerserkerMovement());
-	enemy->setRetreatBehavior(new BasicRetreatBehavior());
+	enemy->setEnterBehavior(std::make_unique<EnterTopBehavior>(data.targetY));
+	if (data.movementType == "RandomMovement") enemy->setMovementBehavior(std::make_unique<RandomMovement>());
+	else if (data.movementType == "LateralMovement") enemy->setMovementBehavior(std::make_unique<LateralMovement>());
+	else if (data.movementType == "StaticMovement") enemy->setMovementBehavior(std::make_unique<StaticMovement>());
+	else if (data.movementType == "BerserkerMovement") enemy->setMovementBehavior(std::make_unique<BerserkerMovement>());
+	enemy->setRetreatBehavior(std::make_unique<BasicRetreatBehavior>());
 
 	//Attack
-	if (data.attackType == "BasicAttackBehavior") enemy->setAttackBehavior(new BasicAttackBehavior(data.bulletDelay));
-	else if (data.attackType == "PrecisionAttack") enemy->setAttackBehavior(new PrecisionAttack(data.bulletDelay));
-	else if (data.attackType == "TurretAttack") enemy->setAttackBehavior(new TurretAttack(data.bulletDelay));
-	else if (data.attackType == "Berserker") enemy->setAttackBehavior(new BerserkerAttack(data.bulletDelay));
+	if (data.attackType == "BasicAttackBehavior") enemy->setAttackBehavior(std::make_unique<BasicAttackBehavior>(data.bulletDelay));
+	else if (data.attackType == "PrecisionAttack") enemy->setAttackBehavior(std::make_unique<PrecisionAttack>(data.bulletDelay));
+	else if (data.attackType == "TurretAttack") enemy->setAttackBehavior(std::make_unique<TurretAttack>(data.bulletDelay));
+	else if (data.attackType == "Berserker") enemy->setAttackBehavior(std::make_unique<BerserkerAttack>(data.bulletDelay));
 
 	return enemy;
 }
