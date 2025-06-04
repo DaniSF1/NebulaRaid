@@ -43,8 +43,8 @@ protected:
 	float height{};
 	float scale{};
 
-	int xRows;
-	int yRows;
+	int xRows = 1;
+	int yRows = 1;
 
 	// animation variables          
 	float runningTime{};
