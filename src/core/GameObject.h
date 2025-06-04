@@ -52,5 +52,5 @@ protected:
 	float updateTime{};
 
 private:
-	bool isActive;
+	bool isActive = false;
 };

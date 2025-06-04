@@ -15,7 +15,7 @@ void PrecisionAttack::update(Enemy* enemy)
 	if (actualDelay < bulletDelay || !player || !player->getActive()) return;
 
 	Vector2 enemyCenter = { enemy->getWorldPos().x + enemy->getWidth() * enemy->getScale() / 2, enemy->getWorldPos().y + enemy->getHeight() * enemy->getScale() / 2 };
-	Vector2 playerCenter = { player->getWorldPos().x + player->getWidth() * player->getScale() / 2, player->getWorldPos().y + player->getHealth() * player->getScale() / 2 };
+	Vector2 playerCenter = { player->getWorldPos().x + player->getWidth() * player->getScale() / 2, player->getWorldPos().y + player->getHeight() * player->getScale() / 2 };
 	
 	Vector2 direction = Vector2Normalize(Vector2Subtract(playerCenter, enemyCenter));
 
