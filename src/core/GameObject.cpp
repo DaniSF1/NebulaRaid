@@ -1,4 +1,5 @@
 #include "GameObject.h"
+#include "../utils/GameConfig.h"
 
 void GameObject::tick()
 {
@@ -32,8 +33,8 @@ bool GameObject::isOutOfBounds()
     return
         worldPos.x <= 0 ||
         worldPos.y <= 0 ||
-        worldPos.x + width * scale > 720 ||
-        worldPos.y + height * scale > 1280;
+        worldPos.x + width * scale > GameConfig::instance().screenWidth ||
+        worldPos.y + height * scale > GameConfig::instance().screenHeight;
 }
 
 Rectangle GameObject::getHitbox()
